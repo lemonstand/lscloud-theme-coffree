@@ -1,0 +1,43 @@
+---
+description: 'The About Page'
+template: template-1
+protocol: all
+published: true
+name: About
+url: /about
+---
+
+<div class="full-jumbotron no-padding row home-head about">
+	<div class="col-md-12 header-home-left header-about text-center">
+		<h1>About Coffree</h1>
+	</div>
+</div>
+
+<div class="jumbotron row text-center">
+	<h4 class="buffer">Our Story and Mission</h4>
+	<p class="space-bottom">Finding a way to serve eachother accross the world.</p>
+	<div class="col-md-8 col-md-offset-2">
+		<img src="{{ 'img/help.png'|theme_resource }}" style="width:40%;"alt=""><br><br>
+		{{ content_block('about') }}
+	</div>
+</div>
+
+<div class="jumbotron row people text-center no-border">
+	<h4 class="buffer">The people behind Coffree</h4>
+		{{ content_block('about-people') }}
+	<div class="col-md-4 col-md-offset-2">
+		<img src="{{ 'img/about1.jpg'|theme_resource }}" alt="">
+		<h2>Rosette Angraville</h2>
+		<hr>
+		<p>Student/Traveller/Thinker</p>
+	</div>
+	<div class="col-md-4">
+		<img src="{{ 'img/about2.jpg'|theme_resource }}" alt="">
+		<h2>Jennifer Bronson</h2>
+		<hr>
+		<p>Artist/Poet/Writer</p>
+	</div>
+	<div class="col-md-8 col-md-offset-2">
+		
+	</div>
+</div>

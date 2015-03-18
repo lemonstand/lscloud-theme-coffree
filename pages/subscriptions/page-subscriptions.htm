@@ -1,0 +1,40 @@
+---
+action: 'subscriptions:subscriptions'
+template: template-1
+protocol: all
+published: true
+name: Subscriptions
+url: /subscriptions
+---
+<div class="full-jumbotron no-padding row contact-head contact">
+  <div class="col-md-12 text-center">
+    <h1>My Subscriptions</h1>
+  </div>
+</div>
+
+
+<div class="jumbotron row">
+
+  {% if not subscriptions or not subscriptions.count %}
+      <p class="flash info">Subscriptions not found</p>
+  {% else %}
+  {% for subscription in subscriptions %}
+  {% set url = root_url('/subscription/' ~ subscription.id) %}
+    <a href="{{ url }}">
+      <div class="row" id="subscription-row">
+        <div class="col-md-2">
+          <p><span class="strong">Id:</span> {{ subscription.id }}</p>
+        </div>
+        <div class="col-md-8">
+          <p><span class="strong">Started:</span> {{ subscription.created_at.format('M jS, Y') }}</p>
+        </div>
+        <div class="col-md-2">
+          <p><span class="strong">Status:</span> {{ subscription.status.name }}</p>
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+  {% endif %}
+
+</div>
+

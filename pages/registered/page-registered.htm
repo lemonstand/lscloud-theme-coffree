@@ -1,0 +1,30 @@
+---
+template: template-1
+protocol: all
+published: true
+name: Registered
+url: /registered
+---
+<div class="full-jumbotron no-padding row contact-head contact">
+    <div class="col-md-12 text-center">
+        <h1>Thank you for Registering!</h1>
+    </div>
+</div>
+
+
+<div class="jumbotron row">
+	<div class="col-md-8 col-md-offset-2 text-center">
+		{% if customer %}
+	        <h5>A confirmation email has been sent to your email address.</h5>
+	        <p>You have been automatically logged in.</p>
+	    {% else %}
+	        <p>Please <a href="{{ root_url('/login') }}">sign in</a> using your email and password.</p>
+	    {% endif %}
+	</div>
+</div><br><br>
+<div class="jumbotron row featured text-center">
+	<h4 class="buffer">Continue Shopping or Shop our featured collection</h4>
+	<p class="space-bottom">We have a unique selection of beans. Pick your favorite or mix and match between the three.</p>
+	{{ partial('home-featured-products', {'featuredCollection': 'featuredCollection'|collection})}}
+
+</div>

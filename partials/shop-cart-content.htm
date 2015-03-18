@@ -1,0 +1,32 @@
+<h4 class="text-center">Your Cart</h4>
+<br>
+<div class="col-md-12">
+    <div class="items-holder">
+        
+        {{ partial('shop-cart-items', {'edit_cart': true}) }}
+
+    </div>
+
+</div>
+
+<div class="col-md-4 col-sm-12 col-xs-12" id="summary">
+    <p id="title-p-d">Order Summary</p>
+    <ul class="price-list list-group">
+        {% if totals.discountTotal > 0 %}
+            <li class="list-group-item">Discount: {{ totals.discountTotal|currency }}</li>
+        {% endif %}
+        {% if totals.totalShippingQuote > 0 %}
+            <li class="list-group-item">Shipping: {{ totals.totalShippingQuote|currency }}</li>
+        {% endif %}
+        <li class="list-group-item important">Total: {{ totals.total|currency }}</li>
+    </ul>
+
+
+    <input type="text" class="form-control" id="coupon-code" name="coupon" placeholder="Coupon Code" value="{{ coupon_code }}" /><br><br>
+    <a class="btn btn-default col-xs-12 btn-lg solid refresh-cart" href="#" data-ajax-handler="shop:cart" data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart, #navbar-totals=shop-minicart-totals">Update Cart <i class="fa fa-refresh"></i></a><br><br>
+    {% if customer %}
+    <a class="col-xs-12 btn btn-important solid btn-lg" href="{{ site_url('/checkout') }}">Checkout</a>
+    {% else %}
+    <a class="col-xs-12 btn btn-important solid btn-lg" href="{{ site_url('/checkout-start') }}">Checkout</a>
+    {% endif %}
+</div>

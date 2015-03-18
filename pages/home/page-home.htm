@@ -1,0 +1,34 @@
+---
+template: template-1
+protocol: all
+published: true
+name: Home
+url: /
+---
+
+<div class="full-jumbotron no-padding row home-head">
+	<div class="col-md-12 header-home-left text-center">
+		<img src="{{ theme.logoImage.thumbnail('auto', 'auto') }}">
+	</div>
+</div>
+
+
+
+<div class="jumbotron row featured text-center">
+	<h4 class="buffer">What you can get</h4>
+	<p class="space-bottom">We have flexible plans whether you are subscribing for the office or for yourself</p>
+	{{ partial('home-featured-products', {'featuredCollection': 'featuredCollection'|collection}) }}
+	<br>
+</div>
+
+<div class="jumbotron row about-bar text-center no-border">
+	<h4 class="buffer">Our Story and Mission</h4>
+	<p class="space-bottom">Finding a way to serve eachother accross the world.</p>
+	<div class="col-md-7 no-padding">
+		<img src="{{ 'img/charity.jpg'|theme_resource }}">
+	</div>
+	<div class="col-md-5">
+		<img src="{{ 'img/help.png'|theme_resource }}" alt="">
+		{{ content_block('home-about') }}
+	</div>
+</div>

@@ -1,0 +1,42 @@
+---
+action: 'shop:orders'
+template: template-1
+protocol: all
+published: true
+name: Orders
+url: /orders
+---
+<div class="full-jumbotron no-padding row contact-head contact">
+  <div class="col-md-12 text-center">
+    <h1>My Subscriptions</h1>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="content twelve columns">
+    {% if not orders or not orders.count %}
+      <p class="flash info">Orders not found</p>
+    {% else %}
+      <div class="row">
+        <table class="product-list full-width">
+          <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Total</th>
+          </tr>
+          {% for order in orders if not order.is_quote %}
+            {% set url = root_url('/order/'~order.id) %}
+            <tr>
+              <td><a href="{{ url }}">{{ order.number }}</a></a></td>
+              <td><a href="{{ url }}">{{ order.created_at.format('M jS, Y') }}</a></td>
+              <td><a href="{{ url }}">{{ order.orderStatus.name }}</a></td>
+              <td><a href="{{ url }}"><i>{{ order.total|currency }}</i></a></td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    {% endif %}
+  </div>
+</div>

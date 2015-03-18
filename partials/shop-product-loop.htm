@@ -1,0 +1,15 @@
+{% set shop_item = theme.shopItemsPerPage %}
+{% set shop_item = 3 %}
+
+{% paginate products by shop_item %}
+  {% for product in products %}
+    <div class="col-md-4 feature-item">
+        {{ partial('shop-grid-item', {'product':product}) }}
+    </div>
+  {% endfor %}
+
+  <div class="pagination-holder">
+    {% navigation %}
+  </div>
+
+{% endpaginate %}

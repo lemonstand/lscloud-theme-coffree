@@ -1,0 +1,69 @@
+{% set on_sale = product.onSale %}
+
+<div class="col-md-7">
+	<div class="col-md-12 img-thumb">
+		<img id="big-thumb" src="{{ product.images.first.thumbnail('auto','auto',{crop:true}) }}" class="main-img" alt="">
+	</div>
+	<div class="col-md-12">
+		{% for image in product.images %}
+			<div class="col-md-3 img-thumb">
+				<img onclick='changeImage("{{ image.thumbnail('auto', 'auto') }}")' src="{{ image.thumbnail('auto','auto',{crop:true}) }}" alt="" class="small-thumb">
+			</div>
+		{% endfor %}
+	</div>
+	
+</div>
+
+<div class="col-md-5">
+	<div class="col-md-12">
+		<h1 class="uppercase">{{ product.name }}</h1> 
+		
+		<h3 id="why">{{ product.price|currency }} <sub>/mo</sub></h3>
+		{% if on_sale %}
+			<small class="previous-price">{{ product.fullPrice|currency }}</small>
+		{% endif %} 
+		<hr>
+		<p>{{product.description|unescape}}</p>
+		<hr>
+	</div>
+	{% if product.enabled %}	
+		{{ partial('shop-product-attributes') }}
+		{{ partial('shop-product-extras') }}
+		{{ partial('shop-product-options') }}
+		<br>
+	{% if not product.isOutOfStock() or product.allow_preorder %}
+		<input type="hidden" name="productId" value="{{ product.id }}"/>
+
+		<div class="product-options col-md-6">
+			<p class="title" for="billing_plan">Billing plan</p>
+			<span class="col-md-12 custom-dropdown">
+			<select id="billing_plan" class="select_option" name="billing_plan"> 
+					<option value="">-- No subscription --</option>
+					{% for plan in billingPlans %}
+					<option value="{{ plan.id }}" {{ option_state(plan.id, cart_billing_plan) }}>{{ plan.name }}</option>
+					{% endfor %}
+			</select>
+			</span>
+		</div>
+
+      <input type="hidden" name="productId" value="{{ product.id }}"/>
+	      <div class="add-cart-holder form-group col-md-12">
+				{{ flash() }}
+				<!-- <input type="hidden" name="subscribeRedirect" value="/checkout"> -->
+				<a class="btn btn-important btn-add-cart pull-right" href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#shop-product=shop-product, #mini-cart=shop-minicart-totals" data-ajax-extra-fields="subscribe=1, noFash=1">Subscribe</a>
+			</div>
+    {% else %}
+      <div class="not-available">
+        <h5>This product is temporarily unavailable</h5>
+      </div>
+    {% endif %}
+	    
+	{% else %}
+	<div class="not-available">
+	  <h5>This product is not available</h5>
+	</div>
+  {% endif %}
+</div>
+
+
+

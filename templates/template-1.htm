@@ -1,0 +1,17 @@
+---
+description: 'index template'
+---
+<!DOCTYPE html> 
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --> 
+<!--[if IE 8]> <html lang="en"> <![endif]--> 
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]--> 
+<head>
+    {{ partial('layout-head') }}
+</head> 
+<body>
+    {{ partial('layout-header')}}
+    {{ page() }} 
+    {{ partial('layout-footer') }}
+    {{ partial('layout-foot') }}
+</body>
+</html>
