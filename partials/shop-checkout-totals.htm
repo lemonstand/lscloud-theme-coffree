@@ -1,5 +1,5 @@
 {% if totals.discountTotal > 0 %}
-  <p><strong>Discount applied:</strong> <i>{{ totals.discountTotal|currency }}</i></p>
+<p><strong>Discount applied:</strong> <i>{{ totals.discountTotal|currency }}</i></p>
 {% endif %}
 <p><strong>Cart sub-total:</strong> <i>{{ totals.subtotal|currency }}</i></p>
 {% if totals.totalShippingQuote %}
