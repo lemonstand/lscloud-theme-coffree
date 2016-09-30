@@ -1,0 +1,21 @@
+---
+action: 'shop:updateStoredCard'
+template: template-1
+protocol: all
+published: true
+name: Billing
+url: '/billing'
+---
+<div class="row">
+  <div class="content twelve columns">
+    {% if not paymentMethod %}
+        <p>There are no payment methods that support stored credit cards.</p>
+    {% else %}
+        {{ flash() }}
+        <div id="payment_form">
+            {% set name = paymentMethod.getFrontendStoredCardPartialName() %}
+            {{ partial(name, {paymentMethod: paymentMethod}) }}
+        </div>
+    {% endif %}
+  </div>
+</div>

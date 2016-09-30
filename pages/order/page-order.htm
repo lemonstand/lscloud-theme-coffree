@@ -6,5 +6,45 @@ published: true
 name: Order
 url: '/order/:orderId'
 ---
+<div class="row">
+  <div class="content twelve columns">
+    {% if order %}
+      <div class="row">
+        <div class="eight columns data-list">
+          <p><strong>Order number: </strong> #{{ order.number }} </p>
+          {% if order.invoices[0].payments().last().guessPaymentMethod() %}
+          <p><strong>Payment method: </strong> {{ order.invoices[0].payments().last().guessPaymentMethod().name }}</p>
+          <p><strong>Payment method: </strong> {{ order.invoices[0].payments().last().guessPaymentMethod() }}</p>
+          {% endif %}
+          <p><strong>Order Date: </strong> {{ order.created_at.format('M jS, Y') }}</p>
+        </div>
+      </div>
+      
+      <div class="row">
+        {#{{ partial('shop-orderitems') }}#}
+      </div>
 
-<p>abc</p>
+      <div class="row">
+        <div class="two columns">
+          {% if order.payment_method.has_payment_form() and not order.payment_processed() %}
+            <a class="button" href="{{ root_url('/review/'~order.order_hash) }}">Pay the order</a>
+          {% endif %}
+        </div>
+    
+        <div class="three columns offset-by-seven data-list align-right">
+          {#{{ partial('shop-ordertotals') }}#}
+        </div>
+      </div>
+      {% if order.subscription %}
+          <section id="subscription-update-message">
+              {{ partial('subscription-update-message') }}
+          </section>
+          <section id="subscription-billing-plan">
+           {#{{ partial('shop-orderbillingplans') }}#}
+          </section>
+        {% endif %}
+    {% else %}
+      <p class="flash error">Order not found</p>
+    {% endif %}
+  </div>
+</div>
