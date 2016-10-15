@@ -66,9 +66,35 @@
   {% endif %}
 </div>
 
-{% if theme.productReview %}
-	{{ partial('shop-product-review') }}
-{% endif %}
+<script type="text/javascript">
+	function showMe (box) {
+
+    var chboxs = document.getElementsByName("product-review");
+    var vis = "block";
+    for(var i=0;i<chboxs.length;i++) { 
+        if(!chboxs[i].checked){
+         vis = "none";
+            break;
+        }
+    }
+    document.getElementById(box).style.display = vis;
+
+}
+</script>
+
+<div id="div1">
+	{% if theme.productReview %}
+		{{ partial('shop-product-review') }}
+	{% endif %}	
+</div>
+
+<p>Product Review: <input onclick="showMe('div1')" type="checkbox" name="product-review"></p>
+
+
+
+
+
+
 
 
 
