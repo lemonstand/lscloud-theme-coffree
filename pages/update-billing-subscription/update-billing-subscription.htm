@@ -1,0 +1,96 @@
+---
+action: 'shop:customerProfile'
+template: template-1
+protocol: all
+published: true
+name: Subscription Billing
+url: /update-billing-subscription
+---
+
+{{ flash() }}
+{{ open_form({'data-ajax-handler': 'shop:onUpdateCustomerProfile', 'class': 'custom clearfix', 'data-ajax-update': "#profile-addresses=shop-customerprofile,#profile-changepassword=shop-changepassword", 'data-validation-message' : ''}) }}
+<input type="hidden" name="billing[id]" value="{{ billing.id }}" />
+{# <div class="panel"> #}
+  
+  <h2 class="space-bottom">Update your billing information for subscriptions here:</h2>
+  <div id="billing-info" class="panel-collapse collapse in col-md-6 text-left">
+    <div class="panel-body row">
+        <p class="col-md-12">BILLING ADDRESS</p><br>
+        <div class="col-sm-6 form-group">
+          
+          <input name="billing[first_name]" id="first_name" type="text" class="form-control" value="{{ billing.first_name }}"  placeholder="first name*"/>
+          <label for="first_name">First Name</label>
+          <span class="error"></span>
+        </div>
+        
+        <div class="col-sm-6 form-group">
+          <input name="billing[last_name]" id="last_name" type="text" class="form-control" value="{{ billing.last_name }}" placeholder="last name*"/>
+          <label for="last_name">Last Name</label>
+          <span class="error"></span>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input data-mirror type="text" name="billing[phone]" id="phone" value="{{ billing.phone }}" class="form-control" placeholder="phone number"/>
+          <label for="phone">Phone Number</label>
+          <span class="error"></span>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input type="text" name="billing[email]" id="email" value="{{ customer.email }}" class="form-control" placeholder="Email*" />
+          <label for="email">Email</label>
+          <span class="error"></span>
+        </div>
+        
+        <div class="col-sm-12 form-group">
+          <input name="billing[street_address]" id="billing_address" type="text" class="form-control" placeholder="street address*" value="{{ billing.street_address }}"/>
+          <label for="billing_address">Address</label>
+          <span class="error"></span>
+        </div>
+        
+        <div class="col-sm-6 form-group">
+          <input type="text" name="billing[city]" id="billing_city" value="{{ billing.city }}" class="form-control col-xs-12" placeholder="city*"/>
+          <label for="billing_city">City</label>
+          <span class="error"></span>
+        </div>
+        
+        <div class="col-sm-6 form-group">
+          <input type="text" id="billing_zip" name="billing[postal_code]" value="{{ billing.postal_code }}" class="form-control " placeholder="postcode/zip*"/>
+          <label for="billing_zip">Zip Code</label>
+          <span class="error"></span>
+        </div>
+        
+        <div class="col-sm-6 form-group">
+          <label for="billing_country" class="hide">Country</label>
+          <!-- 
+            The state selector updates automatically when the country changes. 
+            See app.js for the implementation details. 
+            -->        
+          <select id="billing_country" name="billing[shop_country_id]" data-state-selector="#billing_state" data-current-state="{{ billing.country.id }}" class="chzn-select form-control">
+          {% for country in countries %}
+          <option {{ option_state(billing.country.id, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
+          {% endfor %}
+          </select>
+          <span class="error"></span>
+        </div>
+        
+        <div class="col-sm-6 form-group">
+          <label for="billing_state" class="hide">State</label>
+          <select class="chzn-select form-control" id="billing_state" name="billing[shop_state_id]" data-ajax-refresh > 
+          {{ partial('shop-stateoptions', {'states': billingStates, 'selected': billing.state.id}) }}
+          </select>
+          <span class="error"></span>
+        </div>
+
+        
+        
+        
+      
+    </div> {# /panel-body #}
+  </div> {# /panel-collapse #}
+{# </div> #} {# /panel #}
+
+
+<div class="col-xs-12 form-group">
+  <input type="submit" id="btn-important" class="btn btn-important pull-right" value="Save Address Information"/>
+  <input type="hidden" name="flash" value="Your profile has been successfully updated."/>
+  <input type="hidden" name="redirect" value="{{ root_url('/profile') }}"/>
+</div>
+</form>
