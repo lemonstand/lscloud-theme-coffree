@@ -263,6 +263,7 @@ sup{
 }
 .pricing-box .col-md-6{
 	text-align: center;
+	padding-bottom: 20px;
 }
 .pricing-box .col-md-6 img{
 	width: 70%;
@@ -593,7 +594,7 @@ sub{
   border-color:rgba(0,0,0,0.3);
 }
 #shipping-info{
-  
+
 }
 .disabled{
   pointer-events:none;
@@ -669,7 +670,7 @@ sub{
    color: #D4D4D4;
 }
 
-.form-control:-ms-input-placeholder {  
+.form-control:-ms-input-placeholder {
    color: #D4D4D4;
 }
 
@@ -1093,7 +1094,7 @@ sub{
         opacity:0;
     }
 }
- 
+
 #loading-indicator {
     position: fixed;
     width: 100%;
@@ -1967,6 +1968,3 @@ sub{
 #address-form, #shop-checkout-shipping-method{
 	padding:30px 0 ;
 }
-}
-
-
