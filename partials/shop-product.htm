@@ -91,7 +91,7 @@
 
 	<p>Product Review Displayed Below</p>
 
-    {{ open_form({'data-ajax-handler': 'system:onSendMessage'}) }}
+    {{ open_form({'data-ajax-handler': 'system:onSendMessage', 'data-test': 'true'}) }}
         <div class="row">
             <div style="margin-right: 50%">
                 <input type="text" class="input-sm form-control" id="contact_name" name="fields[name]" value="" placeholder="Your name" />
