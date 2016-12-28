@@ -1,18 +1,3 @@
-<!-- Review for SEO --> 
-<div itemscope itemtype="http://schema.org/Review" class="hidden">
-  <div itemprop="itemReviewed" itemscope itemtype="http://schema.org/{{ product.productType }}">
-    <span itemprop="name">{{ product.name }}</span>
-  </div>
-  <span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-    <span itemprop="ratingValue">{{ review.rating }}</span>
-    <span itemprop="name">{{ review.title }}</span>
-  <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <span itemprop="name">{{ review.from_name }}</span>
-  </span>
-  <span itemprop="reviewBody">{{ review.comment }}</span>
-</div>
-<!-- END Review for SEO -->
-
 <div class="review" style="margin-top:15px">
     {% if review.rating == 5 %}
         <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
