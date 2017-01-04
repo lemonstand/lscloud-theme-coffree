@@ -15,7 +15,14 @@ url: /update-billing-subscription
     <h2 class="space-bottom">Update your billing information for subscriptions here:</h2>
     <div id="billing-info" class="panel-collapse collapse in col-md-6 text-left">
       <div class="panel-body row">
-          <p class="col-md-12">BILLING ADDRESS</p><br>
+          <p class="col-md-12">
+          BILLING ADDRESS
+          <a href="#" style="color:black;" id="profile-billing-address"
+            data-ajax-handler="shop:onUpdateCustomerProfile"
+            data-ajax-update="#profile-addresses=shop-customerprofile"
+            data-validation-message=""
+            data-ajax-extra-fields="copy_billing_to_shipping='1'"
+            ></a></p><br>
           <div class="col-sm-6 form-group">
             
             <input name="billing[first_name]" id="first_name" type="text" class="form-control" value="{{ billing.first_name }}"  placeholder="first name*"/>
