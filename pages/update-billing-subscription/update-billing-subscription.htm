@@ -6,16 +6,28 @@ published: true
 name: Subscription Billing
 url: /update-billing-subscription
 ---
+<div class="full-jumbotron no-padding row contact-head contact">
+    <div class="col-md-12 text-center">
+      {% if customer %}
+          <h1>Welcome {{customer.first_name}}!</h1>
+        {% else %}
+          <h1>Whoops! Login First</h1>
+        {% endif %}
+
+    </div>
+</div>
+
+<div class="jumbotron row">
 {% if customer %}
   {{ flash() }}
   {{ open_form({'data-ajax-handler': 'shop:onUpdateCustomerProfile', 'class': 'custom clearfix', 'data-ajax-update': "#profile-addresses=shop-customerprofile,#profile-changepassword=shop-changepassword", 'data-validation-message' : ''}) }}
   <input type="hidden" name="billing[id]" value="{{ billing.id }}" />
   {# <div class="panel"> #}
     
-    <h2 class="space-bottom">Update your billing information for subscriptions here:</h2>
-    <div id="billing-info" class="panel-collapse collapse in col-md-6 text-left">
+    <h2 class="space-bottom" style="text-align: center;">Update your billing information for subscriptions here:</h2>
+    <div id="billing-info" ">
       <div class="panel-body row">
-          <p class="col-md-12">
+          <p class="col-md-12" style="text-align: center;">
           BILLING ADDRESS
           <a href="#" style="color:black;" id="profile-billing-address"
             data-ajax-handler="shop:onUpdateCustomerProfile"
@@ -26,46 +38,46 @@ url: /update-billing-subscription
           <div class="col-sm-6 form-group">
             
             <input name="billing[first_name]" id="first_name" type="text" class="form-control" value="{{ billing.first_name }}"  placeholder="first name*"/>
-            <label for="first_name">First Name</label>
+            <label for="first_name" style="text-align: center;">First Name</label>
             <span class="error"></span>
           </div>
           
           <div class="col-sm-6 form-group">
             <input name="billing[last_name]" id="last_name" type="text" class="form-control" value="{{ billing.last_name }}" placeholder="last name*"/>
-            <label for="last_name">Last Name</label>
+            <label for="last_name" style="text-align: center;">Last Name</label>
             <span class="error"></span>
           </div>
           <div class="col-sm-6 form-group">
             <input data-mirror type="text" name="billing[phone]" id="phone" value="{{ billing.phone }}" class="form-control" placeholder="phone number"/>
-            <label for="phone">Phone Number</label>
+            <label for="phone" style="text-align: center;">Phone Number</label>
             <span class="error"></span>
           </div>
           <div class="col-sm-6 form-group">
-            <input type="text" name="billing[email]" id="email" value="{{ customer.email }}" class="form-control" placeholder="Email*" />
-            <label for="email">Email</label>
+            <input type="text" name="billing[email]" id="email" value="{{ customer.email }}" class="form-control" placeholder="Email*"/>
+            <label for="email" style="text-align: center;">Email</label>
             <span class="error"></span>
           </div>
           
           <div class="col-sm-12 form-group">
             <input name="billing[street_address]" id="billing_address" type="text" class="form-control" placeholder="street address*" value="{{ billing.street_address }}"/>
-            <label for="billing_address">Address</label>
+            <label for="billing_address" style="text-align: center;">Address</label>
             <span class="error"></span>
           </div>
           
           <div class="col-sm-6 form-group">
             <input type="text" name="billing[city]" id="billing_city" value="{{ billing.city }}" class="form-control col-xs-12" placeholder="city*"/>
-            <label for="billing_city">City</label>
+            <label for="billing_city" style="text-align: center;">City</label>
             <span class="error"></span>
           </div>
           
           <div class="col-sm-6 form-group">
-            <input type="text" id="billing_zip" name="billing[postal_code]" value="{{ billing.postal_code }}" class="form-control " placeholder="postcode/zip*"/>
+            <input type="text" id="billing_zip" name="billing[postal_code]" value="{{ billing.postal_code }}" class="form-control " placeholder="postcode/zip*"style="text-align: center;"/>
             <label for="billing_zip">Zip Code</label>
             <span class="error"></span>
           </div>
           
           <div class="col-sm-6 form-group">
-            <label for="billing_country" class="hide">Country</label>
+            <label for="billing_country" class="hide" style="text-align: center;">Country</label>
             <!-- 
               The state selector updates automatically when the country changes. 
               See app.js for the implementation details. 
@@ -79,8 +91,8 @@ url: /update-billing-subscription
           </div>
           
           <div class="col-sm-6 form-group">
-            <label for="billing_state" class="hide">State</label>
-            <select class="chzn-select form-control" id="billing_state" name="billing[shop_state_id]" data-ajax-refresh > 
+            <label for="billing_state" class="hide" style="text-align: center;">State</label>
+            <select class="chzn-select form-control" id="billing_state" name="billing[shop_state_id]" data-ajax-refresh style="> 
             {{ partial('shop-stateoptions', {'states': billingStates, 'selected': billing.state.id}) }}
             </select>
             <span class="error"></span>
@@ -96,11 +108,12 @@ url: /update-billing-subscription
 
 
   <div class="col-xs-12 form-group">
-    <input type="submit" id="btn-important" class="btn btn-important pull-right" value="Save Address Information"/>
+    <input type="submit" id="btn-important" class="btn btn-important pull-right" value="Save Address Information" style="text-align: center;" />
     <input type="hidden" name="flash" value="Your profile has been successfully updated."/>
     <input type="hidden" name="redirect" value="{{ root_url('/profile') }}"/>
   </div>
   </form>
 {% else %}
-  Please <a href="{{ root_url('login') }}">login</a> to edit your profile.
+  <p style="text-align: center;">Please <a href="{{ root_url('login') }}">login</a> to edit your profile.</p>
 {% endif %}
+</div>
