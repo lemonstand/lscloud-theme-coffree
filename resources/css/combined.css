@@ -537,6 +537,12 @@ sub{
 	border-radius:0;
 	border:3px solid #f1f1f1;
 }
+.btn-important-special {
+    border:3px solid #494c50;
+    border-radius:0;
+    color:#494c50;
+    background:white;
+}
 
 
 /*======================================================
