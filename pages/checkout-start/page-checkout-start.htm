@@ -10,7 +10,7 @@ url: /checkout-start
    <div class="row" id="login">
         <div class="col-md-12">
             <div class="col-sm-6">
-                <p id="title-p">Returning Customers</p>
+                <p id="title-p"><strong>Returning Customers</strong></p>
                 {{ open_form({'data-ajax-handler': 'shop:onLogin', 'data-validation-message' : '', 'class' : 'form-horizontal' }) }}
 
                 <div class="form-group">
@@ -37,14 +37,21 @@ url: /checkout-start
                 <input type="hidden" name="redirect" value="{{ site_url(root_url('/checkout')) }}"/>
       
             {{ close_form() }}
-            </div><br>
+            </div>
+            <div class="form group">
             <div class="col-xs-12 col-sm-6">
                 <form class="form-guest-checkout">
-                    <p id="title-p">Guest Checkout</p>
-                    <a href="{{ site_url('checkout') }}"><span class="btn btn-sm btn-important">Continue as a Guest</span></a>
-                    <br><br>
-                    <p>Don't have an account? <a href="{{ site_url('login') }}"> Register</a></p>
+                    <p id="title-p"><strong>Guest Checkout</strong></p>
+                    <a href="{{ site_url('checkout') }}"><span class="btn btn-sm btn-important-special">Continue as a Guest</span></a><br><br>
                 </form>
+            </div>
+            <br><br>
+            <div class="col-xs-12 col-sm-6">
+                <form class="form-guest-checkout">
+                    <p id="title-p"><strong>Don't have an account?</strong></p>
+                    <a href="{{ site_url('login') }}"><span class="btn btn-sm btn-important">Register for one today!</span></a>
+                </form>
+            </div>
             </div>
         </div>
 </div> 
