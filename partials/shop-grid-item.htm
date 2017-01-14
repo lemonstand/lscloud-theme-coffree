@@ -1,11 +1,10 @@
 {% set on_sale = product.onSale %}
 
-
 <div class="col-md-6 text-center">
 	<img src="{{ product.images.first.thumbnail('auto',500,{crop:true}) }}" alt="{{ product.name }}">
-	<h2>{{ product.name }}</h2>
+	<h2 class="paragraph-overflow-text" style="max-width: 300%">{{ product.name }}</h2>
 	<p>{{ product.price|currency }} <sub>/mo</sub></p>
 	<hr>
-	<p>{{ product.description|unescape }}</p><br>
+	<div class="paragraph-overflow-text" style="max-width: 200%">{{ product.description|unescape }}</div><br>
 	<a href="/product/{{ product.url_name }}" class="btn btn-important">I want this!</a>
 </div>

@@ -1968,3 +1968,9 @@ sub{
 #address-form, #shop-checkout-shipping-method{
 	padding:30px 0 ;
 }
+
+.paragraph-overflow-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
