@@ -1,20 +1,10 @@
 {% set on_sale = product.onSale %}
 
-<style>
-    .paragraph-overflow-text p {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 200%;
-    }
-</style>
-
-
 <div class="col-md-6 text-center">
 	<img src="{{ product.images.first.thumbnail('auto',500,{crop:true}) }}" alt="{{ product.name }}">
-	<h2 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 300%;">{{ product.name }}</h2>
+	<h2 class="paragraph-overflow-text" style="max-width: 300%">{{ product.name }}</h2>
 	<p>{{ product.price|currency }} <sub>/mo</sub></p>
 	<hr>
-	<div class="paragraph-overflow-text">{{ product.description|unescape }}</div><br>
+	<div class="paragraph-overflow-text" style="max-width: 200%">{{ product.description|unescape }}</div><br>
 	<a href="/product/{{ product.url_name }}" class="btn btn-important">I want this!</a>
 </div>
