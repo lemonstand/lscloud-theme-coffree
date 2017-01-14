@@ -18,6 +18,7 @@ customFields:
     socialFacebookUrl: { type: text, title: 'Global: Facebook URL', default: 'http://facebook.com/lemonstand' }
     socialTwitterUrl: { type: text, title: 'Global: Twitter URL', default: 'http://twitter.com/itsdpark' }
     socialPinterestUrl: { type: text, title: 'Global: Pinterest URL', default: 'http://pinterest.com' }
+    productReview: { type: checkbox, title: 'Global: Product Review', default: '@/img/logo.png' }
 ---
 
 

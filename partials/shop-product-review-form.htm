@@ -1,0 +1,53 @@
+{#<button id="writeReviewButton" class="btn btn-md">WRITE A REVIEW »</button>#}
+<div id="reviewForm" class="col-md-12" style="display:none; padding-left: 0; margin-top: 25px; margin-bottom: 25px;">
+
+{{ open_form({'data-ajax-handler': 'system:onSendMessage', 'data-test': 'true'}) }}
+
+    <div class="col-sm-12 form-group" style="padding-left: 0px;">
+        <label>Rating</label>
+        <select id="item_rating" name="fields[item_rating]" class="form-control">
+            <option value="5">&starf;&starf;&starf;&starf;&starf;</option>
+            <option value="4">&starf;&starf;&starf;&starf;&star;</option>
+            <option value="3">&starf;&starf;&starf;&star;&star;</option>
+            <option value="2">&starf;&starf;&star;&star;&star;</option>
+            <option value="1">&starf;&star;&star;&star;&star;</option>
+        </select>
+        <span class="error"/>
+    </div>
+
+    <div class="col-sm-12 form-group" style="padding-left: 0px;">
+        <label>Subject</label>
+        <input type="text" id="subject" name="fields[subject]" value="" class="form-control"/>
+        <span class="error"/>
+    </div>
+
+    <div class="col-sm-12 form-group" style="padding-left: 0px;">
+        <label>Your Name</label>
+        <input type="text" id="contact_name" name="fields[name]" value="" class="form-control" />
+        <span class="error"/>
+    </div>
+    
+    <div class="col-sm-12 form-group" style="padding-left: 0px;">
+        <label>Email</label>
+        <input type="text" id="contact_email" name="fields[email]" value="" class="form-control" />
+        <span class="error"/>
+    </div>
+
+    <div class="col-sm-12 form-group" style="padding-left: 0px;">
+        <label>Review</label>
+        <textarea id="contact_message" name="fields[message]" value="" rows="10" class="form-control" ></textarea>
+        <span class="error"/>
+    </div>
+        
+    <br>
+    <div class="col-sm-12 form-group" style="padding-left: 0px;">
+        <input type="submit" class="btn btn-md" value="SUBMIT"/>
+    </div>
+    
+    <input type="hidden" name="successMessage" value="Thanks for your review!">
+    <input type="text" name="hp" value="" style="display: none"/>
+    <input type="hidden" name="fields[shop_customer_id]" value="{{customer.id}}"/>
+    <input type="hidden" name="fields[shop_product_id]" value="{{product.id}}"/>
+    <input type="hidden" name="fields[message_type]" value="review"/>
+{{ close_form() }}
+</div>

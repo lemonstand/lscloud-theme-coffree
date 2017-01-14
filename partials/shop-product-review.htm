@@ -1,0 +1,37 @@
+<div class="review" style="margin-top:15px">
+    {% if review.rating == 5 %}
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+    {% elseif review.rating == 4 %}
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-off.png'|theme_resource}}">
+    {% elseif review.rating == 3 %}
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-off.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-off.png'|theme_resource}}">
+    {% elseif review.rating == 2 %}
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-off.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-off.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-off.png'|theme_resource}}">
+    {% else %}
+        <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-off.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-off.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-off.png'|theme_resource}}">
+        <image class="star" src="{{'img/review-star-off.png'|theme_resource}}">
+    {% endif %}
+    <h4>{{review.title}}</h4>
+    <p class="description">Posted by {{review.from_name}} on {{ review.created_at|date('M jS, Y') }}. <strong style="color: #ff6000"><span>✓&nbsp;&nbsp;</span>Verified Buyer</strong></p>
+    <p style="padding-right: 30px">{{review.comment}}</p>
+</div>
+<hr>
