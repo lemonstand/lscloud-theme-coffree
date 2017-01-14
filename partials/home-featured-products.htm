@@ -1,7 +1,7 @@
 <div class="col-md-8 col-md-offset-2 pricing-box">
 {% if featuredCollection %}
 
-  <span class="title">Our Plans</span>
+  
   {% for product in featuredCollection.products %}
         {{ partial('shop-grid-item-home', {'product':product}) }}
   {% endfor %}

@@ -15,6 +15,23 @@
         {% if totals.discountTotal > 0 %}
             <li class="list-group-item">Discount: {{ totals.discountTotal|currency }}</li>
         {% endif %}
+        
+        {% for plan in billingPlans %}
+            {% if cart_billing_plan == plan.id %}
+                {% if plan.setup_fee_or_percentage %}
+                    {% if '%' in plan.setup_fee_or_percentage %}
+                        {% set fee = plan.setup_fee_or_percentage|trim('%') * cart.getTotal() / 100 %}
+                    {% else %}
+                        {% set fee = plan.setup_fee_or_percentage %}
+                    {% endif %}
+                    <li class="list-group-item">Subscription Signup Fee: {{ fee|currency }} </li>
+                {% else %}
+                    {% set discount = plan.discount_percentage|trim('%') * cart.getTotal() / 100 %}
+                    <li class="list-group-item">Subscription Discount: {{ discount|currency }}</li>
+                {% endif %}
+            {% endif %}    
+        {% endfor %}
+        
         {% if totals.totalShippingQuote > 0 %}
             <li class="list-group-item">Shipping: {{ totals.totalShippingQuote|currency }}</li>
         {% endif %}
@@ -23,7 +40,7 @@
 
 
     <input type="text" class="form-control" id="coupon-code" name="coupon" placeholder="Coupon Code" value="{{ coupon_code }}" /><br><br>
-    <a class="btn btn-default col-xs-12 btn-lg solid refresh-cart" href="#" data-ajax-handler="shop:cart" data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart, #navbar-totals=shop-minicart-totals">Update Cart <i class="fa fa-refresh"></i></a><br><br>
+    <a class="btn btn-default col-xs-12 btn-lg solid refresh-cart" href="#" data-ajax-handler="shop:cart" data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart-totals">Update Cart <i class="fa fa-refresh"></i></a><br><br>
     {% if customer %}
     <a class="col-xs-12 btn btn-important solid btn-lg" href="{{ site_url('/checkout') }}">Checkout</a>
     {% else %}

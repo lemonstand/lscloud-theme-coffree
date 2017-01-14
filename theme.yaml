@@ -1,25 +1,22 @@
 ---
-name: 'Coffree'
+name: Coffree
 description: 'A theme made for subscription box businesses'
 author: 'Daniel Park (@itsdpark)'
 website: 'http://dparkd.com'
 engine: twig
 404: '404'
 customFields:
-    storeTitle: { type: text, title: 'Title of your Store', default: 'Coffree' }
-    faviconImage: {type:image, title:'Favicon Image (Image you see in the browser)', default:'@img/logo.png'}
-    logoImage: { type: image, title: 'Global: Logo Image', default: '@/img/logo.png'}
-    navbarBackgroundColor: { type:color, title:'Global: Navbar Background Color', default:'white'}
-    navbarLinkColor: { type:color, title:'Global: Navbar Link Color', default:'rgba(255,255,255,0.8)'}
-    homeHeaderImage: { type: image, title: 'Home: Header Image', default: '@/img/bgmain.jpg'}
-    aboutHeaderImage: { type: image, title: 'About: header image', default: '@/img/contact.jpg'}
-    contactHeaderImage: { type: image, title: 'Contact: header image', default: '@/img/contact.jpg'}
-    contactAddress: {type:text, title: 'Home: Contact Address', default: '9203 Pender St, Vancouver BC, J2K 2J2'}
+    storeTitle: { type: text, title: 'Title of your Store', default: Coffree }
+    faviconImage: { type: image, title: 'Favicon Image (Image you see in the browser)', default: '@img/logo.png' }
+    logoImage: { type: image, title: 'Global: Logo Image', default: '@/img/logo.png' }
+    navbarBackgroundColor: { type: color, title: 'Global: Navbar Background Color', default: white }
+    navbarLinkColor: { type: color, title: 'Global: Navbar Link Color', default: 'rgba(255,255,255,0.8)' }
+    homeHeaderImage: { type: image, title: 'Home: Header Image', default: '@/img/bgmain.jpg' }
+    aboutHeaderImage: { type: image, title: 'About: header image', default: '@/img/contact.jpg' }
+    contactHeaderImage: { type: image, title: 'Contact: header image', default: '@/img/contact.jpg' }
+    contactAddress: { type: text, title: 'Home: Contact Address', default: '9203 Pender St, Vancouver BC, J2K 2J2' }
     socialFacebookUrl: { type: text, title: 'Global: Facebook URL', default: 'http://facebook.com/lemonstand' }
     socialTwitterUrl: { type: text, title: 'Global: Twitter URL', default: 'http://twitter.com/itsdpark' }
     socialPinterestUrl: { type: text, title: 'Global: Pinterest URL', default: 'http://pinterest.com' }
     productReview: { type: checkbox, title: 'Global: Product Review', default: '@/img/logo.png' }
 ---
-
-
-

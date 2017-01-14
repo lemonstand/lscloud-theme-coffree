@@ -2,9 +2,9 @@
 
 
 <div class="col-md-6 text-center">
-	<img src="{{ product.images.first.thumbnail('auto',500,{crop:true}) }}" alt="{{ product.name }}">
+	<a href="/product/{{ product.url_name }}"><img src="{{ product.images.first.thumbnail('auto',500,{crop:true}) }}" alt="{{ product.name }}"></a>
 	<h2>{{ product.name }}</h2>
-	<p>{{ product.price|currency }} <sub>/mo</sub></p>
+	<p>{{ product.price|currency }} {% if product.productType.name == 'Subscription' %}<sub>/mo</sub>{% endif %}</p>
 	<hr>
 	<a href="/product/{{ product.url_name }}" class="btn btn-important">I want this!</a>
 </div>

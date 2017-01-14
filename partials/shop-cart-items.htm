@@ -39,7 +39,9 @@
 				{% endif %}
 			</div>
 			<div class="col-sm-3" id="item-middle">
-				<p class="col-sm-9">{{ item.total()|currency }}</p>
+				<p class="col-sm-9">{{ item.total()|currency }} {{ billingPlans }}  break  {{ cart_billing_plan }}</p>
+				
+
 
 				{% if edit_cart %}
 					<a class="col-sm-3" id="item-close" href="#close" 
