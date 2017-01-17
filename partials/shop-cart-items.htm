@@ -3,13 +3,13 @@
 		<div class="col-sm-6">
 			Product
 		</div>
-		<div class="col-sm-1">
+		<div class="col-sm-2">
 			Quantity
 		</div>
-		<div class="col-sm-1">
-			Setup Fee
+		<div class="col-sm-2">
+			Setup Fee/Discount
 		</div>
-		<div class="col-sm-1">
+		<div class="col-sm-2">
 			Item
 		</div>
 	</div>
@@ -34,17 +34,19 @@
             <p class="h6">{{ options|unescape }}</p>
         {% endif %}
 			</div>
-			<div class="col-sm-1">
+			<div class="col-sm-2">
 				{% if edit_cart %}
 					<input type="text" id="quantity" name="item_quantity[{{ item.key }}]" value="{{ item.quantity }}">
 				{% else %}
 					{{item.quantity}}
 				{% endif %}
 			</div>
-			<div class="col-sm-1">
+			
+			<div class="col-sm-2">
 				<p class="col-sm-9">{{ (totals.total - item.total())|currency }}</p>
 			</div>
-			<div class="col-sm-3" id="item-middle">
+	
+			<div class="col-sm-2" id="item-middle">
 				<p class="col-sm-9">{{ item.total()|currency }}</p>
 
 				{% if edit_cart %}
