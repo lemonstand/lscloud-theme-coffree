@@ -3,14 +3,14 @@
 		<div class="col-sm-6">
 			Product
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-1">
 			Quantity
 		</div>
-		<div class="col-sm-3">
-			Item
-		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-1">
 			Setup Fee
+		</div>
+		<div class="col-sm-1">
+			Item
 		</div>
 	</div>
 {% else %}
@@ -34,12 +34,15 @@
             <p class="h6">{{ options|unescape }}</p>
         {% endif %}
 			</div>
-			<div class="col-sm-2">
+			<div class="col-sm-1">
 				{% if edit_cart %}
 					<input type="text" id="quantity" name="item_quantity[{{ item.key }}]" value="{{ item.quantity }}">
 				{% else %}
 					{{item.quantity}}
 				{% endif %}
+			</div>
+			<div class="col-sm-1">
+				<p class="col-sm-9">{{ (totals.total - item.total())|currency }}</p>
 			</div>
 			<div class="col-sm-3" id="item-middle">
 				<p class="col-sm-9">{{ item.total()|currency }}</p>
@@ -52,9 +55,7 @@
 					data-ajax-extra-fields="delete_item='{{ item.key }}'"><i class="fa fa-times" id="remove-cart-item"></i></a>
 				{% endif %}
 			</div>
-			<div class="col-sm-2">
-				<p class="col-sm-9">{{ (totals.total - item.total())|currency }}</p>
-			</div>
+
 		</div>
 	</div>
 {% endfor %}
