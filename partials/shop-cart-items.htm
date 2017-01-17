@@ -7,7 +7,10 @@
 			Quantity
 		</div>
 		<div class="col-sm-3">
-			Item Total
+			Item
+		</div>
+		<div class="col-sm-3">
+			Setup Fee
 		</div>
 	</div>
 {% else %}
@@ -48,6 +51,9 @@
 					data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart-totals"
 					data-ajax-extra-fields="delete_item='{{ item.key }}'"><i class="fa fa-times" id="remove-cart-item"></i></a>
 				{% endif %}
+			</div>
+			<div class="col-sm-2">
+				<p class="col-sm-9">{{ (totals.total - item.total())|currency }}</p>
 			</div>
 		</div>
 	</div>
