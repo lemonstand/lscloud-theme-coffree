@@ -67,79 +67,67 @@
 </div>
 
 <script type="text/javascript">
-
-	function checkField (checkbox1) {
-
-        var displayDiv = document.getElementById("div1");
-        displayDiv.style.display = checkbox1.checked ? "block" : "none";
-
-        var displayFooter = document.getElementById("footer");
-        displayFooter.style.display = checkbox1.checked ? "block" : "none";
-
-        var displayTwig = document.getElementById("twig");
-        displayTwig.style.display = checkbox1.checked ? "block" : "none";
-
-
+// JavaScript to toggle product reviews
+function showProductReview() {
+   
+   var displayDiv = document.getElementById("displayProductReview");
+   displayDiv.style.display = productCheckbox.checked ? "block" : "none";   
+   
 }
-
 
 </script>
 
-<p>Product Review: <input onclick="checkField(this)" type="checkbox" id="checkbox1" unchecked></p>
+<p>Show Product Reviews: <input onclick="showProductReview()" type="checkbox" id="productCheckbox" unchecked></p>
 
-<div id="div1" style="display: none">
+<div id="displayProductReview" style="display:none;">
 
-    {{ partial('shop-product-review-form') }}
-</div>
-
-<div id="twig">
-	{% set product_rating = product.rating() %}
-	{% if product_rating.total_reviews %}
-	  {% for i in range(1, product_rating.average_int) %}★{% endfor %}
-	    {% if product_rating.average_int != 5 %}
-	        {% for i in range(1, 5 - product_rating.average_int) %}
-	            ☆
-	        {% endfor %}
-	    {% endif %}
-	     ({{ product_rating.total_reviews }})
-	{% else %}
-	    ☆☆☆☆☆ (no reviews yet)
-	{% endif %}
-</div>
-
-
-<div class="reviews">
-    <div>
-        {% for review in product.reviews() %}
-            {% if review.item_rating == 5 %}
-                <div class="review-body">★★★★★</div>
-            {% endif %}
-            {% if review.item_rating == 4 %}
-                <div class="review-body">★★★★☆</div>
-            {% endif %}
-            {% if review.item_rating == 3 %}
-                <div class="review-body">★★★☆☆</div>
-            {% endif %}
-            {% if review.item_rating == 2 %}
-                <div class="review-body">★★☆☆☆</div>
-            {% endif %}
-            {% if review.item_rating == 1 %}
-                <div class="review-body">★☆☆☆☆</div>  
-            {% endif %}
-            <div class="review-body" style="text-align: right; font-size: 1.1rem;">
-                <p>{{ review.created_at|date('M jS, Y') }}</p>
-            </div>
-            <div class="review-body" >
-                <p><strong>{{ review.title }}</strong></p>
-                <p><em>{{ review.comment }}</em></p>
-            </div>
-            <div class="review-body" style="text-align: right; font-size: 1.1rem;">
-                <p>{{ review.from_name }}</p>
-            </div>
-            <hr>
-        {% endfor %}
-    </div>
-</div>
+	{{ flash() }}
+	{{ open_form({'data-ajax-handler': 'system:onSendMessage', 'data-test': 'true'}) }}
+	    <h3>Review this product</h3>
+	    <div class="row">
+	        <div class="twelve columns">
+	            <input type="text" id="contact_name" name="fields[name]" value="" placeholder="Your name"/>
+	            <span class="error"/>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div>
+	            <input type="text" id="contact_email" name="fields[email]" value="" placeholder="Email address"/>
+	            <span class="error"/>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div>
+	            <input type="text" id="subject" name="fields[subject]" value="" placeholder="Subject"/>
+	            <span class="error"/>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div>
+	            <textarea id="contact_message" name="fields[message]" value="" rows="10" placeholder="Your review"></textarea>
+	            <span class="error"/>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div>
+	        <select id="item_rating" name="fields[item_rating]">
+	            <option value="" diabled>-</option>
+	            <option value="1">★☆☆☆☆</option>
+	            <option value="2">★★☆☆☆</option>
+	            <option value="3">★★★☆☆</option>
+	            <option value="4">★★★★☆</option>
+	            <option value="5">★★★★★</option>
+	        </select>
+	            <span class="error"/>
+	        </div>
+	    </div>    
+	    <input type="submit" class="button" value="Submit"/>
+	    <input type="text" name="hp" value="" style="display: none"/>
+	    <input type="hidden" name="fields[shop_customer_id]" value="{{customer.id}}"/>
+	    <input type="hidden" name="fields[shop_product_id]" value="{{product.id}}"/>
+	    <input type="hidden" name="template" value="system:product-review"/>
+	    <input type="hidden" name="fields[message_type]" value="review"/>
+	{{ close_form() }}
 
 </div>
 
