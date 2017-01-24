@@ -84,36 +84,36 @@ function showProductReview() {
 	{{ flash() }}
 	{{ open_form({'data-ajax-handler': 'system:onSendMessage', 'data-test': 'true'}) }}
 	    <h3 style="text-align: center;">Review this product</h3>
-	    <div class="row">
-	        <div class="twelve columns col-md-5">
-	            <input type="text" id="contact_name" name="fields[name]" value="" placeholder="Your name" style="width: 100%;text-align: center;"/>
+	    <div class="col-md-5">
+	        <div class="twelve columns">
+	            <input type="text" id="contact_name" name="fields[name]" value="" placeholder="Your name" style="text-align: center;"/>
 	            <span class="error"/>
 	        </div>
 	    </div>
 	    <br>
-	    <div class="row">
-	        <div class="col-md-5">
-	            <input type="text" id="contact_email" name="fields[email]" value="" placeholder="Email address" style="width: 100%;text-align: center;" />
+	    <div class="col-md-5">
+	        <div>
+	            <input type="text" id="contact_email" name="fields[email]" value="" placeholder="Email address" style="text-align: center;" />
 	            <span class="error"/>
 	        </div>
 	    </div>
 	    <br>
-	    <div class="row">
-	        <div class="col-md-5">
-	            <input type="text" id="subject" name="fields[subject]" value="" placeholder="Subject" style="width: 100%;text-align: center;"/>
+	    <div class="col-md-5">
+	        <div>
+	            <input type="text" id="subject" name="fields[subject]" value="" placeholder="Subject" style="text-align: center;"/>
 	            <span class="error"/>
 	        </div>
 	    </div>
 	    <br>
-	    <div class="row">
-	        <div class="col-md-5">
-	            <textarea id="contact_message" name="fields[message]" value="" rows="10" placeholder="Your review" style="width: 100%;text-align: center;"></textarea>
+	    <div class="col-md-5">
+	        <div>
+	            <textarea id="contact_message" name="fields[message]" value="" rows="10" placeholder="Your review" style="text-align: center;"></textarea>
 	            <span class="error"/>
 	        </div>
 	    </div>
 	    <br>
-	    <div class="row">
-	        <div class="col-md-5">
+	    <div class="col-md-5">
+	        <div>
 	        <select id="item_rating" name="fields[item_rating]">
 	            <option value="" diabled>Rating</option>
 	            <option value="1">★☆☆☆☆</option>
@@ -126,12 +126,14 @@ function showProductReview() {
 	        </div>
 	    </div>
 	    <br>
-	    <input type="submit" class="button" value="Submit" style="width: 100%;"/>
-	    <input type="text" name="hp" value="" style="display: none"/>
-	    <input type="hidden" name="fields[shop_customer_id]" value="{{customer.id}}"/>
-	    <input type="hidden" name="fields[shop_product_id]" value="{{product.id}}"/>
-	    <input type="hidden" name="template" value="system:product-review"/>
-	    <input type="hidden" name="fields[message_type]" value="review"/>
+	    <div class="col-md-5">
+    	    <input type="submit" class="button" value="Submit" style=""/>
+    	    <input type="text" name="hp" value="" style="display: none"/>
+    	    <input type="hidden" name="fields[shop_customer_id]" value="{{customer.id}}"/>
+    	    <input type="hidden" name="fields[shop_product_id]" value="{{product.id}}"/>
+    	    <input type="hidden" name="template" value="system:product-review"/>
+    	    <input type="hidden" name="fields[message_type]" value="review"/>
+    	</div>
 	{{ close_form() }}
 
 </div>
