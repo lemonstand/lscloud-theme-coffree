@@ -11,7 +11,6 @@
 			</div>
 		{% endfor %} 
 	</div>
-	
 </div>
 
 <div class="col-md-5">
@@ -46,7 +45,6 @@
 			</span>
 		</div>
 
-
       <input type="hidden" name="productId" value="{{ product.id }}"/>
 	      <div class="add-cart-holder form-group col-md-12">
 				{{ flash() }}
@@ -69,18 +67,17 @@
 <script type="text/javascript">
 // JavaScript to toggle product reviews
 function showProductReview() {
-   
    var displayDiv = document.getElementById("displayProductReview");
    displayDiv.style.display = productCheckbox.checked ? "block" : "none";   
-   
 }
-
 </script>
 
 <p>Show Product Reviews: <input onclick="showProductReview()" type="checkbox" id="productCheckbox" unchecked></p>
 
 <div id="displayProductReview" style="display:none;">
-
+	<div>
+		{{ partial('shop-product-reviews')}}
+	</div>
 	{{ flash() }}
 	{{ open_form({'data-ajax-handler': 'system:onSendMessage', 'data-test': 'true'}) }}
 	    <h3 style="text-align: center;">Review this product</h3>
@@ -135,19 +132,4 @@ function showProductReview() {
     	    <input type="hidden" name="fields[message_type]" value="review"/>
     	</div>
 	{{ close_form() }}
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
