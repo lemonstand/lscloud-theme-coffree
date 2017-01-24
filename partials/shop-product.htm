@@ -83,35 +83,39 @@ function showProductReview() {
 
 	{{ flash() }}
 	{{ open_form({'data-ajax-handler': 'system:onSendMessage', 'data-test': 'true'}) }}
-	    <h3>Review this product</h3>
+	    <h3 style="text-align: center;">Review this product</h3>
 	    <div class="row">
-	        <div class="twelve columns">
-	            <input type="text" id="contact_name" name="fields[name]" value="" placeholder="Your name"/>
+	        <div class="twelve columns col-md-5">
+	            <input type="text" id="contact_name" name="fields[name]" value="" placeholder="Your name" style="width: 100%;text-align: center;"/>
 	            <span class="error"/>
 	        </div>
 	    </div>
+	    <br>
 	    <div class="row">
-	        <div>
-	            <input type="text" id="contact_email" name="fields[email]" value="" placeholder="Email address"/>
+	        <div class="col-md-5">
+	            <input type="text" id="contact_email" name="fields[email]" value="" placeholder="Email address" style="width: 100%;text-align: center;" />
 	            <span class="error"/>
 	        </div>
 	    </div>
+	    <br>
 	    <div class="row">
-	        <div>
-	            <input type="text" id="subject" name="fields[subject]" value="" placeholder="Subject"/>
+	        <div class="col-md-5">
+	            <input type="text" id="subject" name="fields[subject]" value="" placeholder="Subject" style="width: 100%;text-align: center;"/>
 	            <span class="error"/>
 	        </div>
 	    </div>
+	    <br>
 	    <div class="row">
-	        <div>
-	            <textarea id="contact_message" name="fields[message]" value="" rows="10" placeholder="Your review"></textarea>
+	        <div class="col-md-5">
+	            <textarea id="contact_message" name="fields[message]" value="" rows="10" placeholder="Your review" style="width: 100%;text-align: center;"></textarea>
 	            <span class="error"/>
 	        </div>
 	    </div>
+	    <br>
 	    <div class="row">
-	        <div>
+	        <div class="col-md-5">
 	        <select id="item_rating" name="fields[item_rating]">
-	            <option value="" diabled>-</option>
+	            <option value="" diabled>Rating</option>
 	            <option value="1">★☆☆☆☆</option>
 	            <option value="2">★★☆☆☆</option>
 	            <option value="3">★★★☆☆</option>
@@ -120,8 +124,9 @@ function showProductReview() {
 	        </select>
 	            <span class="error"/>
 	        </div>
-	    </div>    
-	    <input type="submit" class="button" value="Submit"/>
+	    </div>
+	    <br>
+	    <input type="submit" class="button" value="Submit" style="width: 100%;"/>
 	    <input type="text" name="hp" value="" style="display: none"/>
 	    <input type="hidden" name="fields[shop_customer_id]" value="{{customer.id}}"/>
 	    <input type="hidden" name="fields[shop_product_id]" value="{{product.id}}"/>
