@@ -34,20 +34,21 @@
             <p class="h6">{{ options|unescape }}</p>
         {% endif %}
 			</div>
-			<div class="col-sm-2">
+			<div class="col-sm-3">
 				{% if edit_cart %}
 					<input type="text" id="quantity" name="item_quantity[{{ item.key }}]" value="{{ item.quantity }}">
 				{% else %}
 					{{item.quantity}}
 				{% endif %}
 			</div>
-			
-			<div class="col-sm-2">
-				<p class="col-sm-9">{{ (totals.total - item.total())|currency }}</p>
-			</div>
-	
-			<div class="col-sm-2" id="item-middle">
-				<p class="col-sm-9">{{ item.total()|currency }}</p>
+
+			<div class="col-sm-3" id="item-middle">
+				<p class="col-sm-4">{{ item.total()|currency }}</p>
+				{% for plan in billingPlans %}
+				  {% if cart_billing_plan == plan.id %}
+				    <p class="col-sm-4">{{ plan.name }} Subscription</p>
+				  {% endif %}
+        {% endfor %}
 
 				{% if edit_cart %}
 					<a class="col-sm-3" id="item-close" href="#close" 

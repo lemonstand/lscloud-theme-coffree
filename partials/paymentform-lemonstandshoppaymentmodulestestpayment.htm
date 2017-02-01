@@ -53,6 +53,12 @@ description: 'Payment form partial for Test Payment payment method'
  
 </div>
   <div class="clearfix">
+        <a class="btn btn-default pull-left data-ajax-url"
+              id="previous-shipping-method"
+              data-ajax-handler="shop:checkout"
+              data-ajax-update="#checkout-page=shop-checkout"
+              data-ajax-extra-fields="nextStep=shipping_method"
+              data-hash="step-2">Previous Step</a>
     <input type="hidden" name="saveCard" value="1" />
     <button type="submit" class="btn btn-important pull-right">Pay Now</button>
   </div>

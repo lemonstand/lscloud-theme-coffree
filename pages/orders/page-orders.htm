@@ -1,5 +1,5 @@
 ---
-action: 'shop:orders'
+action: 'subscriptions:subscriptions'
 template: template-1
 protocol: all
 published: true
@@ -11,32 +11,59 @@ url: /orders
     <h1>My Subscriptions</h1>
   </div>
 </div>
+<div class="jumbotron row">
 
-
-<div class="row">
-  <div class="content twelve columns">
-    {% if not orders or not orders.count %}
-      <p class="flash info">Orders not found</p>
+    {% if not subscriptions or not subscriptions.count %}
+        <p class="flash info">Subscriptions not found</p>
     {% else %}
-      <div class="row">
-        <table class="product-list full-width">
-          <tr>
-            <th>#</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Total</th>
-          </tr>
-          {% for order in orders if not order.is_quote %}
-            {% set url = root_url('/order/'~order.id) %}
-            <tr>
-              <td><a href="{{ url }}">{{ order.number }}</a></a></td>
-              <td><a href="{{ url }}">{{ order.created_at.format('M jS, Y') }}</a></td>
-              <td><a href="{{ url }}">{{ order.orderStatus.name }}</a></td>
-              <td><a href="{{ url }}"><i>{{ order.total|currency }}</i></a></td>
-            </tr>
-          {% endfor %}
-        </table>
-      </div>
+    {% for subscription in subscriptions %}
+    {% set url = root_url('/subscription/' ~ subscription.id) %}
+        <a href="{{ url }}">
+            <div class="row" id="subscription-row">
+                <div class="col-md-2">
+                    <p><span class="strong">Id:</span> {{ subscription.id }}</p>
+                </div>
+                <div class="col-md-8">
+                    <p><span class="strong">Started:</span> {{ subscription.created_at.format('M jS, Y') }}</p>
+                </div>
+                <div class="col-md-2">
+                    <p><span class="strong">Status:</span> {{ subscription.status.name }}</p>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
     {% endif %}
+
+</div>
+
+<div class="full-jumbotron no-padding row contact-head contact">
+  <div class="col-md-12 text-center">
+    <h1>My Orders</h1>
+  </div>
+</div>
+<div class="jumbotron row">
+{% if not customer.orders %}
+        <p class="flash info">Orders not found</p>
+{% else %}
+    {% for order in customer.orders %}
+        {% set url = root_url('/order/' ~ order.id) %}
+        <a href="{{ url }}">
+            <div class="row" id="subscription-row">
+                <div class="col-md-2">
+                    <p><span class="strong">Id:</span> {{ order.number }}</p>
+                </div>
+                <div class="col-md-8">
+                    <p><span class="strong">Started:</span> {{ order.created_at.format('M jS, Y') }}</p>
+                </div>
+                <div class="col-md-2">
+                    <p><span class="strong">Status:</span> {{ order.orderStatus.name }}</p>
+                </div>
+                <div class="col-md-2">
+                    <p><span class="strong">Status:</span> {{ order.total|currency }}</p>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+{% endif %}
   </div>
 </div>

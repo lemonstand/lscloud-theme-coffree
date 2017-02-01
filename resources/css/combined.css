@@ -653,6 +653,7 @@ sub{
 #summary{
   padding-top:50px;
   border-radius:0;
+  float:right;
 }
 #summary li{
   border-radius:0;
@@ -845,6 +846,12 @@ sub{
 #shipping-methods tr .narrow{
   display:block;
   text-align: center;
+}
+#previous-shipping-method {
+	margin-top:5px;
+}
+#previous-shipping-address {
+	margin-top:5px;
 }
 .popover{
   min-width:500px;
@@ -1517,7 +1524,6 @@ sub{
 #address-form, #shop-checkout-shipping-method{
 	padding:30px 0 ;
 }
-
 
 /*======================================================
 		Credit Card
