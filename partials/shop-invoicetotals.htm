@@ -1,4 +1,20 @@
 <ul class="price-list list-group">
+{% set cartTotalNoTax = 0 %}
+{% for shipment in invoice.shipments %}
+  {% for item in shipment.shipmentItems %}
+    {% set cartTotalNoTax = cartTotalNoTax + item.price %}
+  {% endfor %}
+{% endfor %}
+
+{% if cartTotalNoTax > 0 %}
+    <li class="list-group-item"><strong>Cart Total:</strong> <i>{{ cartTotalNoTax|currency }}</i></li>
+{% endif %}
+{% set sub = invoice.total - cartTotalNoTax + invoice.total_discount - invoice.total_shipping_quote - invoice.tax_total %}
+{% if sub > 0 %}
+    <li class="list-group-item"><strong>Subscription Signup:</strong> <i>{{ sub|currency }}</i></li>
+{% elseif sub < 0 %}
+    <li class="list-group-item"><strong>Subscription Discount:</strong> <i>{{ sub|trim('-')|currency }}</i></li>
+{% endif %}
 <li class="list-group-item"><strong>Discount applied: </strong>{{ invoice.total_discount|currency }}</li>
 <li class="list-group-item"><strong>Subtotal: </strong> {{ invoice.subtotal|currency }}</li>
 <li class="list-group-item"><strong>Sales Tax: </strong> {{ invoice.tax_total|currency }}</li>

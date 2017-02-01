@@ -11,6 +11,7 @@ customFields:
     logoImage: { type: image, title: 'Global: Logo Image', default: '@/img/logo.png' }
     navbarBackgroundColor: { type: color, title: 'Global: Navbar Background Color', default: white }
     navbarLinkColor: { type: color, title: 'Global: Navbar Link Color', default: 'rgba(255,255,255,0.8)' }
+    navBarImage: { type: image, title: 'Global: Navbar Image', default: '@/img/logo.png' }
     homeHeaderImage: { type: image, title: 'Home: Header Image', default: '@/img/bgmain.jpg' }
     aboutHeaderImage: { type: image, title: 'About: header image', default: '@/img/contact.jpg' }
     contactHeaderImage: { type: image, title: 'Contact: header image', default: '@/img/contact.jpg' }
