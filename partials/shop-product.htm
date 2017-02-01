@@ -110,30 +110,13 @@
 </div>
 
 <script type="text/javascript">
-<<<<<<< HEAD
 // JavaScript to toggle product reviews
 function showProductReview() {
    var displayDiv = document.getElementById("displayProductReview");
    displayDiv.style.display = productCheckbox.checked ? "block" : "none";   
-=======
-
-    function checkField (checkbox1) {
-
-        var displayDiv = document.getElementById("div1");
-        displayDiv.style.display = checkbox1.checked ? "block" : "none";
-
-        var displayFooter = document.getElementById("footer");
-        displayFooter.style.display = checkbox1.checked ? "block" : "none";
-
-        var displayTwig = document.getElementById("twig");
-        displayTwig.style.display = checkbox1.checked ? "block" : "none";
-
-
->>>>>>> 4c0c37468d74e862a202d17840b1525e3b364bf3
 }
 </script>
 
-<<<<<<< HEAD
 <p>Show Product Reviews: <input onclick="showProductReview()" type="checkbox" id="productCheckbox" unchecked></p>
 
 <div id="displayProductReview" style="display:none;">
@@ -194,60 +177,4 @@ function showProductReview() {
     	    <input type="hidden" name="fields[message_type]" value="review"/>
     	</div>
 	{{ close_form() }}
-=======
-<p>Product Review: <input onclick="checkField(this)" type="checkbox" id="checkbox1" unchecked></p>
-
-<div id="div1" style="display: none">
-
-    {{ partial('shop-product-review-form') }}
-</div>
-
-<div id="twig">
-    {% set product_rating = product.rating() %}
-    {% if product_rating.total_reviews %}
-      {% for i in range(1, product_rating.average_int) %}★{% endfor %}
-        {% if product_rating.average_int != 5 %}
-            {% for i in range(1, 5 - product_rating.average_int) %}
-                ☆
-            {% endfor %}
-        {% endif %}
-         ({{ product_rating.total_reviews }})
-    {% else %}
-        ☆☆☆☆☆ (no reviews yet)
-    {% endif %}
-</div>
-
-
-<div class="reviews">
-    <div>
-        {% for review in product.reviews() %}
-            {% if review.item_rating == 5 %}
-                <div class="review-body">★★★★★</div>
-            {% endif %}
-            {% if review.item_rating == 4 %}
-                <div class="review-body">★★★★☆</div>
-            {% endif %}
-            {% if review.item_rating == 3 %}
-                <div class="review-body">★★★☆☆</div>
-            {% endif %}
-            {% if review.item_rating == 2 %}
-                <div class="review-body">★★☆☆☆</div>
-            {% endif %}
-            {% if review.item_rating == 1 %}
-                <div class="review-body">★☆☆☆☆</div>  
-            {% endif %}
-            <div class="review-body" style="text-align: right; font-size: 1.1rem;">
-                <p>{{ review.created_at|date('M jS, Y') }}</p>
-            </div>
-            <div class="review-body" >
-                <p><strong>{{ review.title }}</strong></p>
-                <p><em>{{ review.comment }}</em></p>
-            </div>
-            <div class="review-body" style="text-align: right; font-size: 1.1rem;">
-                <p>{{ review.from_name }}</p>
-            </div>
-            <hr>
-        {% endfor %}
-    </div>
->>>>>>> 4c0c37468d74e862a202d17840b1525e3b364bf3
 </div>
