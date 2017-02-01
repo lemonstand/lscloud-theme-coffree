@@ -20,9 +20,8 @@
     <link href='https://fonts.googleapis.com/css?family=Lato:100,400,700' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ 'css/combined.min.css'|theme_resource }}">
+    <link rel="stylesheet" href="{{ 'css/combined.css'|theme_resource }}">
     <link rel="stylesheet" href="{{ 'css/custom.css'|theme_resource }}">
-
     <style>
         .header-home-left{
             background: url( {{ theme.homeHeaderImage.thumbnail('auto','auto') }} )no-repeat top center;
@@ -44,6 +43,12 @@
               -moz-background-size: cover;
               -o-background-size: cover;
               background-size: cover;
+        }
+        .navbar {
+            background: {{ theme.navbarBackgroundColor }};
+        }
+        .navbar-default .navbar-nav>li>a {
+            color: {{ theme.navbarLinkColor }};
         }
     </style>
     

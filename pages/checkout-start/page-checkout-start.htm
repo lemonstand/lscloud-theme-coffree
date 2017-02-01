@@ -29,7 +29,7 @@ url: /checkout-start
 
                 <div class="form-group">
                     <div class="col-sm-6">
-                        <button type="submit" class="btn btn-sm btn-important">Login</button>
+                        <button type="submit" class="btn btn-sm btn-important">Login and Checkout</button>
                         <a class="btn btn-sm btn-link forgotpass" href="{{ site_url('password-restore') }}">Forgot your password?</a>
                     </div>
                 </div>
@@ -48,8 +48,10 @@ url: /checkout-start
             <br><br>
             <div class="col-xs-12 col-sm-6">
                 <form class="form-guest-checkout">
-                    <p id="title-p"><strong>Don't have an account?</strong></p>
-                    <a href="{{ site_url('login') }}"><span class="btn btn-sm btn-important">Register for one today!</span></a>
+                    <p id="title-p">New Customers</p>
+                    <a href="{{ site_url('checkout') }}"><span class="btn btn-sm btn-important">Checkout Now</span></a>
+                    <br><br>
+                    <p>Not ready to checkout? <a href="{{ site_url('login') }}">Create an account for later</a></p>
                 </form>
             </div>
             </div>

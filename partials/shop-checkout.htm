@@ -231,8 +231,8 @@
 
           <div class="col-md-12">
             <div class="col-md-12 user-id">
-              <p>In order to subscribe to Coffree you will need a user account with password.</p>
-              <p>Already a member of coffree? Login <a href="/login">Here</a></p>
+              <p>In order to subscribe you will need a user account with password.</p>
+              <p>Already got an account? Login <a href="/login">Here</a></p>
             </div>
           </div>
         </div>
@@ -381,6 +381,7 @@
         <br><br>
         <a class="btn btn-important pull-right data-ajax-url " data-ajax-handler="shop:checkout" data-ajax-update="#checkout-page=shop-checkout" data-hash="step-3">Proceed to Pay</a>
         <a class="btn btn-default pull-left data-ajax-url"
+        id="previous-shipping-address"
         data-ajax-handler="shop:checkout"
         data-ajax-update="#checkout-page=shop-checkout"
         data-ajax-extra-fields="nextStep=billing_info" data-hash="step-1">Previous Step</a>
@@ -470,14 +471,6 @@
               {% endif %}
             {% endif %}
         </div>
-
-        <a class="btn btn-default pull-left data-ajax-url"
-        id="previous-shipping-method"
-        data-ajax-handler="shop:checkout"
-        data-ajax-update="#checkout-page=shop-checkout"
-        data-ajax-extra-fields="nextStep=shipping_method"
-        data-hash="step-2">Previous Step</a>
-
       {% endif %}
     </div>
 {% else %}
@@ -497,7 +490,7 @@
   <div class="checkout-content checkout-open">
   {{ partial('shop-cart-checkout', {'edit_cart': false}) }}
   <hr>
-  <span id="checkout-totals" class="text-right">{{ partial('shop-checkout-totals') }}</span>
+  <div id="checkout-totals" class="text-right">{{ partial('shop-checkout-totals') }}</div>
   </div>
 </div>
 </div>

@@ -10,9 +10,6 @@
         {% if options %}
             <p class="h6">{{ options|unescape }}</p>
         {% endif %}
-        {% set description = item.optionsString() %}
-          {% if description %}<p>{{ description|unescape }}</p>{% endif %}
-
           {% for downloadable in item.digitalProductOrderItems %}
               <div>
                   <a href={{ downloadable.link() }}>{{ downloadable.file.name() }}</a>
