@@ -1,11 +1,11 @@
 <div class="col-md-8 col-md-offset-2 pricing-box">
 {% if featuredCollection %}
 
-  <span class="title">Our Plans</span>
+  
   {% for product in featuredCollection.products %}
-        {{ partial('shop-grid-item', {'product':product}) }}
+        {{ partial('shop-grid-item-home', {'product':product}) }}
   {% endfor %}
 {% else %}
-  <p class="flash success">The product collection was not found. Please create this group on the Shop/Collections page and name it featuredCollection.</p>
+  <p class="flash success">The product collection was not found. Please create this group on the Shop/Collections page and name it 'featured'.</p>
 {% endif %}
 </div>

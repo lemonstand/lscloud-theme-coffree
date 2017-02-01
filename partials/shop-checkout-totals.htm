@@ -1,10 +1,20 @@
+{% if cart.getTotal() > 0 %}
+    {% set cartTotalNoTax = cart.getTotal() - cart.getTotalTax() %}
+    <p><strong class="pull-left">Cart Total:</strong> <i>{{ cartTotalNoTax|currency }}</i></p>
+{% endif %}
 {% if totals.discountTotal > 0 %}
-<p><strong>Discount applied:</strong> <i>{{ totals.discountTotal|currency }}</i></p>
+    <p><strong class="pull-left">Discount Applied:</strong> <i>{{ totals.discountTotal|currency }}</i></p>
 {% endif %}
-<p><strong>Cart sub-total:</strong> <i>{{ totals.subtotal|currency }}</i></p>
+{% set sub = totals.total - cartTotalNoTax + totals.discountTotal - totals.totalShippingQuote - totals.totalTax %}
+{% if sub > 0 %}
+    <p><strong class="pull-left">Subscription Signup:</strong> <i>{{ sub|currency }}</i></p>
+{% elseif sub < 0 %}
+    <p><strong class="pull-left">Subscription Discount:</strong> <i>{{ sub|trim('-')|currency }}</i></p>
+{% endif %}
+    <p><strong class="pull-left">Cart sub-total:</strong> <i>{{ totals.subtotal|currency }}</i></p>
 {% if totals.totalShippingQuote %}
-  <p><strong>Shipping:</strong> <i>{{ totals.totalShippingQuote|currency }}</i></p>
+  <p><strong class="pull-left">Shipping:</strong> <i>{{ totals.totalShippingQuote|currency }}</i></p>
 {% endif %}
-<p><strong>Tax:</strong> <i>{{ totals.totalTax|currency }}</i></p>
-<p class="subtotal"><strong>Total:</strong>  <i>{{ totals.total|currency }}</i></p>
+<p><strong class="pull-left">Tax:</strong> <i>{{ totals.totalTax|currency }}</i></p>
+<p class="subtotal"><strong class="pull-left">Total:</strong>  <i>{{ totals.total|currency }}</i></p>
 

@@ -1,0 +1,9 @@
+---
+action: 'shop:category'
+template: template-1
+protocol: all
+published: true
+name: Category
+url: '/category/:urlName@/:page?'
+---
+{{ partial('shop', { 'product': product, 'products': products }) }}
