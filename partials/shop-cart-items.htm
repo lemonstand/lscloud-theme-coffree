@@ -3,14 +3,11 @@
 		<div class="col-sm-6">
 			Product
 		</div>
-		<div class="col-sm-2">
+		<div class="col-sm-3">
 			Quantity
 		</div>
-		<div class="col-sm-2">
-			Setup Fee/Discount
-		</div>
-		<div class="col-sm-2">
-			Item
+		<div class="col-sm-3">
+			Item Total
 		</div>
 	</div>
 {% else %}
@@ -30,9 +27,9 @@
 			<div class="col-sm-4">
 				<a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a>
 				{% set options = item.optionsString() %}
-		{% if options %}
-			<p class="h6">{{ options|unescape }}</p>
-		{% endif %}
+				{% if options %}
+					<p class="h6">{{ options|unescape }}</p>
+				{% endif %}
 			</div>
 			<div class="col-sm-3">
 				{% if edit_cart %}
@@ -49,7 +46,6 @@
 						<p class="col-sm-4">{{ plan.name }} Subscription</p>
 					{% endif %}
 				{% endfor %}
-
 				{% if edit_cart %}
 					<a class="col-sm-3" id="item-close" href="#close" 
 					data-ajax-handler="shop:cart" 
@@ -58,7 +54,6 @@
 					data-ajax-extra-fields="delete_item='{{ item.key }}'"><i class="fa fa-times" id="remove-cart-item"></i></a>
 				{% endif %}
 			</div>
-
 		</div>
 	</div>
 {% endfor %}
