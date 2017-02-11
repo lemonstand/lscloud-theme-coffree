@@ -1,0 +1,32 @@
+---
+action: 'shop:updateStoredCard'
+template: template-1
+protocol: all
+published: true
+name: update-billing
+url: /update-billing
+---
+<div class="full-jumbotron no-padding row contact-head contact">
+    <div class="col-md-12 text-center">
+    	{% if customer %}
+        	<h1>Update Stored Billing Information</h1>
+        {% else %}
+        	<h1>Whoops! Login First</h1>
+        {% endif %}
+
+    </div>
+</div>
+
+<div class="row">
+  <div class="content twelve columns">
+    {% if not paymentMethod %}
+        <p>There are no payment methods that support stored credit cards.</p>
+    {% else %}
+        {{ flash() }}
+        <div id="payment_form">
+            {% set name = paymentMethod.getFrontendStoredCardPartialName() %}
+            {{ partial(name, {paymentMethod: paymentMethod}) }}
+        </div>
+    {% endif %}
+  </div>
+</div>
