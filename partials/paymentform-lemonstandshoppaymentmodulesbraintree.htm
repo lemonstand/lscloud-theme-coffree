@@ -51,6 +51,7 @@ description: 'Payment form partial for Braintree payment method'
     </div><!-- End .payment-card -->
 
   <div class="clearfix">
+      <input type="hidden" name="saveCard" value="1" />
       <a class="btn btn-default pull-left" href="#" 
         data-ajax-handler="shop:checkout" 
         data-ajax-update="#checkout-page=shop-checkout, #checkout-progress=shop-checkout-progress, #mini-cart=shop-minicart"
