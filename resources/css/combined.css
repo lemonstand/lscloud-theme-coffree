@@ -7,19 +7,19 @@ body{
 	margin: 0 auto;
 	padding-top: 90px;
 }
-.row{
-	margin: 0;
-}
 .full-jumbotron{
 	width:100%;
 }
 .jumbotron{
-	max-width:1444px;
-	margin: 0 auto;
+	
 	background:white;
 
 	border-bottom:1px solid #f1f1f1;
-	padding:70px 0;
+	
+}
+.row {
+	margin-left: 0px;
+	margin-right: 0px; 
 }
 .jumbotron p{
 	font-weight:400;
@@ -434,11 +434,69 @@ sub{
 /*======================================================
 		shop page
 ======================================================*/
-.shop{
-	max-width:;
+.shop-flex {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+.shop-flex-item {
+	display: flex; 
+	padding: 0.5em;
+	width: 100%;
+}
+.shop-list-content {
+	display: flex;
+	flex-direction: column;
+}
+.shop-product-description {
+	flex: 1 0 auto;
+}
+	
+@media all and (min-width: 40em) {
+  .shop-flex-item {
+    width: 50%;
+  }
+}
+@media all and (min-width: 60em) {
+  .shop-flex-item {
+    width: 33.33%;
+  }
+}
+.pagination > ul {
+	list-style-type: none;
+	display: flex;
+	display: -webkit-flex;
+}
+.pagination > ul > li {
+	display: flex;
+}
+.pagination > ul > li > a {
+	display: inline-block;
+	padding: 6px 12px;
+	color: #494c50;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid #494c50;
+	border-radius: 4px;
+}
+.pagination > ul > li.active > a {
+	background: #dedede;
 }
 .cat-list{
 	padding-left:50px;
+	padding-top:50px;
 }
 .cat-list #dropdownMenu1{
 	border-radius:0;

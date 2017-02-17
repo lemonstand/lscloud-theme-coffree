@@ -1,11 +1,14 @@
 <div class="col-md-8 col-md-offset-2 pricing-box">
-{% if featuredCollection %}
-
-  
-  {% for product in featuredCollection.products %}
+	{% for product in featuredCollection.products %}
+		{{ partial('shop-grid-item-home', {'product':product}) }}
+	{% else %}
+		{% set product_counter = 1 %}
+        {% set product_limit = 4 %}
+        {% for product in products %}
+        {% if counter < product_limit %}
         {{ partial('shop-grid-item-home', {'product':product}) }}
-  {% endfor %}
-{% else %}
-  <p class="flash success">The product collection was not found. Please create this group on the Shop/Collections page and name it 'featured'.</p>
-{% endif %}
+        {% set counter = counter + 1 %}
+        {% endif %}
+        {% endfor %}
+	{% endfor %}
 </div>

@@ -1,8 +1,19 @@
-<div class="col-md-6 text-center">
-	<a href="/product/{{ product.url_name }}"><img src="{{ product.images.first.thumbnail('auto',500,{crop:true}) }}" alt="{{ product.name }}"></a>
-	<h2 class="paragraph-overflow-text" style="max-width: 300%">{{ product.name }}</h2>
-	<p>{{ product.price|currency }} {% if product.productType.name == 'Subscription' %}<sub>/mo</sub>{% endif %}</p>
-	<hr>
-	<p class="paragraph-overflow-text" style="max-width: 200%">{{ product.description|unescape }}</p><br>
-	<a href="/product/{{ product.url_name }}" class="btn btn-important">I want this!</a>
+<div class="shop-list-content text-center">
+	<div >
+		<a href="/product/{{ product.url_name }}"><img src="{{ product.images.first.thumbnail('auto',500,{crop:true}) }}" alt="{{ product.name }}"></a>
+	</div>
+	<div >
+		<h2>{{ product.name }}</h2>
+	</div>
+	<div >
+		<p>{{ product.price|currency }}</p>
+	</div>
+	<div class="shop-product-description">
+	{% if product.short_description %}
+		<p>{{ product.short_description|unescape }}</p>
+	{% endif %}
+	</div>
+	<div class="shop-product-link">
+		<a href="/product/{{ product.url_name }}" class="btn btn-important">I want this!</a>
+	</div>
 </div>
