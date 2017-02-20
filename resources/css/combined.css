@@ -506,18 +506,18 @@ sub{
 .pagination > ul > li.active > a {
 	background: #dedede;
 }
-.cat-list{
+.cat-list {
 	padding-left: 50px;
 	padding-top: 50px;
 }
-.cat-list #dropdownMenu1{
+.cat-list #dropdownMenu1 {
 	border-radius: 0;
 	background: white;
 	border: 1px solid #f1f1f1;
 	margin-bottom: 30px;
 	outline: none;
 }
-.dropdown-menu{
+.dropdown-menu {
 	margin-top: -40px;
 	border-radius: 0;
 	border: 1px solid #f1f1f1;
@@ -530,13 +530,24 @@ sub{
 	-webkit-transition: 0.2s all ease-in-out;
 	-moz-transition: 0.2s all ease-in-out;
 }
-.dropdown-menu p{
+.dropdown-menu p {
 	margin-bottom: 0;
 }
-.open>.dropdown-menu{
+.open>.dropdown-menu {
 	margin-top: -30px;
 	opacity: 1;
 	pointer-events: auto;
+}
+span.error {
+	color: #d34246;
+	font-style: italic;
+	font-size: 12px;
+}
+input.error {
+	border-color: #d34246 !important;
+}
+textarea.error {
+	border-color: #d34246 !important;
 }
 
 
