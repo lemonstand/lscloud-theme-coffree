@@ -1,7 +1,4 @@
-{#<button id="writeReviewButton" class="btn btn-md">WRITE A REVIEW »</button>#}
-<div id="reviewForm" class="col-md-12" style="display:none; padding-left: 0; margin-top: 25px; margin-bottom: 25px;">
-
-{{ open_form({'data-ajax-handler': 'system:onSendMessage', 'data-test': 'true'}) }}
+{{ open_form({'data-ajax-handler': 'system:onSendMessage'}) }}
 
     <div class="col-sm-12 form-group" style="padding-left: 0px;">
         <label>Rating</label>
@@ -40,14 +37,9 @@
     </div>
         
     <br>
-    <div class="col-sm-12 form-group" style="padding-left: 0px;">
-        <input type="submit" class="btn btn-md" value="SUBMIT"/>
-    </div>
-    
-    <input type="hidden" name="successMessage" value="Thanks for your review!">
+    <input type="submit" value="Submit" class="btn-important"/>
     <input type="text" name="hp" value="" style="display: none"/>
     <input type="hidden" name="fields[shop_customer_id]" value="{{customer.id}}"/>
     <input type="hidden" name="fields[shop_product_id]" value="{{product.id}}"/>
     <input type="hidden" name="fields[message_type]" value="review"/>
 {{ close_form() }}
-</div>

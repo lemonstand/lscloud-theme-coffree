@@ -13,7 +13,15 @@ $('.dropdown-text').on('tap', function() {
   $('.dropdown-content').toggleClass('dropdown-show');
 });
 
+// Handle thumbnail clicks on the Product page
+$('#shop-product').on('click', 'div.item-images ul a', function(){
+  $('div.big-image img', $(this).closest('.item-images')).attr('src', this.href);
+  return false;
+});
 
+$('#review-form-toggle').on('click', function() {
+  $('#product-review-form').toggle();
+});
 
 //Payment forms history
 $("#checkout-page").on('click', '.data-ajax-url', function(e) {
