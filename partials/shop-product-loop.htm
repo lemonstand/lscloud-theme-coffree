@@ -1,16 +1,16 @@
-{% set shop_item = theme.shopItemsPerPage %}
 {% set shop_item = 6 %}
 
-
+<ul class="shop-flex">
 {% paginate products by shop_item %}
-  {% for product in products %}
-    <div class="col-md-4 feature-item">
-            {{ partial('shop-grid-item', {'product':product}) }}
-    </div>
-  {% endfor %}
-    
+{% for product in products %}
+	<li class="feature-item shop-flex-item">
+	       {{ partial('shop-grid-item', {'product':product}) }}
+	</li>
+{% endfor %}
+</ul>
+
 <div class="pagination-centered">
-  <div class="pagination" style="float: right;">
+  <div class="pagination">
     {% navigation %}
   </div>
 </div>

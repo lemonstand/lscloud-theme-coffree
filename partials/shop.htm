@@ -1,18 +1,16 @@
 {% set category_page = globals.category_page %}
 
-<div class="jumbotron row content shop">
-	<div class="col-md-12 cat-list">
+<div>
+	<div class="cat-list">
 		{{ partial('shop-categories', { 'products':products }) }}
 	</div>
-	<div class="col-md-12">
+	<div>
 		{% if category_page and not category %}
 			<h2>Category not found</h2>
 			<p>The requested category was not found.</p>
 		{% else %}
-			<div class="row">
-				<div class="col-md-12">
-					{{ partial('shop-product-loop', { 'items_per_page': items_per_page }) }}
-				</div>
+			<div class="jumbotron">
+				{{ partial('shop-product-loop', { 'items_per_page': items_per_page }) }}
 			</div>
 		{% endif %}
 	</div>

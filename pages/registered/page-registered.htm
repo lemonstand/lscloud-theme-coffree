@@ -3,6 +3,7 @@ template: template-1
 protocol: all
 published: true
 name: Registered
+action: shop:products
 url: /registered
 ---
 <div class="full-jumbotron no-padding row contact-head contact">
@@ -23,8 +24,8 @@ url: /registered
 	</div>
 </div><br><br>
 <div class="jumbotron row featured text-center">
-	<h4 class="buffer">Continue Shopping or Shop our featured collection</h4>
+	<h4 class="buffer"><a href="/shop">Continue Shopping</a> or Shop from our featured collection</h4>
 	<p class="space-bottom">We have a unique selection of beans. Pick your favorite or mix and match between the three.</p>
-	{{ partial('home-featured-products', {'featuredCollection': 'featuredCollection'|collection})}}
+	{{ partial('home-featured-products', {'featuredCollection': 'featured'|collection})}}
 
 </div>

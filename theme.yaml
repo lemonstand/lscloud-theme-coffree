@@ -7,17 +7,18 @@ engine: twig
 404: '404'
 customFields:
     storeTitle: { type: text, title: 'Title of your Store', default: Coffree }
+    featuredSubscriptions: { type: text, title: 'Name of your subscription product collection', default: featuredPlans }
     faviconImage: { type: image, title: 'Favicon Image (Image you see in the browser)', default: '@img/logo.png' }
-    logoImage: { type: image, title: 'Global: Logo Image', default: '@/img/logo.png' }
     navbarBackgroundColor: { type: color, title: 'Global: Navbar Background Color', default: '#ffffff' }
     navbarLinkColor: { type: color, title: 'Global: Navbar Link Color', default: '#777777' }
-    navBarImage: { type: image, title: 'Global: Navbar Image', default: '@/img/logo.png' }
+    navBarImage: { type: image, title: 'Global: Logo Image in Navbar', default: '@/img/logo.png' }
     homeHeaderImage: { type: image, title: 'Home: Header Image', default: '@/img/bgmain.jpg' }
+    logoImage: { type: image, title: 'Home: Header Image Logo Overlay', default: '@/img/logo.png' }
     aboutHeaderImage: { type: image, title: 'About: header image', default: '@/img/contact.jpg' }
     contactHeaderImage: { type: image, title: 'Contact: header image', default: '@/img/contact.jpg' }
     contactAddress: { type: text, title: 'Home: Contact Address', default: '9203 Pender St, Vancouver BC, J2K 2J2' }
-    socialFacebookUrl: { type: text, title: 'Global: Facebook URL', default: 'http://facebook.com/lemonstand' }
-    socialTwitterUrl: { type: text, title: 'Global: Twitter URL', default: 'http://twitter.com/itsdpark' }
-    socialPinterestUrl: { type: text, title: 'Global: Pinterest URL', default: 'http://pinterest.com' }
+    socialFacebookUrl: { type: text, title: 'Global: Facebook URL', default: 'https://facebook.com/lemonstand' }
+    socialTwitterUrl: { type: text, title: 'Global: Twitter URL', default: 'https://twitter.com/lemonstand' }
+    socialPinterestUrl: { type: text, title: 'Global: Pinterest URL', default: 'https://www.pinterest.com/lemonstandecomm/' }
     productReview: { type: checkbox, title: 'Global: Product Review', default: '@/img/logo.png' }
 ---
