@@ -1,29 +1,30 @@
-<section class="reviews"> 
-    <div>
-      {% set product_rating = product.rating() %}
-      {% if product_rating.total_reviews %}
-          {% for i in range(1, product_rating.average_int) %}
-              <image class="star" src="{{'img/review-star-on.png'|theme_resource}}">
-          {% endfor %}
-          {% if product_rating.average_int != 5 %}
-              {% for i in range(1, 5 - product_rating.average_int) %}
-                  <image class="star" src="{{'img/review-star-off.png'|theme_resource}}">
-              {% endfor %}
-          {% endif %}
-          ({{product_rating.average}})&nbsp;&nbsp;<span style="color: #999; font-weight: 400;">Based on {{ product_rating.total_reviews }} customer review{% if product_rating.total_reviews > 1 %}s{% endif %}</span>
-      {% endif %}
-      <div style="margin-top: 10px">
-        {% if product_rating.total_reviews %}
-            <button style="margin-left: 0" id="showReviewsButton" class="btn btn-md">READ REVIEWS</button>
-        {% endif %}
-        <button id="writeReviewButton"  class="btn btn-md">WRITE A REVIEW »</button>
-      </div>
-      {{ partial('shop-product-review-form', {'product': product, 'customer': customer } ) }}
-      <div id="reviewList" style="display:none">
-     
-        {% for review in product.reviews()|reverse %}
-            {{ partial('shop-product-review', {'review': review}) }}
-        {% endfor %}
-      </div>
-    </div>
-</section><!-- end reviews -->
+<div class="reviews">
+    <a id="reviews"></a>
+    {% if product.reviews() %}
+    	{% for review in product.reviews() %}
+        	{{ partial('shop-product-review', {'review': review, 'product': product } ) }}
+    	{% endfor %}
+    {% else %}
+    	<p>No product reviews</p>
+    {% endif %}
+</div>	
+
+<div itemscope itemtype="http://schema.org/Review">
+  <div itemprop="itemReviewed" itemscope itemtype="http://schema.org/{{ product.productType }}">
+    <span itemprop="name">{{ product.name }}</span>
+  </div>
+  {% if review.rating %}
+  <span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+    <span itemprop="ratingValue">{{ review.rating }}</span>
+  </span> stars -
+  {% else %}
+  <p>No reviews yet</p>
+  {% endif %}
+  {% if review.title %}
+  	"<b><span itemprop="name">{{ review.title }}</span></b>"
+  {% endif %}
+  <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span itemprop="name">{{ review.from_name }}</span>
+  </span>
+  <span itemprop="reviewBody">{{ review.comment }}</span>
+</div>
