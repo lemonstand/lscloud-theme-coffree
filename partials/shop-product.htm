@@ -112,7 +112,7 @@
                     <a class="btn btn-important btn-add-cart " href="{{ root_url('/cart') }}" data-ajax-handler="shop:onAddToCart" data-ajax-extra-fields="subscribe=1, noFlash=1">Add to Cart</a>
                 {% else %}
                     {# Empty cart, product is non subscription #}
-                    <a class="btn btn-important btn-add-cart " href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#shop-product=shop-product, #mini-cart=shop-minicart-totals" data-ajax-extra-fields="subscribe=0, noFlash=0">Add to Cart</a>
+                    <a class="btn btn-important btn-add-cart " href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#shop-product=shop-product, #mini-cart=shop-minicart-totals" data-ajax-extra-fields="subscribe=0, noFlash=0, emptyCart=1">Add to Cart</a>
                 {% endif %}
 
             </div>

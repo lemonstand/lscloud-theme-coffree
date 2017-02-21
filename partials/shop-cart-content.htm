@@ -8,50 +8,61 @@
     </div>
 
 </div>
+<div class="col-md-12">
+    {% if cart.x_billing_plan_id %}
+    <div class="col-md-4">
+        <p>Subscription Plan</p>
+        <span class="custom-dropdown">
+            <select id="billing_plan" class="select_option" name="billing_plan"> 
+                {% for plan in billingPlans %}
+                    <option value="{{ plan.id }}" {{ option_state(plan.id, cart_billing_plan) }}>{{ plan.name }}</option>
+                {% endfor %}
+            </select>
+        </span>
+    </div>
+    {% endif %}
 
-<div class="col-md-4 col-sm-12 col-xs-12" id="summary">
-    <p id="title-p-d">Order Summary</p>
-    <ul class="price-list list-group">
-        {% if cart.getTotal() > 0 %}
-            {% set cartTotalNoTax = cart.getTotal() - cart.getTotalTax() %}
-            <li class="list-group-item">Cart Total: <div class="pull-right">{{ cartTotalNoTax|currency }}</div></li>
-        {% endif %}
-        {% if totals.discountTotal > 0 %}
-            <li class="list-group-item">Discount: <div class="pull-right">{{ totals.discountTotal|currency }}</div></li>
-        {% endif %}
-        {% if cart.getTotal() > 0 %}
-            {% for plan in billingPlans %}
-                {% if cart_billing_plan == plan.id %}
-                    {% if plan.setup_fee_or_percentage %}
+    <div class="col-md-8 col-sm-12 col-xs-12" id="summary">
+        <p id="title-p-d">Order Summary</p>
+        <ul class="price-list list-group">
+            {% if cart.getTotal() > 0 %}
+                {% set cartTotalNoTax = cart.getTotal() - cart.getTotalTax() %}
+                <li class="list-group-item">Item Total: <div class="pull-right">{{ cartTotalNoTax|currency }}</div></li>
+            {% endif %}
+            {% set discount = totals.discountTotal %}
+            {% if cart.getTotal() > 0 %}
+                {% for plan in billingPlans %}
+                    {% if cart_billing_plan == plan.id %}
                         {% if '%' in plan.setup_fee_or_percentage %}
                             {% set fee = plan.setup_fee_or_percentage|trim('%') * cartTotalNoTax / 100 %}
                         {% else %}
                             {% set fee = plan.setup_fee_or_percentage %}
                         {% endif %}
                         <li class="list-group-item">Subscription Signup: <div class="pull-right">{{ fee|currency }} </div></li>
-                    {% else %}
-                        {% set discount = plan.discount_percentage|trim('%') * cartTotalNoTax / 100 %}
-                        <li class="list-group-item">Subscription Discount: <div class="pull-right">{{ discount|currency }}</div></li>
-                    {% endif %}
-                {% endif %}    
-            {% endfor %}
-        {% endif %}
-        
-        {% if totals.totalShippingQuote > 0 %}
-            <li class="list-group-item">Shipping: <div class="pull-right">{{ totals.totalShippingQuote|currency }}</div></li>
-        {% endif %}
-        {% if totals.totalTax > 0 %}
-        <li class="list-group-item">Tax:<div class="pull-right">{{ totals.totalTax|currency }}</div></li>
-        {% endif %}
-        <li class="list-group-item important">Total: <div class="pull-right">{{ totals.total|currency }}</div></li>
-    </ul>
+                        {% set subDiscount = (plan.discount_percentage|trim('%') * (cartTotalNoTax + fee - totals.discountTotal) / 100) %}
+                        {% set discount = totals.discountTotal + subDiscount %}
+                    {% endif %}    
+                {% endfor %}
+            {% endif %}
+            {% if totals.totalShippingQuote > 0 %}
+                <li class="list-group-item">Shipping: <div class="pull-right">{{ totals.totalShippingQuote|currency }}</div></li>
+            {% endif %}
+                {% if totals.totalTax > 0 %}
+            <li class="list-group-item">Tax:<div class="pull-right">{{ totals.totalTax|currency }}</div></li>
+            {% endif %}
+            {% if discount > 0 %}
+                <li class="list-group-item">Discount: <div class="pull-right cart-discount">- {{ discount|currency }}</div></li>
+            {% endif %}
+            <li class="list-group-item important">Total: <div class="pull-right">{{ totals.total|currency }}</div></li>
+        </ul>
 
 
-    <input type="text" class="form-control" id="coupon-code" name="coupon" placeholder="Coupon Code" value="{{ coupon_code }}" /><br><br>
-    <a class="btn btn-default col-xs-12 btn-lg solid refresh-cart" href="#" data-ajax-handler="shop:cart" data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart-totals">Update Cart <i class="fa fa-refresh"></i></a><br><br>
-    {% if customer %}
-    <a class="col-xs-12 btn btn-important solid btn-lg" href="{{ site_url('/checkout') }}">Checkout</a>
-    {% else %}
-    <a class="col-xs-12 btn btn-important solid btn-lg" href="{{ site_url('/checkout-start') }}">Checkout</a>
-    {% endif %}
+        <input type="text" class="form-control" id="coupon-code" name="coupon" placeholder="Coupon Code" value="{{ coupon_code }}" /><br><br>
+        <a class="btn btn-default col-xs-12 btn-lg solid refresh-cart" href="#" data-ajax-handler="shop:cart" data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart-totals">Update Cart <i class="fa fa-refresh"></i></a><br><br>
+        {% if customer %}
+            <a class="col-xs-12 btn btn-important solid btn-lg" href="{{ site_url('/checkout') }}">Checkout</a>
+        {% else %}
+            <a class="col-xs-12 btn btn-important solid btn-lg" href="{{ site_url('/checkout-start') }}">Checkout</a>
+        {% endif %}
+    </div>
 </div>
