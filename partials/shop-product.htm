@@ -87,7 +87,7 @@
                 
                 {% if cart.listitems|length %}
                     {% if isSubCart %}
-                        {# Subsciprtions in cart #}
+                        {# Subscriptions in cart #}
                         {% if product.productType.name == 'Subscription' %}
                             {# Product is subscription, check billing plan selected #}
                             <input type="hidden" name="redirect" value="/cart"/>
