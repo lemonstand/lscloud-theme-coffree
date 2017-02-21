@@ -5,22 +5,32 @@
     {% set cartTotalNoTax = cartTotalNoTax + item.price %}
   {% endfor %}
 {% endfor %}
-
+{% set discount = totals.discount_total %}
 {% if cartTotalNoTax > 0 %}
-    <li class="list-group-item"><strong>Cart Total:</strong> <i>{{ cartTotalNoTax|currency }}</i></li>
+    <li class="list-group-item">Item Total: <div class="pull-right">{{ cartTotalNoTax|currency }}</div></li>
 {% endif %}
-{% set sub = invoice.total - cartTotalNoTax + invoice.total_discount - invoice.total_shipping_quote - invoice.tax_total %}
-{% if sub > 0 %}
-    <li class="list-group-item"><strong>Subscription Signup:</strong> <i>{{ sub|currency }}</i></li>
-{% elseif sub < 0 %}
-    <li class="list-group-item"><strong>Subscription Discount:</strong> <i>{{ sub|trim('-')|currency }}</i></li>
+{% if cartTotalNoTax > 0 %}
+    {% for plan in billingPlans %}
+        {% if order.subscription.billing_plan_id == plan.id %}
+            {% if '%' in plan.setup_fee_or_percentage %}
+                {% set fee = plan.setup_fee_or_percentage|trim('%') * cartTotalNoTax / 100 %}
+            {% else %}
+                {% set fee = plan.setup_fee_or_percentage %}
+            {% endif %}
+            <li class="list-group-item">Subscription Signup: <div class="pull-right">{{ fee|currency }} </div></li>
+            {% set subDiscount = (plan.discount_percentage|trim('%') * (cartTotalNoTax + fee - invoice.total_discount) / 100) %}
+            {% set discount = totals.discount_total + subDiscount %}
+        {% endif %}    
+    {% endfor %}
 {% endif %}
-<li class="list-group-item"><strong>Discount applied: </strong>{{ invoice.total_discount|currency }}</li>
-<li class="list-group-item"><strong>Subtotal: </strong> {{ invoice.subtotal|currency }}</li>
-<li class="list-group-item"><strong>Sales Tax: </strong> {{ invoice.tax_total|currency }}</li>
-<li class="list-group-item"><strong>Shipping: </strong> {{ invoice.total_shipping_quote|currency }}</li>
-{% if invoice.shipping_tax %}
-  <li class="list-group-item"><strong>Shipping Taxes: </strong> <i class="badge">{{ order.shipping_tax|currency }}</i></li>
+{% if invoice.total_shipping_quote > 0 %}
+    <li class="list-group-item">Shipping: <div class="pull-right">{{ invoice.total_shipping_quote|currency }}</div></li>
 {% endif %}
-<li class="list-group-item order-total h4 clearfix"><strong>Total: </strong>{{ invoice.total|currency }}</li>
+    {% if invoice.total_tax > 0 %}
+<li class="list-group-item">Tax:<div class="pull-right">{{ invoice.total_tax|currency }}</div></li>
+{% endif %}
+{% if discount > 0 %}
+    <li class="list-group-item">Discount: <div class="pull-right cart-discount">- {{ discount|currency }}</div></li>
+{% endif %}
+<li class="list-group-item important">Total: <div class="pull-right">{{ invoice.total|currency }}</div></li>
 </ul>

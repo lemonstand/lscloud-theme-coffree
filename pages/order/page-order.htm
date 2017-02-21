@@ -11,7 +11,6 @@ url: /order/:orderId
 <h1>Order: {{ order.id }}</h1>
 </div>
 </div>
-
 <div class="jumbotron row">
     <div class="content col-md-12 columns">
         {% if not order %}
@@ -47,7 +46,7 @@ url: /order/:orderId
             {{ partial('shop-purchaseditems', {'invoice': invoice, 'item': item, }) }}
           {% endfor %}
         {% endfor %}
-        <div class="col-md-12 col-lg-3 pull-right">
+        <div class="col-md-8 col-sm-12 col-xs-12 pull-right">
         {{ partial('shop-invoicetotals', {'invoice': invoice}) }}
         </div>
     {% endfor %}
