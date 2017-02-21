@@ -317,9 +317,9 @@ sup{
 .shop-product h3{
 	color: #A1A1A1;
 }
+
 .shop-product .col-md-3{
 	padding: 0;
-	margin-top: 10px;
 }
 .shop-product .col-md-3 img{
 	padding: 10px;
@@ -327,10 +327,14 @@ sup{
 .shop-product .main-img{
 	padding-left: 10px;
 }
-.img-thumb img{
+.big-image img, .product-thumbnail img {
 	width: 100%;
 }
-.small-thumb:hover{
+.product-thumbnail {
+	list-style: none;
+	margin-top: 10px;
+}
+.product-thumbnail:hover{
 	cursor: pointer;
 }
 .previous-price{
@@ -339,9 +343,6 @@ sup{
 .product-attributes th, .product-attributes td{
 	color: #989A9C;
 	font-weight: 400;
-}
-.product-options{
-	margin-bottom: 20px;
 }
 .product-options select{
 	-webkit-appearance: none;
@@ -358,8 +359,9 @@ sup{
 .custom-dropdown{
 	margin: 0;
 	padding: 0;
+	width: 100%;
 }
-.custom-dropdown select{
+.custom-dropdown select, .disabled-custom-dropdown, .product-qty {
 	border-radius: 0;
 	background: white;
 	border: 3px solid #ddd;
@@ -372,6 +374,9 @@ sup{
 	display: inline-block;
 	-webkit-appearance: none;
 	-moz-appearance: none;
+}
+.disabled-custom-dropdown {
+	background: #cccccc;
 }
 /* Custom dropdown */
 .custom-dropdown {
@@ -401,10 +406,17 @@ sup{
 sub{
 	bottom: 0;
 }
-
-.product-options p{
-	width: auto;
+#product-review-form {
+	display: none;
+	padding-left: 0; 
+	margin-top: 25px;
+	margin-bottom: 25px;
 }
+.reviews {
+	border: 3px solid #ddd;
+	padding: 10px;
+}
+
 /*======================================================
 		about page
 ======================================================*/
@@ -494,18 +506,18 @@ sub{
 .pagination > ul > li.active > a {
 	background: #dedede;
 }
-.cat-list{
+.cat-list {
 	padding-left: 50px;
 	padding-top: 50px;
 }
-.cat-list #dropdownMenu1{
+.cat-list #dropdownMenu1 {
 	border-radius: 0;
 	background: white;
 	border: 1px solid #f1f1f1;
 	margin-bottom: 30px;
 	outline: none;
 }
-.dropdown-menu{
+.dropdown-menu {
 	margin-top: -40px;
 	border-radius: 0;
 	border: 1px solid #f1f1f1;
@@ -518,13 +530,24 @@ sub{
 	-webkit-transition: 0.2s all ease-in-out;
 	-moz-transition: 0.2s all ease-in-out;
 }
-.dropdown-menu p{
+.dropdown-menu p {
 	margin-bottom: 0;
 }
-.open>.dropdown-menu{
+.open>.dropdown-menu {
 	margin-top: -30px;
 	opacity: 1;
 	pointer-events: auto;
+}
+span.error {
+	color: #d34246;
+	font-style: italic;
+	font-size: 12px;
+}
+input.error {
+	border-color: #d34246 !important;
+}
+textarea.error {
+	border-color: #d34246 !important;
 }
 
 
@@ -567,7 +590,7 @@ sub{
 	font-size: 1em;
 	padding-bottom: 5px;
 }
-.form-group input{
+.form-group input {
 	margin-bottom: 10px;
 	border: 1px solid #CCCCCC;
 	border-radius: 0;
@@ -1213,105 +1236,6 @@ sub{
 	padding-bottom: 40px;
 }
 /*======================================================
-		shop-product
-======================================================*/
-.shop-product .col-md-5{
-	text-align: left;
-}
-.shop-product h1{
-	font-size: 16px;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-}
-.shop-product h3{
-	color: #A1A1A1;
-}
-.shop-product .col-md-3{
-	padding: 0;
-	margin-top: 10px;
-}
-.shop-product .col-md-3 img{
-	padding: 10px;
-}
-.shop-product .main-img{
-	padding-left: 10px;
-}
-.img-thumb img{
-	width: 100%;
-}
-.small-thumb:hover{
-	cursor: pointer;
-}
-.previous-price{
-	text-decoration: line-through;
-}
-.product-attributes th, .product-attributes td{
-	color: #989A9C;
-	font-weight: 400;
-}
-.product-options{
-	margin-bottom: 20px;
-}
-.product-options select{
-	-webkit-appearance: none;
-	border-radius: 0;
-	background: white;
-	border: 3px solid #ddd;
-	width: 100%;
-	padding: 10px;
-	font-weight: 400;
-	color: #989A9C;
-	outline: none;
-}
-/*#billing_plan, #subscription_status*/
-.custom-dropdown{
-	margin: 0;
-	padding: 0;
-	width: 100%;
-}
-.custom-dropdown select{
-	border-radius: 0;
-	background: white;
-	border: 3px solid #ddd;
-	width: 100%;
-	padding: 10px;
-	font-weight: 400;
-	color: #989A9C;
-	margin-bottom: 20px;
-	outline: none;
-	display: inline-block;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-}
-/* Custom dropdown */
-.custom-dropdown {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.custom-dropdown::before,
-.custom-dropdown::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-}
-
-.custom-dropdown::after { /*  Custom dropdown arrow */
-  content: "\F078";
-  font-family: FontAwesome;
-  height: 1em;
-  font-size: 1em;
-  line-height: 1;
-  right: 1.2em;
-  top: 35%;
-  color: #989A9C;
-  margin-top: -.5em;
-}
-sub{
-	bottom: 0;
-}
-/*======================================================
 		about page
 ======================================================*/
 .about h1, .contact h1{
@@ -1410,50 +1334,6 @@ sub{
 	border-color: #333;
 	box-shadow: none;
 	-webkit-box-shadow: none;
-}
-
-
-/*======================================================
-		Subscription
-======================================================*/
-#subscription-row{
-	-webkit-appearance: none;
-	border-radius: 0;
-	background: white;
-	border: 3px solid #ddd;
-	width: 80%;
-	margin: 0 auto;
-	padding: 10px;
-	padding-bottom: 0;
-	font-weight: 400;
-	color: #989A9C;
-	margin-bottom: 20px;
-	transition: 0.2s all ease-in-out;
-	-webkit-transition: 0.2s all ease-in-out;
-	-moz-transition: 0.2s all ease-in-out;
-}
-#subscription-row-full{
-	-webkit-appearance: none;
-	border-radius: 0;
-	background: white;
-	width: 100%;
-	margin: 0 auto;
-	padding: 10px;
-	padding-bottom: 0;
-	font-weight: 400;
-	color: #989A9C;
-	margin-bottom: 20px;
-	transition: 0.2s all ease-in-out;
-	-webkit-transition: 0.2s all ease-in-out;
-	-moz-transition: 0.2s all ease-in-out;
-}
-#subscription-row:hover{
-	background: #ddd;
-	color: #333;
-}
-.strong{
-	font-weight: bold;
-	padding-right: 2px;
 }
 
 /*============================================
@@ -1693,105 +1573,6 @@ sub{
 	padding-bottom: 40px;
 }
 /*======================================================
-		shop-product
-======================================================*/
-.shop-product .col-md-5{
-	text-align: left;
-}
-.shop-product h1{
-	font-size: 16px;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-}
-.shop-product h3{
-	color: #A1A1A1;
-}
-.shop-product .col-md-3{
-	padding: 0;
-	margin-top: 10px;
-}
-.shop-product .col-md-3 img{
-	padding: 10px;
-}
-.shop-product .main-img{
-	padding-left: 10px;
-}
-.img-thumb img{
-	width: 100%;
-}
-.small-thumb:hover{
-	cursor: pointer;
-}
-.previous-price{
-	text-decoration: line-through;
-}
-.product-attributes th, .product-attributes td{
-	color: #989A9C;
-	font-weight: 400;
-}
-.product-options{
-	margin-bottom: 20px;
-}
-.product-options select{
-	-webkit-appearance: none;
-	border-radius: 0;
-	background: white;
-	border: 3px solid #ddd;
-	width: 100%;
-	padding: 10px;
-	font-weight: 400;
-	color: #989A9C;
-	outline: none;
-}
-/*#billing_plan, #subscription_status*/
-.custom-dropdown{
-	margin: 0;
-	padding: 0;
-	width: 100%;
-}
-.custom-dropdown select{
-	border-radius: 0;
-	background: white;
-	border: 3px solid #ddd;
-	width: 100%;
-	padding: 10px;
-	font-weight: 400;
-	color: #989A9C;
-	margin-bottom: 20px;
-	outline: none;
-	display: inline-block;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-}
-/* Custom dropdown */
-.custom-dropdown {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.custom-dropdown::before,
-.custom-dropdown::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-}
-
-.custom-dropdown::after { /*  Custom dropdown arrow */
-  content: "\F078";
-  font-family: FontAwesome;
-  height: 1em;
-  font-size: 1em;
-  line-height: 1;
-  right: 1.2em;
-  top: 35%;
-  color: #989A9C;
-  margin-top: -.5em;
-}
-sub{
-	bottom: 0;
-}
-/*======================================================
 		about page
 ======================================================*/
 .about h1, .contact h1{
@@ -1832,108 +1613,6 @@ sub{
 	margin-top: -30px;
 	opacity: 1;
 	pointer-events: auto;
-}
-
-
-/*======================================================
-		Contact page
-======================================================*/
-.contact-head{
-	height: 300px;
-}
-#contact-form input, #contact-form textarea{
-	margin-bottom: 10px;
-	border: 1px solid #CCCCCC;
-	border-radius: 0;
-	box-shadow: none;
-	-webkit-box-shadow: none;
-}
-.contact-forms .btn-important{
-	background: white;
-	width: 100%;
-	margin-top: 20px;
-}
-#big-thumb{
-	display: none;
-}
-
-/*======================================================
-		Buttons
-======================================================*/
-.btn-important{
-	border: 3px solid #494c50;
-	border-radius: 0;
-	color: #494c50;
-	background: white;
-}
-.btn-important:hover{
-	background: #494c50;
-	color: white;
-}
-.btn-default{
-	border-radius: 0;
-	border: 3px solid #f1f1f1;
-}
-.form-group label{
-	font-weight: 400;
-	font-size: 1em;
-	padding-bottom: 5px;
-}
-.form-group input{
-	margin-bottom: 10px;
-	border: 1px solid #CCCCCC;
-	border-radius: 0;
-	box-shadow: none;
-	-webkit-box-shadow: none;
-}
-.form-control:focus{
-	border-color: #333;
-	box-shadow: none;
-	-webkit-box-shadow: none;
-}
-
-
-/*======================================================
-		Subscription
-======================================================*/
-#subscription-row{
-	-webkit-appearance: none;
-	border-radius: 0;
-	background: white;
-	border: 3px solid #ddd;
-	width: 80%;
-	margin: 0 auto;
-	padding: 10px;
-	padding-bottom: 0;
-	font-weight: 400;
-	color: #989A9C;
-	margin-bottom: 20px;
-	transition: 0.2s all ease-in-out;
-	-webkit-transition: 0.2s all ease-in-out;
-	-moz-transition: 0.2s all ease-in-out;
-}
-#subscription-row-full{
-	-webkit-appearance: none;
-	border-radius: 0;
-	background: white;
-	width: 100%;
-	margin: 0 auto;
-	padding: 10px;
-	padding-bottom: 0;
-	font-weight: 400;
-	color: #989A9C;
-	margin-bottom: 20px;
-	transition: 0.2s all ease-in-out;
-	-webkit-transition: 0.2s all ease-in-out;
-	-moz-transition: 0.2s all ease-in-out;
-}
-#subscription-row:hover{
-	background: #ddd;
-	color: #333;
-}
-.strong{
-	font-weight: bold;
-	padding-right: 2px;
 }
 
 /*======================================================

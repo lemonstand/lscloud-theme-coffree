@@ -1,187 +1,188 @@
 {% set on_sale = product.onSale %}
 
 <div class="col-md-7">
-    <div class="col-md-12 img-thumb">
-        <img id="big-thumb" src="{{ product.images.first.thumbnail('auto','auto',{crop:true}) }}" class="main-img" alt="">
-    </div>
-    <div class="col-md-12">
-        {% for image in product.images %}
-            <div class="col-md-3 img-thumb">
-                <img onclick='changeImage("{{ image.thumbnail('auto', 'auto') }}")' src="{{ image.thumbnail('auto','auto',{crop:true}) }}" alt="" class="small-thumb">
-            </div>
-        {% endfor %} 
+  <div class="item-images">
+    <div class="big-image col-md-12">
+      <img src="{{ product.images.first.thumbnail(746, 'auto')|default('http://placehold.it/460x300') }}" alt="{{ product.name }}"/>
     </div>
     
+    {% if product.images.count > 1 %}
+    <ul class="product-thumbnails">
+      {% for image in product.images %}
+        <li class="col-xs-6 col-md-3 product-thumbnail"><a href="{{ image.thumbnail(746, 'auto') }}"><img src="{{ image.thumbnail(367, 367) }}"/></a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
 </div>
 
 <div class="col-md-5">
+    {{ open_form({'class': 'custom', 'onsubmit': 'return false'}) }}
     <div class="col-md-12">
-        <h1 class="uppercase">{{ product.name }}</h1> 
+        <h2 class="uppercase">{{ product.name }}</h2> 
         
-        <h3 id="why">{{ product.price|currency }} {% if product.productType.name == 'Subscription' %}<sub>/mo</sub>{% endif %}</h3>
+        <h3 id="why">{{ product.price|currency }}</h3>
         {% if on_sale %}
             <small class="previous-price">{{ product.fullPrice|currency }}</small>
         {% endif %} 
-        <hr>
         <p>{{product.description|unescape}}</p>
-        <hr>
     </div>
-    {% if product.enabled %}    
-        {{ partial('shop-product-attributes') }}
-        {{ partial('shop-product-extras') }}
-        {{ partial('shop-product-options') }}
-        <br>
-    {% if not product.isOutOfStock() or product.allow_preorder %}
-        <input type="hidden" name="productId" value="{{ product.id }}"/>
+    {{ partial('shop-product-attributes') }}
+    {{ partial('shop-product-extras') }}
+    {{ partial('shop-product-options') }}
+    <br>
+    {% if product.enabled %}
+        {% if not product.isOutOfStock() or product.allow_preorder %}
+            <input type="hidden" name="productId" value="{{ product.id }}"/>
 
-        {% if product.productType.name == 'Subscription' %}
-
-        <div class="product-options col-md-6">
-            <p class="title" for="billing_plan">Billing plan</p>
-            <span class="col-md-12 custom-dropdown">
-            <select id="billing_plan" class="select_option" name="billing_plan"> 
-                <!--    <option value="">-- No subscription --</option>  Commenting out for now as using productType = "Subscription" to flag subscription only products -->
-                    {% for plan in billingPlans %}
-                    <option value="{{ plan.id }}" {{ option_state(plan.id, cart_billing_plan) }}>{{ plan.name }}</option>
-                    {% endfor %}
-            </select>
-            </span>
-        </div>
-        {% endif %}
+            <div class="col-md-12">
+                <div class="col-md-3">
+                    <p class="title" for="billing_plan">Quantity</p>
+                    <input class="product-qty" type="text" value="{{ quantity|default("1") }}" name="quantity"/>
+                </div>
+            </div>
 
 
-      <input type="hidden" name="productId" value="{{ product.id }}"/>
-          <div class="add-cart-holder form-group col-md-12">
+            {% set isSubCart = 0 %}
+            {% if cart.listitems|length %}
+                {# Items in cart #}
+                {% for item in cart.listitems %}
+                    {% if item.product.productType.name == 'Subscription' %}
+                        {% set isSubCart = 1 %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% if product.productType.name == 'Subscription' %}
+                <div class="product-options col-md-12">
+                    <p class="title" for="billing_plan">Billing plan</p>
+                    {# Can't change billing plan once set #}
+                    {% if isSubCart %}
+                        <div class="disabled-custom-dropdown">
+                            {% for plan in billingPlans %}
+                                {% if plan.id == cart.x_billing_plan_id %}
+                                    <select style="display: none" id="billing_plan" class="select_option" name="billing_plan"> 
+                                        <option value="{{ plan.id }}" {{ option_state(plan.id, cart_billing_plan) }}>{{ plan.name }}</option>
+                                    </select>
+                                    {{ plan.name }}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <p><strong>It is not possible to checkout multiple subscriptions with different billing plans. In order to change your billing plan go to your <a href="{{ root_url('/cart') }}">shopping cart</a>.</strong></p>
+                    {% else %}
+                        <span class="col-md-12 custom-dropdown">
+                        <select id="billing_plan" class="select_option" name="billing_plan"> 
+                            {% for plan in billingPlans %}
+                                <option value="{{ plan.id }}" {{ option_state(plan.id, cart_billing_plan) }}>{{ plan.name }}</option>
+                            {% endfor %}
+                        </select>
+                        </span>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            <div class="add-cart-holder form-group col-md-12">
                 {{ flash() }}
                 
-                {% set subsInCart = 0 %}
-                {% set nonSubsInCart = 0 %}
+                
                 {% if cart.listitems|length %}
-                    
-                    {% for item in cart.listitems %}
-                            {% if item.product.productType.name == 'Subscription' %}
-                                {% set subsInCart = 1 %}
-                            {% else %}
-                                {% set nonSubsInCart = 1 %}
-                            {% endif %}
-                    {% endfor %}
-                    
-                {% endif %}
-
-              {% if product.productType.name == 'Subscription' %}
-                        
-                    {% if nonSubsInCart == 0 %}
-
-                    <a class="btn btn-important btn-add-cart " href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#shop-product=shop-product, #mini-cart=shop-minicart-totals" data-ajax-extra-fields="subscribe=1, noFash=1">Add to Cart</a>
-                        
+                    {% if isSubCart %}
+                        {# Subscriptions in cart #}
+                        {% if product.productType.name == 'Subscription' %}
+                            {# Product is subscription, check billing plan selected #}
+                            <input type="hidden" name="redirect" value="/cart"/>
+                            <a class="btn btn-important btn-add-cart " href="{{ root_url('/cart') }}" data-ajax-handler="shop:onAddToCart" data-ajax-extra-fields="subscribe=0, noFlash=1">Add to Cart</a>
+                        {% else %}
+                            {# Product non subscription #}
+                            <p><strong>It is not possible to purchase non-subscription and subscription products at the same time. In order to order this subscription, please remove all items for your <a href="{{ root_url('/cart') }}">shopping cart</a>.</strong></p>
+                        {% endif %}
                     {% else %}
-
-                        <p><strong>You have non-subscription products in your cart. It is not possible to purchase non-subscription and subscription products at the same time.</strong></p>
-                        
+                        {# No subscriptions in cart #}
+                        {% if product.productType.name == 'Subscription' %}
+                            {# Product is subscription #}
+                            <p><strong>It is not possible to purchase non-subscription and subscription products at the same time. In order to order this product, please remove all subscription items from your <a href="{{ root_url('/cart') }}">shopping cart</a>.</strong></p>
+                        {% else %}
+                            {# Product is non subscription #}
+                            <a class="btn btn-important btn-add-cart " href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#shop-product=shop-product, #mini-cart=shop-minicart-totals" data-ajax-extra-fields="subscribe=0, noFlash=0">Add to Cart</a>
+                        {% endif %}
                     {% endif %}
-
+                {% elseif product.productType.name == 'Subscription' %}
+                    {# Empty cart, product is subscription #}
+                    <input type="hidden" name="redirect" value="/cart"/>
+                    <a class="btn btn-important btn-add-cart " href="{{ root_url('/cart') }}" data-ajax-handler="shop:onAddToCart" data-ajax-extra-fields="subscribe=1, noFlash=1">Add to Cart</a>
                 {% else %}
-                  
-                  {% if subsInCart == 0 %}
-            
-                        <a class="btn btn-important btn-add-cart " href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#shop-product=shop-product, #mini-cart=shop-minicart-totals" data-ajax-extra-fields="subscribe=0, noFash=0">Add to Cart</a>
-                        
-                    {% else %}
-          
-                    <p><strong>You have subscription products in your cart. It is not possible to purchase non-subscription and subscription products at the same time.</strong></p>
-                        
-                    {% endif %}
-
+                    {# Empty cart, product is non subscription #}
+                    <a class="btn btn-important btn-add-cart " href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#shop-product=shop-product, #mini-cart=shop-minicart-totals" data-ajax-extra-fields="subscribe=0, noFlash=0">Add to Cart</a>
                 {% endif %}
-
-                    
-
 
             </div>
-    {% else %}
-      <div class="not-available">
-        <h5>This product is temporarily unavailable</h5> 
-      </div>
-    {% endif %}
+        {% else %}
+            <div class="not-available">
+                <h5>This product is temporarily unavailable</h5> 
+            </div>
+        {% endif %}
         
     {% else %}
-    <div class="not-available">
-      <h5>This product is not available</h5>
+        <div class="not-available">
+          <h5>This product is not available</h5>
+        </div>
+    {% endif %}
+{{ close_form() }}
+
+{% if theme.productReview %}
+<div class="product-review col-md-12">
+    <h1>Product Reviews</h1>
+    <button id="review-form-toggle" class="btn-important">Write a review</button>
+    <div id="product-review-form">
+        {{ partial('shop-product-review-form') }}
     </div>
-  {% endif %}
-</div>
 
-<script type="text/javascript">
-
-    function checkField (checkbox1) {
-
-        var displayDiv = document.getElementById("div1");
-        displayDiv.style.display = checkbox1.checked ? "block" : "none";
-
-        var displayFooter = document.getElementById("footer");
-        displayFooter.style.display = checkbox1.checked ? "block" : "none";
-
-        var displayTwig = document.getElementById("twig");
-        displayTwig.style.display = checkbox1.checked ? "block" : "none";
-
-
-}
-
-
-</script>
-
-<p>Product Review: <input onclick="checkField(this)" type="checkbox" id="checkbox1" unchecked></p>
-
-<div id="div1" style="display: none">
-
-    {{ partial('shop-product-review-form') }}
-</div>
-
-<div id="twig">
-    {% set product_rating = product.rating() %}
-    {% if product_rating.total_reviews %}
-      {% for i in range(1, product_rating.average_int) %}★{% endfor %}
-        {% if product_rating.average_int != 5 %}
-            {% for i in range(1, 5 - product_rating.average_int) %}
-                ☆
-            {% endfor %}
+    <div id="twig">
+        {% set product_rating = product.rating() %}
+        {% if product_rating.total_reviews %}
+          {% for i in range(1, product_rating.average_int) %}★{% endfor %}
+            {% if product_rating.average_int != 5 %}
+                {% for i in range(1, 5 - product_rating.average_int) %}
+                    ☆
+                {% endfor %}
+            {% endif %}
+             Based on {{ product_rating.total_reviews }} review(s)
+        {% else %}
+            ☆☆☆☆☆ (no reviews yet)
         {% endif %}
-         ({{ product_rating.total_reviews }})
-    {% else %}
-        ☆☆☆☆☆ (no reviews yet)
+    </div>
+
+    {% if product_rating.total_reviews %}
+        <div class="reviews">
+            <div>
+                {% for review in product.reviews() %}
+                    {% if review.item_rating == 5 %}
+                        <div class="review-body">★★★★★</div>
+                    {% endif %}
+                    {% if review.item_rating == 4 %}
+                        <div class="review-body">★★★★☆</div>
+                    {% endif %}
+                    {% if review.item_rating == 3 %}
+                        <div class="review-body">★★★☆☆</div>
+                    {% endif %}
+                    {% if review.item_rating == 2 %}
+                        <div class="review-body">★★☆☆☆</div>
+                    {% endif %}
+                    {% if review.item_rating == 1 %}
+                        <div class="review-body">★☆☆☆☆</div>  
+                    {% endif %}
+                    <div class="review-body" >
+                        <p><strong>{{ review.title }}</strong></p>
+                    </div>
+                    <div class="review-body">
+                        <p>By {{ review.from_name }} on {{ review.created_at|date('M jS, Y') }}</p>
+                        <p>{{ review.comment }}</p>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
     {% endif %}
 </div>
-
-
-<div class="reviews">
-    <div>
-        {% for review in product.reviews() %}
-            {% if review.item_rating == 5 %}
-                <div class="review-body">★★★★★</div>
-            {% endif %}
-            {% if review.item_rating == 4 %}
-                <div class="review-body">★★★★☆</div>
-            {% endif %}
-            {% if review.item_rating == 3 %}
-                <div class="review-body">★★★☆☆</div>
-            {% endif %}
-            {% if review.item_rating == 2 %}
-                <div class="review-body">★★☆☆☆</div>
-            {% endif %}
-            {% if review.item_rating == 1 %}
-                <div class="review-body">★☆☆☆☆</div>  
-            {% endif %}
-            <div class="review-body" style="text-align: right; font-size: 1.1rem;">
-                <p>{{ review.created_at|date('M jS, Y') }}</p>
-            </div>
-            <div class="review-body" >
-                <p><strong>{{ review.title }}</strong></p>
-                <p><em>{{ review.comment }}</em></p>
-            </div>
-            <div class="review-body" style="text-align: right; font-size: 1.1rem;">
-                <p>{{ review.from_name }}</p>
-            </div>
-            <hr>
-        {% endfor %}
-    </div>
+{% endif %}
 </div>
