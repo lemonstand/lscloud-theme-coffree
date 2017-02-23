@@ -70,7 +70,7 @@
                         </div>
                         <p><strong>It is not possible to checkout multiple subscriptions with different billing plans. In order to change your billing plan go to your <a href="{{ root_url('/cart') }}">shopping cart</a>.</strong></p>
                     {% else %}
-                        <span class="col-md-12 custom-dropdown">
+                        <span class="col-md-12 custom-dropdown option-dropdown">
                         <select id="billing_plan" class="select_option" name="billing_plan"> 
                             {% for plan in billingPlans %}
                                 <option value="{{ plan.id }}" {{ option_state(plan.id, cart_billing_plan) }}>{{ plan.name }}</option>

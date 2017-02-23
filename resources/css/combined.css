@@ -1525,5 +1525,11 @@ textarea.error {
 .navbar-inverse .navbar-toggle:hover{
 	background: #333;
 }
+/*======================================================
+		Checkout
+======================================================*/
+div.jumbotron.checkout-page {
+	padding: 0px;
+}
 
 }

@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div class="jumbotron checkout-page">
   {% if step == 'billing_info' %}
     {% set inputs %}
       <input type="hidden" name="step" value="billing_info,shipping_info">
@@ -480,19 +480,17 @@
 </div>
 </div>
 
-<div class="col-md-3">
-<div class="checkout-tab" id="shop-cart">
-  <div class="checkout-tab-bar row">
-    <div class="col-md-6 columns">
-      <p>Items</p>
+<div class="row">
+  <div class="checkout-tab col-md-4 col-sm-12 col-xs-12" id="shop-cart">
+    <p>Items</p>
+    <div class="checkout-content checkout-open">
+      {{ partial('shop-cart-checkout', {'edit_cart': false}) }}
+      <hr>
     </div>
   </div>
-  <div class="checkout-content checkout-open">
-  {{ partial('shop-cart-checkout', {'edit_cart': false}) }}
-  <hr>
-  <div id="checkout-totals" class="text-right">{{ partial('shop-checkout-totals') }}</div>
+  <div id="checkout-totals" class="col-md-8 col-sm-12 col-xs-12">
+    {{ partial('shop-checkout-totals') }}
   </div>
-</div>
 </div>
 
 
