@@ -9,7 +9,7 @@
     {% if product.images.count > 1 %}
     <ul class="product-thumbnails">
       {% for image in product.images %}
-        <li class="col-xs-6 col-md-3 product-thumbnail"><a href="{{ image.thumbnail(746, 'auto') }}"><img src="{{ image.thumbnail(367, 367) }}"/></a></li>
+        <li class="col-xs-3 col-md-3 product-thumbnail"><a href="{{ image.thumbnail(746, 'auto') }}"><img src="{{ image.thumbnail(367, 367) }}"/></a></li>
       {% endfor %}
     </ul>
     {% endif %}

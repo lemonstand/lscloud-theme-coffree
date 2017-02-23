@@ -342,9 +342,6 @@ sup{
 .shop-product .col-md-3{
 	padding: 0;
 }
-.shop-product .col-md-3 img{
-	padding: 10px;
-}
 .shop-product .main-img{
 	padding-left: 10px;
 }
@@ -357,6 +354,9 @@ sup{
 }
 .product-thumbnail:hover{
 	cursor: pointer;
+}
+ul.product-thumbnails {
+	overflow: auto;
 }
 .previous-price{
 	text-decoration: line-through;
@@ -1032,6 +1032,12 @@ textarea.error {
   }
   .checkout-tab-bar{
     margin-top: 10px;
+  }
+  input.product-qty {
+  	width: 75px;
+  }
+  span.option-dropdown {
+  	width: 100px;
   }
 }
 @media screen and (max-width: 767px){
