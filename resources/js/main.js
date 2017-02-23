@@ -18,7 +18,7 @@ $('#shop-product').on('click', 'div.item-images ul a', function(){
   $('div.big-image img', $(this).closest('.item-images')).attr('src', this.href);
   return false;
 });
-
+//Review form toggle 
 $('#review-form-toggle').on('click', function() {
   $('#product-review-form').toggle();
 });

@@ -328,7 +328,7 @@ sup{
 	padding-left: 10px;
 }
 .big-image img, .product-thumbnail img {
-	width: 100%;
+	width: 65%;
 }
 .product-thumbnail {
 	list-style: none;
@@ -695,7 +695,7 @@ textarea.error {
 #normal-cart{
 }
 #cart-items{
-  padding: 10px;
+  padding-bottom: 10px;
   font-size: 0.8em;
   color: rgba(0,0,0,0.4);
 }
@@ -731,7 +731,6 @@ textarea.error {
 }
 
 #summary{
-  padding-top: 50px;
   border-radius: 0;
   float: right;
 }
@@ -763,6 +762,9 @@ textarea.error {
 
 #coupon{
   padding: 0;
+}
+.cart-discount {
+	color: #d34246;
 }
 
 .panel{
@@ -863,9 +865,6 @@ textarea.error {
 #payment-method .custom-radio{
   margin-right: 10px;
 }
-#cart-img img{
-  width: 100%;
-}
 #checkout-row{
 	padding-top: 40px;
 }
@@ -937,7 +936,9 @@ textarea.error {
 .popover{
   min-width: 500px;
 }
-
+.cart-img img {
+  width: 100%;
+}
 .payment-button{
   background: #5cb85c;
   border: none;
@@ -996,13 +997,6 @@ textarea.error {
   #shop-cart p{
     text-align: left;
   }
-  #cart-img{
-    text-align: center;
-  }
-  #cart-img img{
-    width: 80%;
-    padding-bottom: 20px;
-  }
   .hide-desktop{
     display: block;
   }
@@ -1020,9 +1014,26 @@ textarea.error {
   }
 }
 @media screen and (max-width: 767px){
-  #cart-img img{
-    width: 20%;
-    padding-bottom: 20px;
+  .cart-img img {
+    display: none;
+  }
+  .cart-price {
+  	display: none;
+  }
+  #cart-row {
+  	border: none;
+  	padding-top: 0px;
+  	padding-bottom: 0px;
+  	min-height: 0px;
+  }
+  .cart.jumbotron {
+  	padding: 0px;
+  }
+  .col-xs-3, .col-xs-6, .col-xs-10, .col-xs-2 {
+  	padding: 5px;
+  }
+  .items-holder {
+  	border-bottom: 1px solid #fff;
   }
 }
 @media screen and (max-width: 480px) {
@@ -1045,10 +1056,7 @@ textarea.error {
   #shop-cart p{
     text-align: left;
   }
-  #cart-img img{
-    width: 40%;
-    padding-bottom: 20px;
-  }
+  
   .hide-desktop{
     display: block;
   }
@@ -1203,83 +1211,6 @@ textarea.error {
 
 @media screen and (max-width: 480px) {
 /*======================================================
-		Navigation
-======================================================*/
-.navbar-inverse .navbar-toggle{
-	border: none;
-	border-color: white;
-	border-radius: 0;
-}
-.navbar-inverse .navbar-toggle .icon-bar{
-	background-color: #333;
-}
-.navbar-inverse .navbar-toggle:hover .icon-bar{
-	background-color: #fff;
-}
-/*======================================================
-		Home
-======================================================*/
-/*====================================================== TOP */
-.header-home-left{
-	height: 300px;
-	padding-left: 0;
-}
-.header-home-left img{
-	width: 80%;
-}
-.header-home-left h1{
-	font-size: 55px;
-}
-/*====================================================== Pricing bar */
-.pricing-box .col-md-6{
-	text-align: center;
-	padding-bottom: 40px;
-}
-/*======================================================
-		about page
-======================================================*/
-.about h1, .contact h1{
-	color: white;
-	font-weight: 700;
-	font-size: 55px;
-}
-/*======================================================
-		shop page
-======================================================*/
-.cat-list{
-	padding-left: 50px;
-}
-.cat-list #dropdownMenu1{
-	border-radius: 0;
-	background: white;
-	border: 1px solid #f1f1f1;
-	margin-bottom: 30px;
-	outline: none;
-}
-.dropdown-menu{
-	margin-top: -40px;
-	border-radius: 0;
-	border: 1px solid #f1f1f1;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	opacity: 0;
-	display: block;
-	pointer-events: none;
-	transition: 0.2s all ease-in-out;
-	-webkit-transition: 0.2s all ease-in-out;
-	-moz-transition: 0.2s all ease-in-out;
-}
-.dropdown-menu p{
-	margin-bottom: 0;
-}
-.open>.dropdown-menu{
-	margin-top: -30px;
-	opacity: 1;
-	pointer-events: auto;
-}
-
-
-/*======================================================
 		Contact page
 ======================================================*/
 .contact-head{
@@ -1352,18 +1283,6 @@ textarea.error {
   width: 100%;
   height: auto;
 }
-#cart-items{
-  visibility: hidden;
-  height: 0;
-}
-#cart-row{
-  border: 1px solid rgba(0,0,0,0.2);
-  min-height: 150px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  position: relative;
-}
 
 #align-middle{
   text-align: left;
@@ -1372,7 +1291,7 @@ textarea.error {
 }
 
 #cart-row input{
-  width: 50px;
+  width: 100%;
 }
 
 #cart-row a{
@@ -1394,69 +1313,6 @@ textarea.error {
 
 #summary .btn-default{
   margin-top: 5px;
-}
-
-
-
-/*======================================================
-		checkout
-======================================================*/
-
-/*The checkout tabs styles*/
-.checkout-tab-bar{
-	background: #f1f1f1;
-	padding: 10px;
-	display: inline-block;
-	width: 100%;
-}
-.checkout-tab p{
-	padding: 0;
-	margin: 0;
-}
-.checkout-tab{
-	margin: 0;
-	margin-bottom: 20px;
-}
-.checkout-tab-bar .col-md-6{
-	text-align: left;
-}
-.checkout-tab .status{
-	color: #333;
-	text-rendering: geometricPrecision;
-	text-transform: uppercase;
-	font-size: 12px;
-	margin-left: 0;
-}
-.checkout-arrow{
-	float: left;
-}.checkout-arrow:hover{
-	cursor: pointer;
-}
-
-.checkout-content{
-	display: none;
-	transition: 0.3s all ease-in-out;
-	-moz-transition: 0.3s all ease-in-out;
-	-webkit-transition: 0.3s all ease-in-out;
-}
-.checkout-open{
-	display: block;
-}
-#cart-img img{
-	width: 100%;
-}
-#checkout-row #title-p-d{
-	padding: 20px 0;
-	padding-left: 15px;
-}
-#checkout-row .form-control{
-	border-radius: 0;
-	box-shadow: none;
-	-webkit-box-shadow: none;
-}
-
-#address-form, #shop-checkout-shipping-method{
-	padding: 30px 0 ;
 }
 
 /*======================================================
@@ -1618,13 +1474,6 @@ textarea.error {
 /*======================================================
 		cart
 ======================================================*/
-.cart-img p{
-	display: inline-block;
-}
-.cart-img img{
-	height: 100px;
-	float: left;
-}
 .price-list{
 
 }
@@ -1647,71 +1496,4 @@ textarea.error {
 .refresh-cart{
 	margin-bottom: 20px;
 }
-
-
-/*======================================================
-		checkout
-======================================================*/
-
-/*The checkout tabs styles*/
-.checkout-tab-bar{
-	background: #f1f1f1;
-	padding: 10px;
-	display: inline-block;
-	width: 100%;
-}
-.checkout-tab p{
-	padding: 0;
-	margin: 0;
-}
-.checkout-tab{
-	margin: 0;
-	margin-bottom: 20px;
-}
-.checkout-tab-bar .col-md-6{
-	text-align: left;
-}
-.checkout-tab .status{
-	color: #333;
-	text-rendering: geometricPrecision;
-	text-transform: uppercase;
-	font-size: 12px;
-	margin-left: 0;
-}
-.checkout-arrow{
-	float: left;
-}.checkout-arrow:hover{
-	cursor: pointer;
-}
-
-.checkout-content{
-	display: none;
-	transition: 0.3s all ease-in-out;
-	-moz-transition: 0.3s all ease-in-out;
-	-webkit-transition: 0.3s all ease-in-out;
-}
-.checkout-open{
-	display: block;
-}
-#cart-img img{
-	width: 100%;
-}
-#checkout-row #title-p-d{
-	padding: 20px 0;
-	padding-left: 15px;
-}
-#checkout-row .form-control{
-	border-radius: 0;
-	box-shadow: none;
-	-webkit-box-shadow: none;
-}
-
-#address-form, #shop-checkout-shipping-method{
-	padding: 30px 0 ;
-}
-
-.paragraph-overflow-text {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
