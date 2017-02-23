@@ -1,4 +1,4 @@
-<div class="col-md-8 col-md-offset-2 pricing-box">
+<ul class="home-flex pricing-box">
 	{% for product in featuredCollection.products %}
 		{{ partial('shop-grid-item-home', {'product':product}) }}
 	{% else %}
@@ -11,4 +11,4 @@
         {% endif %}
         {% endfor %}
 	{% endfor %}
-</div>
+</ul>
