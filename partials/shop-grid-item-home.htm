@@ -5,7 +5,7 @@
 	<div class="home-list-content">
 		<div><a href="/product/{{ product.url_name }}"><img src="{{ product.images.first.thumbnail('auto',500,{crop:true}) }}" alt="{{ product.name }}"></a></div>
 		<div><h2>{{ product.name }}</h2></div>
-		<div class="home-product-name"><p>{{ product.price|currency }} {% if product.productType.name == 'Subscription' %}<sub>/mo</sub>{% endif %}</p></div>
+		<div class="home-product-name"><p>{{ product.price|currency }}</p></div>
 		<div><a href="/product/{{ product.url_name }}" class="btn btn-important">I want this!</a></div>
 	</div>
 </li>

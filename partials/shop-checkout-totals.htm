@@ -1,20 +1,20 @@
 <p id="title-p-d">Order Summary</p>
 <ul class="price-list list-group">
     {% if cart.getTotal() > 0 %}
-        {% set cartTotalNoTax = cart.getTotal() - cart.getTotalTax() %}
-        <li class="list-group-item">Item Total: <div class="pull-right">{{ cartTotalNoTax|currency }}</div></li>
+        {% set itemTotalNoTax = cart.getTotal() - cart.getTotalTax() %}
+        <li class="list-group-item">Item Total: <div class="pull-right">{{ itemTotalNoTax|currency }}</div></li>
     {% endif %}
     {% set discount = totals.discountTotal %}
     {% if cart.getTotal() > 0 %}
         {% for plan in billingPlans %}
             {% if cart_billing_plan == plan.id %}
                 {% if '%' in plan.setup_fee_or_percentage %}
-                    {% set fee = plan.setup_fee_or_percentage|trim('%') * cartTotalNoTax / 100 %}
+                    {% set fee = plan.setup_fee_or_percentage|trim('%') * itemTotalNoTax / 100 %}
                 {% else %}
                     {% set fee = plan.setup_fee_or_percentage %}
                 {% endif %}
                 <li class="list-group-item">Subscription Signup: <div class="pull-right">{{ fee|currency }} </div></li>
-                {% set subDiscount = (plan.discount_percentage|trim('%') * (cartTotalNoTax + fee - totals.discountTotal) / 100) %}
+                {% set subDiscount = (plan.discount_percentage|trim('%') * (itemTotalNoTax + fee - totals.discountTotal) / 100) %}
                 {% set discount = totals.discountTotal + subDiscount %}
             {% endif %}    
         {% endfor %}

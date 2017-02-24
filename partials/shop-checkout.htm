@@ -15,7 +15,7 @@
 
 <div class="row">
 
-<div class="col-md-9">
+<div class="col-md-12">
 
 
 <div class="checkout-tab" id="shop-address">
@@ -210,36 +210,30 @@
       </div>
     </div>
 
-    <div class="col-md-6">
-    {% if not customer %}
-      <div class="row">
-          <div class="col-md-6 columns form-group">
-
-            <label for="password">Password</label>
-            <input type="password" name="billingInfo[password]" class="form-control" id="password" value="" />
-            <span class="error"></span>
-          </div>
-          <div class="col-md-6 columns form-group">
-            <label for="password_confirmation">Password confirmation</label>
-            <input type="password" name="billingInfo[password_confirmation]" class="form-control" id="password_confirmation" value=""/>
-            <span class="error"></span>
-          </div>
-          <div class="col-md-6 columns form-group">
-            <input type="checkbox" name="accepts_marketing" id="accepts_marketing" checked/>
-            <label for="accepts_marketing">Recieve promotional emails</label>
-          </div>
-
-          <div class="col-md-12">
-            <div class="col-md-12 user-id">
-              <p>In order to subscribe you will need a user account with password.</p>
-              <p>Already got an account? Login <a href="/login">Here</a></p>
-            </div>
+    {% if not customer and not param('guest') %}
+    <div class="col-md-12 col-sm-12 col-lg-6 row">
+        <div class="col-md-6 columns form-group">
+          <label for="password">Password</label>
+          <input type="password" name="billingInfo[password]" class="form-control" id="password" value="" />
+          <span class="error"></span>
+        </div>
+        <div class="col-md-6 columns form-group">
+          <label for="password_confirmation">Password confirmation</label>
+          <input type="password" name="billingInfo[password_confirmation]" class="form-control" id="password_confirmation" value=""/>
+          <span class="error"></span>
+        </div>
+        <div class="col-md-6 columns form-group">
+          <input type="checkbox" name="accepts_marketing" id="accepts_marketing" checked/>
+          <label for="accepts_marketing">Recieve promotional emails</label>
+        </div>
+        <div class="col-md-12">
+          <div class="col-md-12 user-id">
+            <p>In order to subscribe you will need a user account with password.</p>
+            <p>Already got an account? Login <a href="/login">Here</a></p>
           </div>
         </div>
-      </div>
-
+    </div>
     {% endif %}
-  </div>
 
     <div class="col-sm-12">
         {% if step == 'billing_info' %}

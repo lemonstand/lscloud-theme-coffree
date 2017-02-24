@@ -213,6 +213,8 @@ sup{
 .home-list-content {
 	display: flex;
 	flex-direction: column;
+	width: 80%;
+	margin: auto;
 }
 .home-list-content img {
 	width: 75%;
@@ -1346,6 +1348,10 @@ textarea.error {
 	padding: 0.5em;
 	width: 100%;
 }
+.home-list-content {
+	width: 100%;
+}
+
 /*======================================================
 		Contact page
 ======================================================*/
