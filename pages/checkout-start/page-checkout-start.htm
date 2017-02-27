@@ -38,17 +38,19 @@ url: /checkout-start
       
             {{ close_form() }}
             </div>
+            
             <div class="form group">
+                {% if not cart.x_billing_plan_id %}
+                    <div class="col-xs-12 col-sm-6">
+                        <form class="form-guest-checkout">
+                            <p id="title-p"><strong>Guest Checkout</strong></p>
+                            <a href="{{ site_url('checkout?guest=1') }}"><span class="btn btn-sm btn-important-special">Continue as a Guest</span></a><br><br>
+                        </form>
+                    </div>
+                {% endif %}
             <div class="col-xs-12 col-sm-6">
                 <form class="form-guest-checkout">
-                    <p id="title-p"><strong>Guest Checkout</strong></p>
-                    <a href="{{ site_url('checkout') }}"><span class="btn btn-sm btn-important-special">Continue as a Guest</span></a><br><br>
-                </form>
-            </div>
-            <br><br>
-            <div class="col-xs-12 col-sm-6">
-                <form class="form-guest-checkout">
-                    <p id="title-p">New Customers</p>
+                    <p id="title-p"><strong>New Customers</strong></p>
                     <a href="{{ site_url('checkout') }}"><span class="btn btn-sm btn-important">Checkout Now</span></a>
                     <br><br>
                     <p>Not ready to checkout? <a href="{{ site_url('login') }}">Create an account for later</a></p>

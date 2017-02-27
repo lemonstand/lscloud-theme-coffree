@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div class="jumbotron checkout-page">
   {% if step == 'billing_info' %}
     {% set inputs %}
       <input type="hidden" name="step" value="billing_info,shipping_info">
@@ -15,7 +15,7 @@
 
 <div class="row">
 
-<div class="col-md-9">
+<div class="col-md-12">
 
 
 <div class="checkout-tab" id="shop-address">
@@ -210,36 +210,30 @@
       </div>
     </div>
 
-    <div class="col-md-6">
-    {% if not customer %}
-      <div class="row">
-          <div class="col-md-6 columns form-group">
-
-            <label for="password">Password</label>
-            <input type="password" name="billingInfo[password]" class="form-control" id="password" value="" />
-            <span class="error"></span>
-          </div>
-          <div class="col-md-6 columns form-group">
-            <label for="password_confirmation">Password confirmation</label>
-            <input type="password" name="billingInfo[password_confirmation]" class="form-control" id="password_confirmation" value=""/>
-            <span class="error"></span>
-          </div>
-          <div class="col-md-6 columns form-group">
-            <input type="checkbox" name="accepts_marketing" id="accepts_marketing" checked/>
-            <label for="accepts_marketing">Recieve promotional emails</label>
-          </div>
-
-          <div class="col-md-12">
-            <div class="col-md-12 user-id">
-              <p>In order to subscribe you will need a user account with password.</p>
-              <p>Already got an account? Login <a href="/login">Here</a></p>
-            </div>
+    {% if not customer and not param('guest') %}
+    <div class="col-md-12 col-sm-12 col-lg-6 row">
+        <div class="col-md-6 columns form-group">
+          <label for="password">Password</label>
+          <input type="password" name="billingInfo[password]" class="form-control" id="password" value="" />
+          <span class="error"></span>
+        </div>
+        <div class="col-md-6 columns form-group">
+          <label for="password_confirmation">Password confirmation</label>
+          <input type="password" name="billingInfo[password_confirmation]" class="form-control" id="password_confirmation" value=""/>
+          <span class="error"></span>
+        </div>
+        <div class="col-md-6 columns form-group">
+          <input type="checkbox" name="accepts_marketing" id="accepts_marketing" checked/>
+          <label for="accepts_marketing">Recieve promotional emails</label>
+        </div>
+        <div class="col-md-12">
+          <div class="col-md-12 user-id">
+            <p>In order to subscribe you will need a user account with password.</p>
+            <p>Already got an account? Login <a href="/login">Here</a></p>
           </div>
         </div>
-      </div>
-
+    </div>
     {% endif %}
-  </div>
 
     <div class="col-sm-12">
         {% if step == 'billing_info' %}
@@ -480,19 +474,17 @@
 </div>
 </div>
 
-<div class="col-md-3">
-<div class="checkout-tab" id="shop-cart">
-  <div class="checkout-tab-bar row">
-    <div class="col-md-6 columns">
-      <p>Items</p>
+<div class="row">
+  <div class="checkout-tab col-md-4 col-sm-12 col-xs-12" id="shop-cart">
+    <p>Items</p>
+    <div class="checkout-content checkout-open">
+      {{ partial('shop-cart-checkout', {'edit_cart': false}) }}
+      <hr>
     </div>
   </div>
-  <div class="checkout-content checkout-open">
-  {{ partial('shop-cart-checkout', {'edit_cart': false}) }}
-  <hr>
-  <div id="checkout-totals" class="text-right">{{ partial('shop-checkout-totals') }}</div>
+  <div id="checkout-totals" class="col-md-8 col-sm-12 col-xs-12">
+    {{ partial('shop-checkout-totals') }}
   </div>
-</div>
 </div>
 
 
