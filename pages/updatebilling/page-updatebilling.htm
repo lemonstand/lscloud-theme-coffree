@@ -20,7 +20,7 @@ url: /update-billing
 <div class="row">
   <div class="content twelve columns">
     {% if not paymentMethod %}
-        <p>There are no payment methods that support stored credit cards.</p>
+        <p class="no-saved-payment">There are no payment methods that support stored credit cards.</p>
     {% else %}
         {{ flash() }}
         <div id="payment_form">
