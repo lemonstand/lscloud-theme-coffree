@@ -155,8 +155,13 @@ sup{
 /*====================================================== TOP */
 .header-home-left{
 	height: 600px;
-	padding-top: 50px;
-
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex; /* add */
+    justify-content: center; /* add to align horizontal */
+    align-items: center; /* add to align vertical */
 	background: #e5e3d7;
 	background: #565353;
 	background: #F0EFE8;
