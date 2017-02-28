@@ -155,8 +155,13 @@ sup{
 /*====================================================== TOP */
 .header-home-left{
 	height: 600px;
-	padding-top: 50px;
-
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex; /* add */
+    justify-content: center; /* add to align horizontal */
+    align-items: center; /* add to align vertical */
 	background: #e5e3d7;
 	background: #565353;
 	background: #F0EFE8;
@@ -167,7 +172,9 @@ sup{
 	-moz-background-size: cover;
 }
 .header-home-left img{
-	width: 40%;
+	min-width: 300px;
+	width: 60%;
+	max-width: 1020px;
 }
 .buffer{
 	text-align: center;
