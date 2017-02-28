@@ -163,7 +163,7 @@
 {# </div>  #} {# /panel #}
 
 <div class="col-xs-12 form-group">
-  <input type="submit" id="btn-important" class="btn btn-important pull-right" value="Save Address Information"/>
+  <input type="submit" class="btn btn-important pull-right" value="Save Address Information"/>
   <input type="hidden" name="flash" value="Your profile has been successfully updated."/>
   <input type="hidden" name="redirect" value="{{ root_url('/profile') }}"/>
 </div>
@@ -186,7 +186,7 @@
   <div class="panel-body">
   
   <div id="profile-changebillinginfo">
-    <p><a href="/update-billing">Edit your stored Credit Card information for subscription orders here.</a></p>
+    <p><a class="btn btn-important" href="/update-billing">Edit your stored Credit Card information for subscription orders here.</a></p>
   </div>
 
   </div>

@@ -3,7 +3,6 @@
 {% for shipment in invoice.shipments %}
   {% for item in shipment.shipmentItems %}
     {% set itemTotalNoTax = itemTotalNoTax + item.original_price %}
-        {{item}}
   {% endfor %}
 {% endfor %}
 {% set discount = invoice.total_discount %}

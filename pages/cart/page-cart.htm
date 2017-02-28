@@ -15,9 +15,9 @@ url: /cart
   {{ close_form() }}    
  {% else %}
  	<div class="col-md-12">
-		<div class="col-md-12">
-			<h4>There are no items in your cart!</h4>
- 			<a href="/">Continue Shopping</a>
+		<div class="col-md-12 empty-cart">
+			<h4 class="">There are no items in your cart!</h4>
+ 			<a class="btn btn-important" href="/">Continue Shopping</a>
 		</div>
  	</div>
  {% endif %}

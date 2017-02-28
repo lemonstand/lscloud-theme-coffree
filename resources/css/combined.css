@@ -135,7 +135,7 @@ sup{
 	padding-top: 70px;
 	padding-bottom: 80px;
 }
-.footer a{
+.footer p, .footer a {
 	color: white;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -439,6 +439,10 @@ sub{
 	border: 3px solid #ddd;
 	padding: 10px;
 }
+.review-avg {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 
 /*======================================================
 		about page
@@ -472,7 +476,6 @@ sub{
 }
 .shop-flex-item {
 	display: flex; 
-	padding: 0.5em;
 	width: 100%;
 }
 .shop-list-content {
@@ -625,14 +628,14 @@ textarea.error {
 	box-shadow: none;
 	-webkit-box-shadow: none;
 }
-.btn-important, #btn-important{
+.btn-important, #btn-important, .btn.btn-important{
 	border: 3px solid #494c50;
 	border-radius: 0;
 	color: #494c50;
 	margin-top: 5px;
 	background: white;
 }
-.btn-important:hover{
+.btn-important:hover, .btn.btn-important:hover{
 	background: #494c50;
 	color: white;
 }
@@ -820,6 +823,10 @@ textarea.error {
 .a{
   background-position: 2px -250px;
 }
+.empty-cart {
+	text-align: center;
+}
+
 
 
 /*======================================================
@@ -999,6 +1006,9 @@ textarea.error {
 .navbar-default .navbar-toggle:focus{
   background: white;
 }
+.checkout-empty {
+	text-align: center;
+}
 @media screen and (max-width: 991px) {
   .text-right{
     text-align: left;
@@ -1101,6 +1111,13 @@ textarea.error {
   .btn-important, .btn-default{
   	width: 100%;
   }
+}
+
+/*======================================================
+		Recipt Page
+======================================================*/
+.no-saved-payment {
+	text-align: center;
 }
 
 
@@ -1377,16 +1394,7 @@ textarea.error {
 /*======================================================
 		Buttons
 ======================================================*/
-.btn-important{
-	border: 3px solid #494c50;
-	border-radius: 0;
-	color: #494c50;
-	background: white;
-}
-.btn-important:hover{
-	background: #494c50;
-	color: white;
-}
+
 .btn-default{
 	border-radius: 0;
 	border: 3px solid #f1f1f1;
@@ -1407,6 +1415,16 @@ textarea.error {
 	border-color: #333;
 	box-shadow: none;
 	-webkit-box-shadow: none;
+}
+.btn-important{
+	border: 3px solid #494c50;
+	border-radius: 0;
+	color: #494c50;
+	background: white;
+}
+.btn-important:hover{
+	background: #494c50;
+	color: white;
 }
 
 /*============================================
