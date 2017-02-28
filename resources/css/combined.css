@@ -167,7 +167,9 @@ sup{
 	-moz-background-size: cover;
 }
 .header-home-left img{
-	width: 40%;
+	min-width: 300px;
+	width: 60%;
+	max-width: 1020px;
 }
 .buffer{
 	text-align: center;
