@@ -13,7 +13,9 @@
                 {% else %}
                     {% set fee = plan.setup_fee_or_percentage %}
                 {% endif %}
-                <li class="list-group-item">Subscription Signup: <div class="pull-right">{{ fee|currency }} </div></li>
+                {% if fee > 0 %}
+                    <li class="list-group-item">Subscription Signup: <div class="pull-right">{{ fee|currency }} </div></li>
+                {% endif %}
                 {% set subDiscount = (plan.discount_percentage|trim('%') * (itemTotalNoTax + fee - totals.discountTotal) / 100) %}
                 {% set discount = totals.discountTotal + subDiscount %}
             {% endif %}    

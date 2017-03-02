@@ -475,14 +475,14 @@
 </div>
 
 <div class="row">
-  <div class="checkout-tab col-md-4 col-sm-12 col-xs-12" id="shop-cart">
-    <p>Items</p>
+  <div class="checkout-tab col-md-5 col-sm-12 col-xs-12" id="shop-cart">
+    <p id="title-cart-checkout">Cart Items</p>
     <div class="checkout-content checkout-open">
       {{ partial('shop-cart-checkout', {'edit_cart': false}) }}
       <hr>
     </div>
   </div>
-  <div id="checkout-totals" class="col-md-8 col-sm-12 col-xs-12">
+  <div id="checkout-totals" class="col-md-7 col-sm-12 col-xs-12">
     {{ partial('shop-checkout-totals') }}
   </div>
 </div>

@@ -18,7 +18,7 @@ body{
 	margin-left: 0px;
 	margin-right: 0px; 
 }
-.jumbotron p{
+.jumbotron p {
 	font-weight: 400;
 	color: #757575;
 	font-size: 14px;
@@ -150,8 +150,6 @@ sup{
 /*======================================================
 		Home
 ======================================================*/
-.home-head{
-}
 /*====================================================== TOP */
 .header-home-left{
 	height: 600px;
@@ -314,10 +312,7 @@ sup{
 	padding-bottom: 20px;
 }
 
-/*====================================================== About bar */
-.about-bar{
-
-}
+/*======================================================about-bar*/
 .about-bar img{
 	width: 100%;
 }
@@ -472,6 +467,15 @@ sub{
 	border-top: 3px solid #5f6062;
 	padding-bottom: 20px;
 }
+
+/*======================================================
+		orders page
+======================================================*/
+.no-subscriptions, .no-orders {
+	text-align: center;
+}
+
+
 /*======================================================
 		shop page
 ======================================================*/
@@ -746,6 +750,11 @@ textarea.error {
   padding-bottom: 10px;
   margin-bottom: 10px;
   position: relative;
+  display: flex;
+  align-items: center;
+}
+#cart-row p {
+	margin-bottom: 0px;
 }
 
 #align-middle{
@@ -761,6 +770,12 @@ textarea.error {
   color: rgba(0,0,0,0.5);
   margin-bottom: 10px;
   padding-bottom: 10px;
+}
+#cart-row a{
+  color: black;
+}
+#cart-row .h6{
+  color: rgba(0,0,0,0.5);
 }
 
 #summary{
@@ -881,12 +896,7 @@ textarea.error {
 }.checkout-arrow:hover{
   cursor: pointer;
 }
-#cart-row a{
-  color: black;
-}
-#cart-row .h6{
-  color: rgba(0,0,0,0.5);
-}
+
 .checkout-content{
   display: none;
   transition: 0.3s all ease-in-out;
@@ -903,9 +913,9 @@ textarea.error {
   margin-right: 10px;
 }
 #checkout-row{
-	padding-top: 40px;
+	padding-top: 0px;
 }
-#checkout-row #title-p-d{
+#checkout-row #title-p-d, #shop-cart #title-cart-checkout{
   padding: 20px 0;
   padding-left: 15px;
 }
@@ -935,7 +945,9 @@ textarea.error {
 #address-form, #shop-checkout-shipping-method{
   padding: 30px 0 ;
 }
-
+#checkout-row a {
+	color: black;
+}
 #cart-row{
   margin: 0;
   padding: 0;
@@ -1060,15 +1072,15 @@ textarea.error {
   }
 }
 @media screen and (max-width: 767px){
-  .cart-img img {
+  .cart-img {
     display: none;
   }
   .cart-price {
   	display: none;
   }
   #cart-row {
-  	border: none;
-  	padding-top: 0px;
+  	border-top: 1px solid #f1f1f1;
+  	padding-top: 10px;
   	padding-bottom: 0px;
   	min-height: 0px;
   }
@@ -1079,7 +1091,7 @@ textarea.error {
   	padding: 5px;
   }
   .items-holder {
-  	border-bottom: 1px solid #fff;
+  	padding-bottom: 10px;
   }
 }
 @media screen and (max-width: 480px) {
@@ -1126,7 +1138,22 @@ textarea.error {
 .no-saved-payment {
 	text-align: center;
 }
-
+.receipt-items {
+	padding-bottom: 20px;
+}
+.receipt-row {
+	display: flex;
+	align-items: center;
+}
+.receipt-row a {
+	color: black;
+}
+.receipt-info {
+	border-top: 1px solid #ccc;
+}
+.receipt-item-name {
+	margin-bottom: 15px;
+}
 
 /*======================================================
 		Credit Card
@@ -1361,6 +1388,19 @@ textarea.error {
 }
 .refresh-cart{
 	margin-bottom: 20px;
+}
+/*======================================================
+		Receipt
+======================================================*/
+.receipt-row {
+	display: block;
+	align-items: center;
+}
+/*======================================================
+		Order
+======================================================*/
+.order-total {
+	padding-top: 20px;
 }
 }
 @media screen and (max-width: 480px) {
