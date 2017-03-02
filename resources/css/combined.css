@@ -1144,6 +1144,7 @@ textarea.error {
 .receipt-row {
 	display: flex;
 	align-items: center;
+	padding-bottom: 20px;
 }
 .receipt-row a {
 	color: black;
