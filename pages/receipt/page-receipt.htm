@@ -15,13 +15,11 @@ url: '/receipt/:paymenthash'
 		</div>			
 	</div>
 	<div class="row">
-		<div class="col-md-12 col-lg-9">
-			<div class="items-holder">
-				{{ partial('shop-invoiceitems') }}
-			</div>
+		<div class="receipt-items col-md-12 col-lg-5">
+			{{ partial('shop-invoiceitems') }}
 		</div>
 	{% if invoice.isPaid() %}
-		<div class="col-md-12 col-lg-3">
+		<div class="col-md-12 col-lg-7">
 			<div class="right-sidebar">
 			<p><strong>Order number: </strong> #{{ invoice.order.number }} </p>
 			<p><strong>Payment method: </strong> {{ payment.guessPaymentMethod().name }}</p>

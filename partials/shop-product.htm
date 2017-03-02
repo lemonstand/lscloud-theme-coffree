@@ -93,14 +93,14 @@
                             <input type="hidden" name="redirect" value="/cart"/>
                             <a class="btn btn-important btn-add-cart " href="{{ root_url('/cart') }}" data-ajax-handler="shop:onAddToCart" data-ajax-extra-fields="subscribe=0, noFlash=1">Add to Cart</a>
                         {% else %}
-                            {# Product non subscription #}
-                            <p><strong>It is not possible to purchase non-subscription and subscription products at the same time. In order to order this subscription, please remove all items for your <a href="{{ root_url('/cart') }}">shopping cart</a>.</strong></p>
+                            {# Sub in cart, Product non subscription #}
+                            <p><strong>It is not possible to purchase non-subscription and subscription products at the same time. In order to order this product, please remove all subscription products from your <a href="{{ root_url('/cart') }}">shopping cart</a>.</strong></p>
                         {% endif %}
                     {% else %}
                         {# No subscriptions in cart #}
                         {% if product.productType.name == 'Subscription' %}
-                            {# Product is subscription #}
-                            <p><strong>It is not possible to purchase non-subscription and subscription products at the same time. In order to order this product, please remove all subscription items from your <a href="{{ root_url('/cart') }}">shopping cart</a>.</strong></p>
+                            {# Non-sub cart, Product is subscription #}
+                            <p><strong>It is not possible to purchase non-subscription and subscription products at the same time. In order to order this product, please remove all non-subscription items from your <a href="{{ root_url('/cart') }}">shopping cart</a>.</strong></p>
                         {% else %}
                             {# Product is non subscription #}
                             <a class="btn btn-important btn-add-cart " href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#shop-product=shop-product, #mini-cart=shop-minicart-totals" data-ajax-extra-fields="subscribe=0, noFlash=0">Add to Cart</a>

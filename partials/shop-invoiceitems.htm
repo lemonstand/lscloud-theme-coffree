@@ -1,14 +1,3 @@
-<div class="cart-labels cart-item row hidden-xs">
-  <div class="col-sm-4 col-sm-offset-2 ">
-    Item
-  </div>
-  <div class="col-sm-2">
-    Quantity
-  </div>
-  <div class="col-sm-2">
-    Item Total
-  </div>
-</div>
 {% for shipment in invoice.shipments %}
   {% for item in shipment.shipmentItems %}
     {{ partial('shop-purchaseditems', {'invoice': invoice, 'item': item, }) }}

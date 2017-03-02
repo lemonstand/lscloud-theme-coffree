@@ -2,13 +2,13 @@
 {% set itemTotalNoTax = 0 %}
 {% for shipment in invoice.shipments %}
   {% for item in shipment.shipmentItems %}
-    {% set itemTotalNoTax = itemTotalNoTax + item.original_price %}
+    {% set itemTotalNoTax = itemTotalNoTax + item.original_price * item.quantity %}
   {% endfor %}
 {% endfor %}
 {% set discount = invoice.total_discount %}
 {% set itemTotalNoTax = itemTotalNoTax %}
 {% if itemTotalNoTax > 0 %}
-    <li class="list-group-item">Item Total: <div class="pull-right">{{ itemTotalNoTax|currency }}</div></li>
+    <li class="list-group-item">Item Totals: <div class="pull-right">{{ itemTotalNoTax|currency }}</div></li>
 {% endif %}
 {% if invoice.order.subscription %}
     {% if '%' in invoice.order.subscription.billingPlan.setup_fee_or_percentage %}
@@ -16,7 +16,9 @@
     {% else %}
         {% set fee = invoice.order.subscription.billingPlan.setup_fee_or_percentage %}
     {% endif %}
-    <li class="list-group-item">Subscription Signup: <div class="pull-right">{{ fee|currency }} </div></li>
+    {% if fee > 0 %}
+        <li class="list-group-item">Subscription Signup: <div class="pull-right">{{ fee|currency }} </div></li>
+    {% endif %}
     {% set subDiscount = (invoice.order.subscription.billingPlan.discount_percentage|trim('%') * (itemTotalNoTax + fee - invoice.total_discount) / 100) %}
     {% set discount = invoice.total_discount + subDiscount %}
 {% endif %}
