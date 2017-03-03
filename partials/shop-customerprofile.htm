@@ -1,7 +1,6 @@
 {{ flash() }}
 {{ open_form({'data-ajax-handler': 'shop:onUpdateCustomerProfile', 'class': 'custom clearfix', 'data-ajax-update': "#profile-addresses=shop-customerprofile,#profile-changepassword=shop-changepassword", 'data-validation-message' : ''}) }}
 <input type="hidden" name="billing[id]" value="{{ billing.id }}" />
-{# <div class="panel"> #}
   
   <h2 class="space-bottom">Update your Information</h2>
   <div id="billing-info" class="panel-collapse collapse in col-md-6 text-left">
@@ -80,12 +79,12 @@
         
         
       
-    </div> {# /panel-body #}
-  </div> {# /panel-collapse #}
-{# </div> #} {# /panel #}
+    </div>
+  </div>
 
 
-{# <div class="panel"> #}
+
+
   <div id="shipping-info" class="panel-collapse collapse in col-md-6 text-left">
     <div class="panel-body row">
         <p class="col-md-12">SHIPPING ADDRESS | <a href="#" style="color:black;" id="profile-billing-address"
@@ -158,9 +157,9 @@
           <p>There is a tracking code</p>
         {% endif %}
       
-    </div> {# /panel-body #}
-  </div> {# /panel-collapse #}
-{# </div>  #} {# /panel #}
+    </div>
+  </div>
+
 
 <div class="col-xs-12 form-group">
   <input type="submit" class="btn btn-important pull-right" value="Save Address Information"/>
@@ -169,7 +168,7 @@
 </div>
 </form>
 
-{# <div class="panel"> #}
+
   <p id="title-p">Change Password</p>
   <div id="password" class="panel-collapse collapse in">
     <div class="panel-body">
@@ -180,7 +179,7 @@
 
     </div>
   </div>
-{# </div> #}
+
 <p id="title-p">Billing Info</p>
 <div id="billing" class="panel-collapse collapse in">
   <div class="panel-body">
