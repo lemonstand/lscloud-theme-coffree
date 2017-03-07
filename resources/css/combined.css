@@ -223,11 +223,6 @@ sup{
 	padding: 20px;
 	position: relative;
 }
-.feature-item:hover {
-	opacity: 1;
-	pointer-events: none;
-}
-
 .feature-item img{
 	width: 100%;
 	height: auto;
