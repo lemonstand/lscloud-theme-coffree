@@ -223,51 +223,10 @@ sup{
 	padding: 20px;
 	position: relative;
 }
-.feature-item:hover .item-detail {
-	opacity: 1;
-	pointer-events: none;
-}
-
 .feature-item img{
 	width: 100%;
 	height: auto;
 }
-.item-detail{
-	position: absolute;
-	width: 83%;
-	margin: 0 4%;
-	height: 76%;
-	top: 12%;
-	background: rgba(255,255,255,0.95);
-	text-align: center;
-	padding-top: 10%;
-
-	opacity: 0;
-	pointer-events: auto;
-	transition: 0.2s all ease-in-out;
-	-webkit-transition: 0.2s all ease-in-out;
-	-moz-transition: 0.2s all ease-in-out;
-}
-.item-detail h2{
-	color: #5f6062;
-	font-weight: 400;
-	text-transform: uppercase;
-	font-size: 15px;
-	letter-spacing: 1px;
-}
-.item-detail hr{
-	width: 40px;
-	margin: 0 auto;
-	border-top: 2px solid #5f6062;
-}
-.item-detail p{
-	color: #5f6062;
-	font-weight: 400;
-	text-transform: uppercase;
-	font-size: 17px;
-	padding-top: 20px;
-}
-
 
 /*====================================================== Pricing bar */
 .pricing-box{
