@@ -19,7 +19,7 @@ $('#shop-product').on('click', 'div.item-images ul a', function(){
   return false;
 });
 //Review form toggle 
-$('#review-form-toggle').on('click', function() {
+$('#shop-product').on('click', '#review-form-toggle', function() {
   $('#product-review-form').toggle();
 });
 
