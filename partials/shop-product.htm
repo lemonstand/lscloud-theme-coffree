@@ -198,6 +198,13 @@
                   <img src="{{ upsell.images.first.thumbnail(250, 250)|default('http://placehold.it/250x250') }}" width="250" height="250" alt="{{ upsell.images.first.description }}" title="{{ upsell.images.first.title }}"/>
                   </a>
                     <h3><a href="/product/{{ upsell.url_name }}" class="btn btn-default">{{ upsell.name }}</a></h3>
+                    <td class="narrow">
+                        <a class="button"
+                            href="#"
+                            data-ajax-handler="shop:onAddToCart"
+                            data-ajax-update="#mini-cart=shop-minicart, #product-page=shop-product"
+                            data-ajax-extra-fields="upsellId='{{ upsell.id }}'"
+                            >Buy Now</a></td>
                     {% if upsell.discount %}
                       <h1>{{ upsell.price|currency }}</h1>
                       <small class="previous-price">{{ (upsell.base_price + upsell.discount)|currency }}</small>
