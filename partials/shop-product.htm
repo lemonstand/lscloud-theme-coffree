@@ -191,7 +191,6 @@
         <h1 class="col-md-12">You Might Also be Interested in These:</h1>
         <ul class="col-md-12 shop-flex">
           {% for upsell in product.upsells %}
-          {{ upsell }}
           <li class="shop-flex-item">
           <div class="shop-list-content text-center">
           {% set page_url = '/product/' ~ upsell.url_name %}
