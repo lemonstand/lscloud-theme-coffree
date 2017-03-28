@@ -198,10 +198,11 @@
           <img src="{{ product.images.first.thumbnail(250, 250)|default('http://placehold.it/365x365') }}" width="250" height="250" alt="{{ product.images.first.description }}" title="{{ product.images.first.title }}"/>
           </a>
             <h3><a href="/product/{{ product.url_name }}" class="btn btn-default">{{ product.name }}</a></h3>
-            <h1>{{ product.price|currency }}</h1>
             {% if product.onSale %}
-              <h1>Original Price: {{ product.price|currency }}</h1>
-              <h1>Discount Price: {{ product.fullPrice|currency }}</h1>
+              <h1>{{ product.fullPrice|currency }}</h1>
+              <small class="previous-price">{{ product.price|currency }}</small>
+            {% else %}
+              <h1>{{ product.price|currency }}</h1>
             {% endif %}
       </div>
       </li>
