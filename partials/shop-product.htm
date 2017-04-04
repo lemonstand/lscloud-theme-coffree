@@ -185,4 +185,37 @@
     {% endif %}
 </div>
 {% endif %}
+
+<div class="jumbotron">
+    {% if product.upsells.isEmpty() == false %}
+        <h1 class="col-md-12">You Might Also be Interested in These:</h1>
+        <ul class="col-md-12 shop-flex">
+          {% for upsell in product.upsells %}
+              <li class="shop-flex-item">
+              <div class="shop-list-content text-center">
+              {% set page_url = '/product/' ~ upsell.url_name %}
+                  <a href="{{ page_url }}">
+                  <img src="{{ upsell.images.first.thumbnail(250, 250)|default('http://placehold.it/250x250') }}" width="250" height="250" alt="{{ upsell.images.first.description }}" title="{{ upsell.images.first.title }}"/>
+                  </a>
+                    <h3><a href="/product/{{ upsell.url_name }}" class="btn btn-default">{{ upsell.name }}</a></h3>
+                    <td class="narrow">
+                        <a class="button"
+                            href="#"
+                            data-ajax-handler="shop:onAddToCart"
+                            data-ajax-update="#mini-cart=shop-minicart, #product-page=shop-product"
+                            data-ajax-extra-fields="upsellId='{{ upsell.id }}'"
+                            >Buy Now</a></td>
+                    {% if upsell.discount %}
+                      <h1>{{ upsell.price|currency }}</h1>
+                      <small class="previous-price">{{ (upsell.base_price + upsell.discount)|currency }}</small>
+                    {% else %}
+                      <h1>{{ upsell.price|currency }}</h1>
+                    {% endif %}
+              </div>
+              </li>
+          {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
 </div>
