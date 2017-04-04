@@ -42,7 +42,6 @@
                 </div>
             </div>
 
-
             {% set isSubCart = 0 %}
             {% if cart.listitems|length %}
                 {# Items in cart #}
@@ -84,7 +83,6 @@
             <div class="add-cart-holder form-group col-md-12">
                 {{ flash() }}
                 
-                
                 {% if cart.listitems|length %}
                     {% if isSubCart %}
                         {# Subscriptions in cart #}
@@ -114,8 +112,6 @@
                     {# Empty cart, product is non subscription #}
                     <a class="btn btn-important btn-add-cart " href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#shop-product=shop-product, #mini-cart=shop-minicart-totals" data-ajax-extra-fields="subscribe=0, noFlash=0, emptyCart=1">Add to Cart</a>
                 {% endif %}
-
-
             </div>
         {% else %}
             <div class="not-available">
@@ -128,7 +124,6 @@
           <h5>This product is not available</h5>
         </div>
     {% endif %}
-    
     
     <div class="jumbotron">
         {% if product.upsells.isEmpty() == false %}
@@ -220,5 +215,4 @@
     {% endif %}
 </div>
 {% endif %}
-
 </div>
