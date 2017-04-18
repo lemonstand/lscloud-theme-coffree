@@ -7,13 +7,8 @@
     {% if cart.getTotal() > 0 %}
         {% for plan in billingPlans %}
             {% if cart_billing_plan == plan.id %}
-                {% if '%' in plan.setup_fee_or_percentage %}
-                    {% set fee = plan.setup_fee_or_percentage|trim('%') * itemTotalNoTax / 100 %}
-                {% else %}
-                    {% set fee = plan.setup_fee_or_percentage %}
-                {% endif %}
-                {% if fee > 0 %}
-                    <li class="list-group-item">Subscription Signup: <div class="pull-right">{{ fee|currency }} </div></li>
+                {% if totals.setupFee > 0 %}
+                    <li class="list-group-item">Subscription Signup: <div class="pull-right">{{ totals.setupFee|currency }} </div></li>
                 {% endif %}
             {% endif %}    
         {% endfor %}
