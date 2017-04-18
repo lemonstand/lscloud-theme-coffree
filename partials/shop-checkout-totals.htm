@@ -4,20 +4,12 @@
         {% set itemTotalNoTax = cart.getTotal() - cart.getTotalTax() %}
         <li class="list-group-item">Item Total: <div class="pull-right">{{ itemTotalNoTax|currency }}</div></li>
     {% endif %}
-    {% set discount = totals.discountTotal %}
     {% if cart.getTotal() > 0 %}
         {% for plan in billingPlans %}
             {% if cart_billing_plan == plan.id %}
-                {% if '%' in plan.setup_fee_or_percentage %}
-                    {% set fee = plan.setup_fee_or_percentage|trim('%') * itemTotalNoTax / 100 %}
-                {% else %}
-                    {% set fee = plan.setup_fee_or_percentage %}
+                {% if totals.setupFee > 0 %}
+                    <li class="list-group-item">Subscription Signup: <div class="pull-right">{{ totals.setupFee|currency }} </div></li>
                 {% endif %}
-                {% if fee > 0 %}
-                    <li class="list-group-item">Subscription Signup: <div class="pull-right">{{ fee|currency }} </div></li>
-                {% endif %}
-                {% set subDiscount = (plan.discount_percentage|trim('%') * (itemTotalNoTax + fee - totals.discountTotal) / 100) %}
-                {% set discount = totals.discountTotal + subDiscount %}
             {% endif %}    
         {% endfor %}
     {% endif %}
@@ -27,8 +19,8 @@
         {% if totals.totalTax > 0 %}
     <li class="list-group-item">Tax:<div class="pull-right">{{ totals.totalTax|currency }}</div></li>
     {% endif %}
-    {% if discount > 0 %}
-        <li class="list-group-item">Discount: <div class="pull-right cart-discount">- {{ discount|currency }}</div></li>
+    {% if totals.discountTotal > 0 %}
+        <li class="list-group-item">Discount: <div class="pull-right cart-discount">- {{ totals.discountTotal|currency }}</div></li>
     {% endif %}
     <li class="list-group-item important">Total: <div class="pull-right">{{ totals.total|currency }}</div></li>
 </ul>
