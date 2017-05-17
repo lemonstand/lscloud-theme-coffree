@@ -27,23 +27,19 @@
 }
 .ls-card-form .submit-button,
 .ls-card-form .delete-button {
-    border-radius: 0px;
-    border: 1px solid rgba(0, 0, 0, 1);
-    background: black;
-    color: white;
-    margin-top: 10px;
-    font-size: 1.2em;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    font-size: 1em;
-    -webkit-transition: all 0.2s;
-    -moz-transition: all 0.2s;
-    transition: all 0.2s;
+    border: 3px solid #494c50;
+    border-radius: 0;
+    color: #494c50;
+    margin-top: 5px;
+    background: white;
+    font-family: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
 }
 .ls-card-form .submit-button:hover,
 .ls-card-form .delete-button:hover {
-    background: black;
-    color: rgba(255, 255, 255, 0.8);
+    background: #494c50;
+    color: white;
 }
 .ls-card-form .card-form-input {
     background-color: #FFF;
@@ -84,4 +80,7 @@
     font-weight: inherit;
     letter-spacing: inherit;
     color: #D4D4D4;
+}
+.form-row .btn {
+    float: left;
 }
