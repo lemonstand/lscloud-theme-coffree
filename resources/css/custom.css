@@ -8,11 +8,11 @@
 }
 .card-table {
     font-size: 15px;
-    background-color: #F1F1F1;
+    background-color: #EEEEEE;
 }
 .card-table th {
     padding: 10px;
-    color: #555;
+    color: #777777;
 }
 .card-table a,
 .card-table a:hover,
