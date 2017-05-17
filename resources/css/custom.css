@@ -84,3 +84,8 @@
 .form-row .btn {
     float: left;
 }
+/* Subscription page */
+
+#subscription-page .col-md-6 {
+    margin-bottom: 20px;
+}
