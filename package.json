@@ -12,7 +12,7 @@
       "small":"https://raw.githubusercontent.com/lemonstand/lscloud-theme-coffree/master/resources/screenshots/tiny-square.png",
       "large":"https://raw.githubusercontent.com/lemonstand/lscloud-theme-coffree/master/resources/screenshots/large-square.png"
     }
-  },  
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,5 +28,10 @@
   "bugs": {
     "url": "https://github.com/lemonstand/lscloud-theme-coffree/issues"
   },
-  "homepage": "https://github.com/lemonstand/lscloud-theme-coffree#readme"
+  "homepage": "https://github.com/lemonstand/lscloud-theme-coffree#readme",
+  "keywords": [
+    "subscriptions",
+    "minimal",
+    "responsive"
+  ]
 }
