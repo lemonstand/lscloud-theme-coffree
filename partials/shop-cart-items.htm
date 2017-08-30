@@ -58,12 +58,26 @@
                     data-ajax-handler="shop:cart" 
                     data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart-totals"> 
                         <option value="">No subscription</option>
-                        {% for plan in billingPlans %}
+                        {% for plan in item.product.subscriptionPlans %}
                             <option value="{{ plan.id }}" {{ option_state(plan.id, item.x_billing_plan_id) }}>{{ plan.name }}</option>
                         {% endfor %}
                     </select>
                 </span>
             </div>
+            {% endif %}
+            {% if item.is_trial_product %}
+                <div>
+                    <span class="h6">
+                        *This item is a Trial Product, and is only included in the first order.
+                    </span>
+                </div>
+                {% if billingPlans.find(cart_billing_plan).trial_period %}
+                <div>
+                    <span class="h6">
+                        *Trial Period lasts {{ billingPlans.find(cart_billing_plan).trial_period }} days.
+                    </span>       
+                </div>
+                {% endif %}
             {% endif %}
         </div>
 
