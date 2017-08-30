@@ -27,7 +27,7 @@
       {% else %}
         <li><a href="{{ site_url('login') }}"><i class="fa fa-lock"></i> Login</a></li>
       {% endif %}
-      <li id="mini-cart">  {{ partial('shop-minicart-totals') }}</a></li>
+      <li id="mini-cart">  {{ partial('shop-minicart-totals') }}</li>
       {% if customer %}
         <li><a href="{{ site_url('checkout') }}">Checkout</a></li>
       {% else %}
