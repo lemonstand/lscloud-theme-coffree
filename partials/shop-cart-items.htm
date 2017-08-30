@@ -71,7 +71,7 @@
                         *This item is a Trial Product, and is only included in the first order.
                     </span>
                 </div>
-                {% if billingPlans.find(cart_billing_plan).trial_period %}
+                {% if billingPlans.find(cart_billing_plan).trial_period_enabled %}
                 <div>
                     <span class="h6">
                         *Trial Period lasts {{ billingPlans.find(cart_billing_plan).trial_period }} days.
