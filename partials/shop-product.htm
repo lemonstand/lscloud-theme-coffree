@@ -37,81 +37,28 @@
 
             <div class="col-md-12">
                 <div class="col-md-3">
-                    <p class="title" for="billing_plan">Quantity</p>
+                    <p class="title" for="quantity">Quantity</p>
                     <input class="product-qty" type="text" value="{{ quantity|default("1") }}" name="quantity"/>
                 </div>
             </div>
 
-            {% set isSubCart = 0 %}
-            {% if cart.listitems|length %}
-                {# Items in cart #}
-                {% for item in cart.listitems %}
-                    {% if item.product.productType.name == 'Subscription' %}
-                        {% set isSubCart = 1 %}
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-
-            {% if product.productType.name == 'Subscription' %}
+            {% if product.subscriptionPlans|length %}
                 <div class="product-options col-md-12">
-                    <p class="title" for="billing_plan">Billing plan</p>
-                    {# Can't change billing plan once set #}
-                    {% if isSubCart %}
-                        <div class="disabled-custom-dropdown">
-                            {% for plan in billingPlans %}
-                                {% if plan.id == cart.x_billing_plan_id %}
-                                    <select style="display: none" id="billing_plan" class="select_option" name="billing_plan"> 
-                                        <option value="{{ plan.id }}" {{ option_state(plan.id, cart_billing_plan) }}>{{ plan.name }}</option>
-                                    </select>
-                                    {{ plan.name }}
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                        <p><strong>It is not possible to checkout multiple subscriptions with different billing plans. In order to change your billing plan go to your <a href="{{ root_url('/cart') }}">shopping cart</a>.</strong></p>
-                    {% else %}
-                        <span class="col-md-12 custom-dropdown option-dropdown">
-                        <select id="billing_plan" class="select_option" name="billing_plan"> 
-                            {% for plan in billingPlans %}
+                    <p class="title" for="product_billing_plan">Billing plan</p>
+                        <span class="col-md-12 custom-dropdown option-dropdown" style="width: 100%">
+                        <select id="product_billing_plan" class="select_option" name="product_billing_plan"> 
+                            <option value="">No subscription</option>
+                            {% for plan in product.subscriptionPlans %}
                                 <option value="{{ plan.id }}" {{ option_state(plan.id, cart_billing_plan) }}>{{ plan.name }}</option>
                             {% endfor %}
                         </select>
                         </span>
-                    {% endif %}
                 </div>
             {% endif %}
 
             <div class="add-cart-holder form-group col-md-12">
                 {{ flash() }}
-                
-                {% if cart.listitems|length %}
-                    {% if isSubCart %}
-                        {# Subscriptions in cart #}
-                        {% if product.productType.name == 'Subscription' %}
-                            {# Product is subscription, check billing plan selected #}
-                            <input type="hidden" name="redirect" value="/cart"/>
-                            <a class="btn btn-important btn-add-cart " href="{{ root_url('/cart') }}" data-ajax-handler="shop:onAddToCart" data-ajax-extra-fields="subscribe=0, noFlash=1">Add to Cart</a>
-                        {% else %}
-                            {# Sub in cart, Product non subscription #}
-                            <p><strong>It is not possible to purchase non-subscription and subscription products at the same time. In order to order this product, please remove all subscription products from your <a href="{{ root_url('/cart') }}">shopping cart</a>.</strong></p>
-                        {% endif %}
-                    {% else %}
-                        {# No subscriptions in cart #}
-                        {% if product.productType.name == 'Subscription' %}
-                            {# Non-sub cart, Product is subscription #}
-                            <p><strong>It is not possible to purchase non-subscription and subscription products at the same time. In order to order this product, please remove all non-subscription items from your <a href="{{ root_url('/cart') }}">shopping cart</a>.</strong></p>
-                        {% else %}
-                            {# Product is non subscription #}
-                            <a class="btn btn-important btn-add-cart " href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#shop-product=shop-product, #mini-cart=shop-minicart-totals" data-ajax-extra-fields="subscribe=0, noFlash=0">Add to Cart</a>
-                        {% endif %}
-                    {% endif %}
-                {% elseif product.productType.name == 'Subscription' %}
-                    {# Empty cart, product is subscription #}
-                    <input type="hidden" name="redirect" value="/cart"/>
-                    <a class="btn btn-important btn-add-cart " href="{{ root_url('/cart') }}" data-ajax-handler="shop:onAddToCart" data-ajax-extra-fields="subscribe=1, noFlash=1">Add to Cart</a>
-                {% else %}
-                    {# Empty cart, product is non subscription #}
-                    <a class="btn btn-important btn-add-cart " href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#shop-product=shop-product, #mini-cart=shop-minicart-totals" data-ajax-extra-fields="subscribe=0, noFlash=0, emptyCart=1">Add to Cart</a>
-                {% endif %}
+                <a class="btn btn-important btn-add-cart " href="{{ root_url('/cart') }}" data-ajax-handler="shop:onAddToCart" data-ajax-update="#mini-cart=shop-minicart-totals, #shop-product=shop-product">Add to Cart</a>
             </div>
         {% else %}
             <div class="not-available">

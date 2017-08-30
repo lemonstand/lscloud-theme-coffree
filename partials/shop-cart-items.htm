@@ -1,106 +1,136 @@
 {% if cart.listitems|length %}
-	{% if cart.getDiscountTotal() > 0 %}
-		<div class="row content" id="cart-items">
-			<div class="col-sm-5 col-xs-7">
-				Product
-			</div>
-			<div class="col-sm-1 col-xs-2">
-				Quantity
-			</div>
-			<div class="col-sm-2 cart-price">
-				Unit Price
-			</div>
-			<div class="col-sm-2 cart-price">
-				Discount
-			</div>
-			<div class="col-sm-2 col-xs-3">
-				Item Total
-			</div>
-		</div>
+    {% if cart.getDiscountTotal() > 0 %}
+        <div class="row content" id="cart-items">
+            <div class="col-sm-5 col-xs-7">
+                Product
+            </div>
+            <div class="col-sm-1 col-xs-2">
+                Quantity
+            </div>
+            <div class="col-sm-2 cart-price">
+                Unit Price
+            </div>
+            <div class="col-sm-2 cart-price">
+                Discount
+            </div>
+            <div class="col-sm-2 col-xs-3">
+                Item Total
+            </div>
+        </div>
 
-	{% else %}
-		<div class="row content" id="cart-items">
-			<div class="col-sm-5 col-xs-7">
-				Product
-			</div>
-			<div class="col-sm-2 col-xs-2">
-				Quantity
-			</div>
-			<div class="col-sm-3 cart-price">
-				Unit Price
-			</div>
-			<div class="col-sm-2 col-xs-3">
-				Item Total
-			</div>
-		</div>
-	{% endif %}
+    {% else %}
+        <div class="row content" id="cart-items">
+            <div class="col-sm-5 col-xs-7">
+                Product
+            </div>
+            <div class="col-sm-2 col-xs-2">
+                Quantity
+            </div>
+            <div class="col-sm-3 cart-price">
+                Unit Price
+            </div>
+            <div class="col-sm-2 col-xs-3">
+                Item Total
+            </div>
+        </div>
+    {% endif %}
 {% else %}
-	<p>There are no Items in your cart!</p>
+    <p>There are no Items in your cart!</p>
 {% endif %}
 
 {% for item in items %}
-	<div class="row" id="cart-row">
-		<div class="col-sm-2 cart-img">
-			<img src="{{ item.product.images.first.thumbnail('auto', 'auto') }}" alt="{{ item.product.name }}">
-		</div>
+    <div class="row" id="cart-row">
+        <div class="col-sm-2 cart-img">
+            <img src="{{ item.product.images.first.thumbnail('auto', 'auto') }}" alt="{{ item.product.name }}">
+        </div>
 
-		<div class="col-sm-3 col-xs-7">
-			<a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a>
-			{% set options = item.optionsString() %}
-			{% if options %}
-				<p class="h6">{{ options|unescape }}</p>
-			{% endif %}
-		</div>
-		{% if cart.getDiscountTotal() > 0 %}
-			<div class="col-sm-1 col-xs-2">
-				{% if edit_cart %}
-					<input type="text" id="quantity" name="item_quantity[{{ item.key }}]" value="{{ item.quantity }}">
-				{% else %}
-					{{item.quantity}}
-				{% endif %}
-			</div>
-			<div class="col-sm-2 cart-price">
-				<p>
-					{% if item.product.onSale() %}
-		                <span><s>{{ item.product.fullPrice()|currency }}</s></span>
-		            {% endif %}
-		            <span>{{ item.price()|currency }}</span>
-	            </p>
-			</div>
-			<div class="col-sm-2 cart-price">
-				<p><span class="cart-discount"> - {{item.totalDiscount()|currency}} </span></p>
-			</div>
-		{% else %}
-			<div class="col-sm-2 col-xs-2">
-				{% if edit_cart %}
-					<input type="text" id="quantity" name="item_quantity[{{ item.key }}]" value="{{ item.quantity }}">
-				{% else %}
-					{{item.quantity}}
-				{% endif %}
-			</div>
-			<div class="col-sm-3 cart-price">
-				<div><p>
-					{% if item.product.onSale() %}
-		                <span><s>{{ item.product.fullPrice()|currency }}</s></span>
-		            {% endif %}
-		            <span>{{ item.price()|currency }}</span>
-	            </p></div>
-			</div>
-		{% endif %}
-		<div class="col-sm-2 col-xs-3">
-			<div class="col-sm-6 col-xs-10">
-				<p>{{ item.total()|currency }}</p>
-			</div>
-			<div class="col-sm-6 col-xs-2">
-				{% if edit_cart %}
-					<a id="item-close" href="#close" 
-					data-ajax-handler="shop:cart" 
-					{# data-ajax-confirm="Do you really want to remove this item from the cart?" #}
-					data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart-totals"
-					data-ajax-extra-fields="delete_item='{{ item.key }}'"
-					><i class="fa fa-times" id="remove-cart-item"></i></a>
-				{% endif %}
-			</div>
-		</div>
-	</div>
+        <div class="col-sm-3 col-xs-7">
+            {% set options = item.optionsString() %}
+            <a href="/product/{{ item.product.url_name }}">{{ item.product.name }}
+            {% if options %}
+                 - <span class="h6">{{ options|unescape }}</span>
+            {% endif %}
+            </a>
+            {% if cart_billing_plan %}
+            <div style="margin-top: 10px;">
+                <span class="custom-dropdown option-dropdown" style="width: 100%">
+                    <select id="billing_plan" name="item_subscription_plan[{{ item.key }}]" 
+                    data-ajax-handler="shop:cart" 
+                    data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart-totals"> 
+                        <option value="">No subscription</option>
+                        {% for plan in item.product.subscriptionPlans %}
+                            <option value="{{ plan.id }}" {{ option_state(plan.id, item.x_billing_plan_id) }}>{{ plan.name }}</option>
+                        {% endfor %}
+                    </select>
+                </span>
+            </div>
+            {% endif %}
+            {% if item.is_trial_product %}
+                <div>
+                    <span class="h6">
+                        *This item is a Trial Product, and is only included in the first order.
+                    </span>
+                </div>
+                {% if billingPlans.find(cart_billing_plan).trial_period_enabled %}
+                <div>
+                    <span class="h6">
+                        *Trial Period lasts {{ billingPlans.find(cart_billing_plan).trial_period }} days.
+                    </span>       
+                </div>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        {% if cart.getDiscountTotal() > 0 %}
+            <div class="col-sm-1 col-xs-2">
+                {% if edit_cart %}
+                    <input type="text" id="quantity" name="item_quantity[{{ item.key }}]" value="{{ item.quantity }}">
+                {% else %}
+                    {{item.quantity}}
+                {% endif %}
+            </div>
+            <div class="col-sm-2 cart-price">
+                <p>
+                    {% if item.product.onSale() %}
+                        <span><s>{{ item.product.fullPrice()|currency }}</s></span>
+                    {% endif %}
+                    <span>{{ item.price()|currency }}</span>
+                </p>
+            </div>
+            <div class="col-sm-2 cart-price">
+                <p><span class="cart-discount"> - {{item.totalDiscount()|currency}} </span></p>
+            </div>
+        {% else %}
+            <div class="col-sm-2 col-xs-2">
+                {% if edit_cart %}
+                    <input type="text" id="quantity" name="item_quantity[{{ item.key }}]" value="{{ item.quantity }}">
+                {% else %}
+                    {{item.quantity}}
+                {% endif %}
+            </div>
+            <div class="col-sm-3 cart-price">
+                <div><p>
+                    {% if item.product.onSale() %}
+                        <span><s>{{ item.product.fullPrice()|currency }}</s></span>
+                    {% endif %}
+                    <span>{{ item.price()|currency }}</span>
+                </p></div>
+            </div>
+        {% endif %}
+        <div class="col-sm-2 col-xs-3">
+            <div class="col-sm-6 col-xs-10">
+                <p>{{ item.total()|currency }}</p>
+            </div>
+            <div class="col-sm-6 col-xs-2">
+                {% if edit_cart %}
+                    <a id="item-close" href="#close" 
+                    data-ajax-handler="shop:cart" 
+                    {# data-ajax-confirm="Do you really want to remove this item from the cart?" #}
+                    data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart-totals"
+                    data-ajax-extra-fields="delete_item='{{ item.key }}'"
+                    ><i class="fa fa-times" id="remove-cart-item"></i></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endfor %}
