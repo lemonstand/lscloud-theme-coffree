@@ -8,10 +8,11 @@
     "code":"coffree",
     "type": "theme",
     "options": "options.json",
-    "demo" : "https://coffree.lemonstand.com",
+    "demo": "https://coffree.lemonstand.com",
     "screenshots" : {
-      "small":"https://raw.githubusercontent.com/lemonstand/lscloud-theme-coffree/master/resources/screenshots/tiny-square.png",
-      "large":"https://raw.githubusercontent.com/lemonstand/lscloud-theme-coffree/master/resources/screenshots/large-square.png"
+      "small": "https://raw.githubusercontent.com/lemonstand/lscloud-theme-coffree/master/resources/screenshots/tiny-square.png",
+      "large": "https://raw.githubusercontent.com/lemonstand/lscloud-theme-coffree/master/resources/screenshots/large-square.png",
+      "full": "https://raw.githubusercontent.com/lemonstand/lscloud-theme-coffree/master/resources/screenshots/full-size.png"
     }
   },
   "scripts": {
