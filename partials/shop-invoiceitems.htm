@@ -1,5 +1,0 @@
-{% for shipment in invoice.shipments %}
-  {% for item in shipment.shipmentItems %}
-    {{ partial('shop-purchaseditems', {'invoice': invoice, 'item': item, }) }}
-  {% endfor %}
-{% endfor %}
