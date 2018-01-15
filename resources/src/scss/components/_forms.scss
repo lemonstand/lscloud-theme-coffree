@@ -1,0 +1,16 @@
+.control-label {
+    text-transform: uppercase;
+}
+
+.form-actions {
+    .form-action-link {
+        font-size: 0.875rem;
+
+        &:nth-child(n+2)::before {
+            content: " | ";
+            display: inline;
+            padding-left: $spacer * 0.25;
+            padding-right: $spacer * 0.25;
+        }
+    }
+}

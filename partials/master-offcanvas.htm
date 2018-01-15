@@ -1,0 +1,36 @@
+<div id="offcanvas-overlay">
+    <div id="offcanvas-bar">
+        <div class="offcanvas-bar-scroll">
+            <div class="offcanvas-bar-content">
+
+                <header>
+                    <h1>Menu</h1>
+                    <button class="btn" data-toggle="offcanvas"><span class="fa fa-close"></span></button>
+                </header>
+
+                {% if theme.shopEnableSearch %}
+                    {{ partial('search-form') }}
+                {% endif %}
+
+                <nav class="nav flex-column">
+                    {{ partial('navigation') }}
+                </nav>
+
+            </div>
+
+            <div class="offcanvas-bar-widgets">
+
+                {% if theme.enableMinicart %}
+
+                    <div class="minicart-content">
+                        
+                        {{ partial('shop-minicart-content') }}
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>

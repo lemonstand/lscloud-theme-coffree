@@ -1,0 +1,22 @@
+// Header
+// ***************************************************************************
+
+$header-bg:                         $white;
+$header-brand-height:               3.75rem;
+$header-padding-y:                  $spacer * 0.625;
+$header-height:                     (2 * $header-padding-y) + $header-brand-height;
+
+// Header Search
+// ***************************************************************************
+
+$header-search-padding-x:           $spacer * 1.25;
+
+// Product
+// ***************************************************************************
+
+$product-badge-padding-y:           $spacer * 0.625;
+$product-badge-padding-x:           $spacer * 1.25;
+
+$product-rating-color:              $gray-400;
+$product-rating-active-color:       $gray-900;
+

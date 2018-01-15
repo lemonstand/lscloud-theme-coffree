@@ -1,0 +1,128 @@
+.product {
+    display: block;
+    margin-bottom: map-get($spacers, 3);
+    position: relative;
+    text-align: center;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.product-badge {
+    background-color: $primary;
+    color: $white;
+    font-size: 0.75rem;
+    padding: $product-badge-padding-y $product-badge-padding-x;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-transform: uppercase;
+}
+
+.product-image {
+    margin-bottom: map-get($spacers, 4);
+    position: relative;
+
+    .product-image-overlay {   
+        align-items: center;     
+        background-color: rgba($white, 0.8);
+        display: flex;
+        flex-direction: column;
+        bottom: 0;
+        justify-content: center;
+        left: 0;
+        padding: 1.25rem;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0; 
+        transition: all 0.5s ease;        
+        width: 100%;
+        z-index: 1;
+
+        .btn {
+            display: block;
+            min-width: 12.5rem;
+
+            &:nth-child(n+2) {
+                margin-top: map-get($spacers, 2);
+            }
+        }
+    }    
+
+    &:hover .product-image-overlay {
+        opacity: 1.0;
+        pointer-events: auto;        
+    }
+}
+
+.product-name {
+    font-size: 1.125rem;
+    margin-bottom: map-get($spacers, 2);
+}
+
+.product-price {
+    color: $gray-800;
+    font-size: 1.125rem;
+    font-weight: $font-weight-bold;
+    margin-bottom: map-get($spacers, 2);
+
+    del {
+        color: $gray-600;
+    }
+    
+    ins {
+        text-decoration: none;
+    }
+}
+
+.product-rating {
+    margin-bottom: map-get($spacers, 2);
+
+    .fa-star {
+        color: $product-rating-color;
+
+        &.active {
+            color: $product-rating-active-color;
+        }
+    }
+}
+
+.product-quantity {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 7.5rem;
+
+    .form-control {
+        background-color: $white;
+        border: none;
+        border-bottom: $border-width solid $gray-300;
+        border-top: $border-width solid $gray-300;
+        flex: 1;
+        text-align: center;
+    }
+
+    .btn {
+        background-color: $gray-300;
+        height: $input-height;
+        width: $input-height;
+    }
+}
+
+.product-actions {
+    align-items: center;
+    display: flex;
+    margin-bottom: map-get($spacers, 5);
+
+    .btn-primary {
+        min-width: 10rem;
+    }
+
+    .product-quantity {
+        margin-right: map-get($spacers, 4);
+    }
+}
+

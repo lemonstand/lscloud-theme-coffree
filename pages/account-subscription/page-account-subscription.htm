@@ -1,0 +1,29 @@
+---
+action: 'subscriptions:subscription'
+template: master
+protocol: all
+published: true
+name: 'Edit Subscription'
+url: '/account/subscription/:subscriptionId'
+---
+
+{{ partial('page-header', {
+    'background': theme.imageSubscriptionHeader,
+    'title': page.title
+}) }}
+
+<div id="content" class="block block-gray">
+    <div class="block-content">           
+        <div class="container">        
+            <div class="row">
+                <div class="col-lg-3">
+                    {{ partial('account-sidebar', { active: 'subscriptions' }) }}
+                </div>
+
+                <div id="subscription-content" class="col-lg-9">
+                    {{ partial('account-subscription-content') }}                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

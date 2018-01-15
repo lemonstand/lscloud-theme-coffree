@@ -1,0 +1,137 @@
+<script>
+    !(function($) {
+        $(document).ready(function() {
+            $(document).on('click', '.btn-update-subscription', function(e) {
+                e.preventDefault();
+                
+                $.blockUI({ 
+                    message: '<span class="spinner"></span>',
+                    css: {
+                        border: 'none',
+                        backgroundColor:'transparent'
+                    }
+                });
+
+                $.when(resetSubscription()).done(function() {
+                    $.when(updateSubscription()).done(function() {
+                        $.when(updateView()).done(function() {
+                            $.unblockUI(); 
+                        });
+                    });
+                });
+            });
+
+            /**
+             * Removes all products from the current subscription.
+             * @return a promise to be resolved after all requests have been completed
+             */
+            function resetSubscription() {
+                var promise = $.Deferred();
+                var requests = [];
+
+                $('.subscription-product-form').each(function(index, element) {
+                    var item = $(element).find('[name="item_id"]').val();
+
+                    if (!item) {
+                        return;
+                    }
+
+                    // Push the request to the queue.
+                    requests.push($.ajax({
+                        type: 'post',
+                        data: {
+                            deleteProduct: item
+                        },
+                        headers: {
+                            'X-Event-Handler': 'subscriptions:subscription',
+                            'X-Partials':      'flash'
+                        }
+                    }));
+                });
+
+                // Resolve the promise after all requests have been completed.
+                $.when.apply($, requests).then(function() {
+                    promise.resolve(requests);
+                });
+
+                return promise;
+
+            }
+
+            /**
+             * Adds all items, quantity and options that are currently visible
+             * on the page to the active subscription. This method is typically
+             * used with {@see resetSubscription()} to update a subscription.
+             * @return a promise to be resolved after all requests have been completed
+             */
+            function updateSubscription() {
+                var promise = $.Deferred();
+                var requests = [];
+
+                $('.subscription-product-form').each(function(index, element) {
+                    var product = $(element).find('[name="product_id"]').val();
+                    var quantity = $(element).find('[name="quantity"]').val();
+                    var options = {};
+
+                    if (!product || !quantity) {
+                        return;
+                    }
+
+                    // Add all option values to the request:
+                    $(element).find('.form-control').each(function(index, element) {
+                        var id    = $(element).attr('name').replace(/^options\[(\d+)\]$/, '$1');
+                        var value = $(element).val();
+                        options[id] = value;
+                    });
+
+                    // Push the request to the queue.
+                    requests.push($.ajax({
+                        type: 'post',
+                        data: { 
+                            productId: product,
+                            quantity: quantity,
+                            options: options
+                        },
+                        headers: { 
+                            'X-Event-Handler': 'subscriptions:subscription',
+                            'X-Partials':      'flash'
+                        }
+                    }));
+                });
+
+                // Resolve the promise after all requests have been completed.
+                $.when.apply($, requests).then(function() {
+                    promise.resolve(requests);
+                });
+
+                return promise;
+
+            }
+
+            /**
+             * Updates the view via the 'account-subscription-content' partial.
+             * @return a promise to be resolved after the view has been updated
+             */
+            function updateView() {
+                var promise = $.Deferred();
+
+                $.ajax({
+                    type: 'get',
+                    data: {
+                        updated: true
+                    },
+                    headers: { 
+                        'X-Event-Handler': 'subscriptions:subscription',
+                        'X-Partials':      'account-subscription-content'
+                    }
+                }).done(function(response) {
+                    $('#subscription-content').html(response['account-subscription-content']);
+                }).always(function() {
+                    promise.resolve();
+                });
+
+                return promise;
+            }
+        });
+    })(jQuery);
+</script>

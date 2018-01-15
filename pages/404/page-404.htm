@@ -1,16 +1,27 @@
 ---
-description: '"Page not found" page, displayed when a non existing page is accessed.'
-template: template-1
+template: master
 protocol: all
 published: true
-title: 'Page not found'
-name: 'Page not found'
+name: '404'
 url: /404
 ---
-<section class="section-shopping-cart-page">
-	<div class="container">
-    <h1>Uh Oh! The page was not found!</h1>
-    <p>The page you are trying to reach may have been moved, deleted or does not exist.<br>
-    Try heading back to the <a href="/">homepage</a> to see if you can find what you are looking for from there.</p>
-    </div>
-</section>
+
+{{ partial('page-header', {
+    'background': theme.image404Header,
+    'title': page.title
+}) }}
+
+<div id="content" class="block block-gray">    
+    <div class="block-content">        
+        <div class="container">
+
+            <h2 class="display-4">Well, this is embarassing...</h2>        
+            <p>
+                Sorry! We can't seem to find the page you're looking for. If you feel you've reached this
+                page in error, please <a href="{{ site_url('/contact') }}">contact us</a>.
+            </p>
+            <a class="font-weight-bold text-uppercase" href="{{ site_url('/') }}">Return to Homepage</a>
+
+        </div>
+    </div>    
+</div>

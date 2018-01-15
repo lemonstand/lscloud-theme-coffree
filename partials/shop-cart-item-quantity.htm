@@ -1,0 +1,13 @@
+{% if edit_cart %}
+
+    <div class="product-quantity">
+        <button class="btn" data-delta="-1">-</button>
+        <input id="quantity" class="form-control" name="item_quantity[{{ item.key }}]" type="text" value="{{ item.quantity }}" readonly>
+        <button class="btn" data-delta="1">+</button>
+    </div>
+
+{% else %}
+
+    {{ item.quantity }}
+
+{% endif %}

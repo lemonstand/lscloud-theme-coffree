@@ -1,45 +1,50 @@
 {{ open_form({'data-ajax-handler': 'system:onSendMessage'}) }}
 
-    <div class="col-sm-12 form-group" style="padding-left: 0px;">
-        <label>Rating</label>
-        <select id="item_rating" name="fields[item_rating]" class="form-control">
-            <option value="5">&starf;&starf;&starf;&starf;&starf;</option>
-            <option value="4">&starf;&starf;&starf;&starf;&star;</option>
-            <option value="3">&starf;&starf;&starf;&star;&star;</option>
-            <option value="2">&starf;&starf;&star;&star;&star;</option>
-            <option value="1">&starf;&star;&star;&star;&star;</option>
-        </select>
-        <span class="error"/>
-    </div>
+    <input name="fields[shop_customer_id]" type="hidden" value="{{ customer.id }}">
+    <input name="fields[shop_product_id]" type="hidden" value="{{ product.id }}">
+    <input name="fields[message_type]" type="hidden" value="review">    
 
-    <div class="col-sm-12 form-group" style="padding-left: 0px;">
-        <label>Subject</label>
-        <input type="text" id="subject" name="fields[subject]" value="" class="form-control"/>
-        <span class="error"/>
-    </div>
+    <div class="form-row">
 
-    <div class="col-sm-12 form-group" style="padding-left: 0px;">
-        <label>Your Name</label>
-        <input type="text" id="contact_name" name="fields[name]" value="" class="form-control" />
-        <span class="error"/>
-    </div>
-    
-    <div class="col-sm-12 form-group" style="padding-left: 0px;">
-        <label>Email</label>
-        <input type="text" id="contact_email" name="fields[email]" value="" class="form-control" />
-        <span class="error"/>
-    </div>
-
-    <div class="col-sm-12 form-group" style="padding-left: 0px;">
-        <label>Review</label>
-        <textarea id="contact_message" name="fields[message]" value="" rows="10" class="form-control" ></textarea>
-        <span class="error"/>
-    </div>
+        <div class="form-group col-md-12">
+            <label for="rating" class="control-label">Rating</label>
+            <select id="rating" class="form-control custom-select" name="fields[item_rating]">            
+                <option value="5">&starf;&starf;&starf;&starf;&starf;</option>
+                <option value="4">&starf;&starf;&starf;&starf;&star;</option>
+                <option value="3">&starf;&starf;&starf;&star;&star;</option>
+                <option value="2">&starf;&starf;&star;&star;&star;</option>
+                <option value="1">&starf;&star;&star;&star;&star;</option>
+            </select>
+            <span class="error small text-danger"></span>
+        </div>
         
-    <br>
-    <input type="submit" value="Submit" class="btn-important"/>
-    <input type="text" name="hp" value="" style="display: none"/>
-    <input type="hidden" name="fields[shop_customer_id]" value="{{customer.id}}"/>
-    <input type="hidden" name="fields[shop_product_id]" value="{{product.id}}"/>
-    <input type="hidden" name="fields[message_type]" value="review"/>
+        <div class="form-group col-md-6">
+            <label class="control-label" for="name">Name</label>
+            <input id="name" class="form-control" name="fields[name]" type="text">
+            <small class="error form-text text-danger"></small>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label class="control-label" for="email">Email</label>
+            <input id="email" class="form-control" name="fields[email]" type="email">
+            <small class="error form-text text-danger"></small>
+        </div>
+
+        <div class="form-group col-md-12">
+            <label class="control-label" for="subject">Title</label>
+            <input id="subject" class="form-control" name="fields[subject]" type="text">
+            <small class="error form-text text-danger"></small>
+        </div>
+        
+        <div class="form-group col-md-12">
+            <label class="control-label" for="message">Message</label>
+            <textarea id="message" class="form-control" name="fields[message]" rows="8"></textarea>
+            <small class="error form-text text-danger"></small>
+        </div>
+
+        <div class="form-group col-md-12">
+            <button class="btn btn-primary">Submit Review</button>
+        </div>
+    </div>
+
 {{ close_form() }}

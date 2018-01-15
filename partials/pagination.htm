@@ -1,0 +1,37 @@
+{% if pagination.pageCount > 1 %}
+
+    <ul class="pagination" aria-label="Pagination">
+
+        <li class="page-item{{ pagination.isFirstPage ? ' disabled' : '' }}">
+
+            <a class="page-link" href="{{ pagination.prevUrl }}" aria-label="Previous">
+                <span class="fa fa-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+        </li>
+        
+        {% for page in pagination.pages %}
+
+            <li class="page-item{{ page.isCurrent? ' active' : '' }}">
+                <a class="page-link" href="{{ page.url }}">{{ page.index }}</a>
+            </li>
+
+        {% endfor %}
+        
+        <li class="page-item{{ pagination.isLastPage ? ' disabled' : '' }}">
+
+            <a class="page-link" href="{{ pagination.nextUrl }}" aria-label="Next">
+                <span class="fa fa-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+        </li>
+        
+        <li class="page-item ml-auto">
+            Page {{ 1 + pagination.pageIndex }} of {{ pagination.pageCount }}
+        </li>
+
+    </ul>
+             
+{% endif %}

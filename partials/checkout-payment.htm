@@ -1,0 +1,31 @@
+{# Default to the first available payment method #}
+{% set paymentMethod = paymentMethods[0] %}
+
+{% if paymentMethods|length > 1 %}
+    
+    <div class="mb-5">
+
+        <h4>Select Payment Method</h4>
+
+        {{ open_form({'class': 'custom'}) }}
+
+            {% for method in paymentMethods %}  
+            
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input id="payment-method-{{ loop.index }}" class="custom-control-input" name="paymentMethodId" type="radio" value="{{ method.id }}"{{ 1 == loop.index ? ' checked' : '' }}>
+                    <label class="custom-control-label" for="payment-method-{{ loop.index }}">{{ method.name }}</label>
+                </div>          
+
+            {% endfor %}
+
+        {{ close_form() }}
+
+    </div>
+
+{% endif %}
+
+<div id="payment-form">
+    
+    {{ partial('checkout-payment-form', { paymentMethod : paymentMethod }) }}
+
+</div>

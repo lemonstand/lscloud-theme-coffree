@@ -1,0 +1,23 @@
+<ul class="post-meta post-meta-{{ layout }}">    
+
+    <li class="date">{{ post.published_on | date("F j, Y") }}</li>
+
+    {% if theme.blogEnableAuthor %}
+        
+        <li class="author">By {{ post.author_name }}</li>
+
+    {% endif %}
+
+    {% if 0 != post.categories|length %}
+
+        <li class="category">
+
+            <a href="{{ site_url('/blog') }}?category={{ post.categories[0].slug|url_encode }}">
+                {{ post.categories[0].name }}
+            </a>
+            
+        </li>
+
+    {% endif %}
+
+</ul>

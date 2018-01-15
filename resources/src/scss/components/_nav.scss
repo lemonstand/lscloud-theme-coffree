@@ -1,0 +1,25 @@
+.nav {
+    .nav-item {
+        > .nav {
+            margin-left: map-get($spacers, 3);
+        }
+    }
+}
+
+.nav-tabs {
+    border-top: $nav-tabs-border-width solid $nav-tabs-border-color;
+    justify-content: center;
+    padding-bottom: map-get($spacers, 3);
+    padding-top: map-get($spacers, 3);
+
+    .nav-link {
+        line-height: 1.0;
+        text-transform: uppercase;
+
+        &.active {
+            border-color: transparent;
+            font-weight: $font-weight-bold;
+            margin-bottom: 0;
+        }
+    }
+}

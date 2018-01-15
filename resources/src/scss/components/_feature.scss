@@ -1,0 +1,15 @@
+.feature {    
+    margin-bottom: map-get($spacers, 3);
+    text-align: center;
+    
+    h4 {
+        font-size: 1rem;
+        margin-bottom: map-get($spacers, 1);
+    }
+    
+    img {        
+        height: $spacer * 5;
+        margin-bottom: map-get($spacers, 4);
+        width: auto;
+    }
+}

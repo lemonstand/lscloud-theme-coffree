@@ -1,44 +1,34 @@
 ---
 action: 'shop:receipt'
-template: template-1
+template: master
 protocol: all
 published: true
-name: Receipt
+name: 'Receipt'
 url: '/receipt/:paymenthash'
 ---
 
-<div class="jumbotron row">
-{% if invoice %}
-	<div class="row">
-		<div class="col-xs-12">
-			<p id="title-p-d">Please keep this information for your records.</p>
-		</div>			
-	</div>
-	<div class="row">
-		<div class="receipt-items col-md-12 col-lg-5">
-			{{ partial('shop-invoiceitems') }}
-		</div>
-	{% if invoice.isPaid() %}
-		<div class="col-md-12 col-lg-7">
-			<div class="right-sidebar">
-			<p><strong>Order number: </strong> #{{ invoice.order.number }} </p>
-			<p><strong>Payment method: </strong> {{ payment.guessPaymentMethod().name }}</p>
-			<p><strong>Order Date: </strong> {{ invoice.order.created_at.format('M jS, Y') }}</p>
-			{{ partial('shop-invoicetotals', {'invoice': invoice}) }}
-				<div class="right">
-					<a class="btn btn-default" href="{{ site_url('shop') }}">Continue Shopping</a>
-				</div>
-			</div>
-		</div>
-	{% else %}
-		<p><a class="md-button button" style="margin-top:10px;" href="{{ site_url('review/'~order.order_hash) }}">Pay the order</a></p>
-	{% endif %}
-	</div>
-{% else %}
-		<p class="flash error">Invoice not found.</p>
-	</div>
-{% endif %}
+{{ partial('page-header', {
+    'background': theme.imageShopHeader,
+    'title': page.title
+}) }}
+
+<div id="content">
+    <div class="block block-gray">
+        <div class="block-content">
+            <div class="container">
+                
+                <div class="block-header text-center">
+                    <h2>Thank you for your order!</h2>
+                    <p>Your order has been placed and will be processed as soon as possible.</p>
+                </div>
+
+                <h4>Order #{{ '%04d'|format(invoice.order.number) }}</h4>
+                <p>Order Date: {{ invoice.order.created_at.format('M jS, Y') }}</p>
+
+                {{ partial('shop-invoice-items', { 'invoice': invoice }) }}
+                {{ partial('shop-invoice-totals', { 'invoice': invoice }) }}
+                
+            </div>
+        </div>
+    </div>
 </div>
-
-
-    

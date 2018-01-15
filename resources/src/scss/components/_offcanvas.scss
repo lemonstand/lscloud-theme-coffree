@@ -1,0 +1,116 @@
+// Variables
+// ***************************************************************************
+
+$offcanvas-btn-padding-x:       $spacer * 0.25;
+$offcanvas-padding-y:           $spacer * 1.0;
+$offcanvas-padding-x:           $spacer * 1.5;
+
+// Component
+// ***************************************************************************
+
+#offcanvas-bar {
+    background-color: $gray-300;
+    bottom: 0;
+    box-shadow: 0px 3px 30px 0px rgba(0, 0, 0, 0.25);    
+    opacity: 0.0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translateX(100%);
+    transition: all 0.5s ease;
+    width: 18.75rem;
+    z-index: $zindex-modal;
+
+    .offcanvas-bar-scroll {
+        height: 100%;
+
+        .mCSB_container {
+            margin-right: 0;            
+        }
+    }
+    
+    .offcanvas-bar-widgets {
+        padding: map-get($spacers, 3);
+    }
+
+    .offcanvas-bar-content {
+        background-color: $white;
+
+        header {
+            align-items: center;
+            border-bottom: $border-width solid $border-color;
+            display: flex;
+            padding: $offcanvas-padding-y $offcanvas-padding-x;
+
+            h1 {
+                font-size: 1rem;
+                margin-bottom: 0;
+            }
+
+            .btn {
+                background-color: transparent;
+                margin-left: auto;
+                padding-left: $offcanvas-btn-padding-x;
+                padding-right: $offcanvas-btn-padding-x;
+            }
+        }
+
+        .nav {
+            padding: $offcanvas-padding-y $offcanvas-padding-x;
+
+
+            .nav-link {
+                font-size: 1.125rem;
+                padding: 1.25rem;
+                position: relative;
+                text-transform: uppercase;
+
+                &::after {
+                    content: '\f054';
+                    font-family: "FontAwesome";
+                    font-size: 0.75rem;
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+
+                &:nth-child(n+2) {
+                    border-top: 1px solid $border-color;
+                }
+            }
+        }
+
+        .form-search {
+            border-bottom: $border-width solid $border-color;
+            padding: $offcanvas-padding-y $offcanvas-padding-x;
+        }
+    }
+}
+
+#offcanvas-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    bottom: 0;
+    left: 0;
+    opacity: 0.0;
+    pointer-events: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: all 0.25s ease;
+    z-index: $zindex-modal-backdrop;    
+}
+
+.offcanvas-overlay-open {
+    overflow: hidden !important;
+
+    #offcanvas-overlay {
+        opacity: 1.0;
+        pointer-events: auto;
+
+        #offcanvas-bar {
+            opacity: 1.0;
+            transform: translateX(0);
+        }
+    }
+}

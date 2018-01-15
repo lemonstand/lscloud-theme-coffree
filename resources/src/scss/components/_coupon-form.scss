@@ -1,0 +1,20 @@
+.coupon-form {
+    .btn {
+        display: block;        
+        margin-top: map-get($spacers, 2);
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .coupon-form {
+        .form-control {
+            display: inline-block;
+            width: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 0;
+        }
+    }
+}

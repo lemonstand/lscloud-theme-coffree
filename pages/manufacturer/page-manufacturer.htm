@@ -1,0 +1,31 @@
+---
+action: 'shop:manufacturer'
+template: master
+protocol: all
+published: true
+name: 'Manufacturer'
+url: '/manufacturer/:urlName@/:page?'
+---
+
+{% if manufacturer %}
+
+    {{ partial('page-header', {
+        'background': theme.imageManufacturersHeader,
+        'title': 'Manufacturer: ' ~ manufacturer.name
+    }) }}
+    
+    <div id="content" class="block block-gray">
+
+        <div class="block-content">
+    
+            <div class="container">                
+    
+                {{ partial('shop-products', { 'products': products }) }}
+                
+            </div>
+    
+        </div>
+        
+    </div>
+
+{% endif %}

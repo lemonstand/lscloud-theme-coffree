@@ -1,39 +1,32 @@
 {
-  "name": "Coffree",
+  "name": "coffree2",
   "version": "1.0.0",
-  "description": "Coffree is a beautiful, lightweight theme built with Bootstrap that is a great starting point for using LemonStand's built in subscriptions feature to offer recurring billing plans to your retail customers. Offer a mix of one time purchases and subscriptions and manage all of your products, plans, customers and orders from a single management panel.",
-  "excerpt": "Coffree is a great starting point for building a store to sell subscription products on LemonStand.",
+  "description": "A theme made for subscription box businesses.",
   "main": "index.js",
-  "lemonstand" : {
-    "code":"coffree",
-    "type": "theme",
-    "options": "options.json",
-    "demo": "https://coffree.lemonstand.com",
-    "screenshots" : {
-      "small": "https://raw.githubusercontent.com/lemonstand/lscloud-theme-coffree/master/resources/screenshots/tiny-square.png",
-      "large": "https://raw.githubusercontent.com/lemonstand/lscloud-theme-coffree/master/resources/screenshots/large-square.png",
-      "full": "https://raw.githubusercontent.com/lemonstand/lscloud-theme-coffree/master/resources/screenshots/full-size.png"
-    }
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lemonstand/lscloud-theme-coffree.git"
-  },
-  "keywords": [
-    "subscriptions"
-  ],
-  "author": "LemonStand <support@lemonstand.com> (http://docs.lemonstand.com)",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lemonstand/lscloud-theme-coffree/issues"
-  },
-  "homepage": "https://github.com/lemonstand/lscloud-theme-coffree#readme",
-  "keywords": [
-    "subscriptions",
-    "minimal",
-    "responsive"
-  ]
+  "author": "Dan Reed",
+  "license": "UNLICENSED",
+  "dependencies": {},
+  "devDependencies": {
+    "block-ui": "^2.70.1",
+    "bootstrap": "^4.0.0-beta.3",
+    "cross-env": "^5.1.3",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "jquery-match-height": "^0.7.2",
+    "jquery-sticky": "^1.0.4",
+    "laravel-mix": "^1.7.2",
+    "malihu-custom-scrollbar-plugin": "^3.1.5",
+    "owl.carousel": "^2.2.0",
+    "popper": "^1.0.1",
+    "popper.js": "^1.12.9"
+  }
 }

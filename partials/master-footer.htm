@@ -1,0 +1,50 @@
+{% set column_class = 'col-lg-4' %}
+
+{% set footer_partials = [ 
+    'master-footer-navigation',
+    'master-footer-contact',
+    'master-footer-social'
+] %}
+
+{% if theme.mailchimpSubscribeUrl %}
+    
+    {% set column_class = 'col-lg-3' %}
+    
+    {% set footer_partials = footer_partials|merge([ 
+        'master-footer-subscribe'
+    ]) %}
+
+{% endif %}
+
+<footer id="footer" class="footer{{ theme.enableInverseFooter ? ' footer-inverse' : '' }}" role="contentinfo">
+    
+    {% if not theme.footerMinimalMode %}
+
+        <div id="footer-top" class="container text-center text-lg-left">
+            <div class="row">
+                
+                {% for partial_name in footer_partials %}
+                
+                    <div class="{{ column_class }} mb-5 mb-lg-0">
+                        {{ partial(partial_name) }}
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+
+    {% endif %}
+
+    <div id="footer-bottom" class="container text-center">
+        <div class="row">
+            <div class="col-lg-6 text-lg-left">
+                {{ partial('template-copyright') }}
+            </div>        
+            <div class="col-lg-6 text-lg-right">
+                {{ partial('template-attribution') }}                
+            </div>
+        </div>
+    </div>
+    
+</footer>

@@ -1,0 +1,67 @@
+<ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a id="description-tab" class="nav-link active" data-toggle="tab" href="#description" role="tab" aria-controls="home" aria-selected="true">Description</a>
+    </li>
+
+    {% if theme.enableReviews %}
+        
+        {% set rating = product.rating() %}
+
+        <li class="nav-item">
+            <a id="reviews-tab" class="nav-link" data-toggle="tab" href="#reviews" role="tab" aria-controls="profile" aria-selected="false">Reviews ({{ rating.total_reviews }})</a>
+        </li> 
+
+        <li class="nav-item">
+            <a id="write-review-tab" class="nav-link" data-toggle="tab" href="#write-review" role="tab" aria-controls="profile" aria-selected="false">Write a Review</a>
+        </li> 
+
+    {% endif %}
+
+</ul>
+            
+<div class="tab-content">
+    
+    <div class="tab-pane active" id="description" role="tabpanel" aria-labelledby="description-tab">
+
+        {{ product.description|unescape }}
+
+    </div>
+
+    {% if theme.enableReviews %}
+        
+        <div class="tab-pane" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+
+            {% for review in product.reviews() %}
+                
+                <div class="review">
+                    <div class="review-rating" title="Rated {{ review.rating }} of 5">
+                        {% for i in range(1, 5) %}
+                            <span class="fa fa-star{{ i <= review.rating  ? ' active' : '' }}"></span>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="review-content">
+                        <div class="review-header">
+                            <h5>{{ review.title }}</h5>
+                            <p>By {{ review.from_name }} on {{ review.created_at|date('M jS, Y') }}</p>
+                        </div>
+                        <div class="review-comments">
+                            <p>{{ review.comment }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        
+        <div class="tab-pane" id="write-review" role="tabpanel" aria-labelledby="write-review-tab">
+            
+            {{ partial('shop-product-review-form') }}
+
+        </div>
+
+    {% endif %}
+
+</div>  

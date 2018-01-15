@@ -1,0 +1,13 @@
+<nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ site_url('/') }}">{{ theme.storeTitle }}</a></li>
+        
+        {% for breadcrumb in breadcrumbs %}
+            <li class="breadcrumb-item">
+                <a href="{{ breadcrumb.url }}">{{ breadcrumb.title }}</a>
+            </li>
+        {% endfor %}
+        
+        <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
+    </ol>
+</nav>

@@ -1,0 +1,20 @@
+{% set banner_classes = [
+    'block',
+    'block-primary',
+    'block-banner',
+    'block-middle'
+] %}
+
+{% if theme.transparentHeader %}
+    {% set banner_classes = banner_classes|merge([ 'block-header-overlay' ]) %}
+{% endif %}
+
+<div class="{{ banner_classes|join(' ') }}" style="background-image: url({{ background.thumbnail('auto', 'auto') }});">
+    <div class="block-content">
+        <div class="container text-center text-white">
+            <h1>{{ heading|unescape }}</h1>
+            <p class="lead">{{ content|unescape }}</p>
+            <a class="btn btn-light btn-lg" href="#">Get Started</a>
+        </div>
+    </div>
+</div>

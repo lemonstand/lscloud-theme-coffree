@@ -1,43 +1,59 @@
 ---
-description: 'The About Page'
-template: template-1
+template: master
 protocol: all
 published: true
-name: About
+name: 'About'
 url: /about
 ---
 
-<div class="full-jumbotron no-padding row home-head about">
-	<div class="col-md-12 header-home-left header-about text-center">
-		<h1>About Coffree</h1>
-	</div>
+{{ partial('page-header', {
+    'background': theme.imageAboutHeader,
+    'title': page.title
+}) }}
+
+<div id="content">
+
+    <div class="block">
+        <div class="block-content">            
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 order-lg-1">
+                        <img class="img-fluid mb-5 mb-lg-0" src="{{ theme.imageAbout1.thumbnail('auto', 'auto') }}" alt="">
+                    </div>
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="block-header">
+                            {{ content_block('about-header-1') }}                            
+                        </div>
+                        <div class="block-body">
+                            {{ content_block('about-content-1') }}                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+
+    <div class="block block-gray">
+        <div class="block-content">            
+            <div class="container">
+                <div class="row">                                    
+                    <div class="col-lg-6 order-lg-2">
+                        <img class="img-fluid mb-5 mb-lg-0" src="{{ theme.imageAbout2.thumbnail('auto', 'auto') }}" alt="">
+                    </div>
+                    <div class="col-lg-6 order-lg-1">                        
+                        <div class="block-header">
+                            {{ content_block('about-header-2') }}                            
+                        </div>
+                        <div class="block-body">
+                            {{ content_block('about-content-2') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+
+    {{ partial('callout') }}
+    
 </div>
 
-<div class="jumbotron row text-center">
-	<h4 class="buffer">Our Story and Mission</h4>
-	<p class="space-bottom">Finding a way to serve each other across the world.</p>
-	<div class="col-md-8 col-md-offset-2">
-		<img src="{{ 'img/help.png'|theme_resource }}" style="width:40%;"alt=""><br><br>
-		{{ content_block('about') }}
-	</div>
-</div>
-
-<div class="jumbotron row people text-center no-border">
-	<h4 class="buffer">The people behind Coffree</h4>
-		{{ content_block('about-people') }}
-	<div class="col-md-4 col-md-offset-2">
-		<img src="{{ 'img/about1.jpg'|theme_resource }}" alt="">
-		<h2>Rosette Angraville</h2>
-		<hr>
-		<p>Student/Traveller/Thinker</p>
-	</div>
-	<div class="col-md-4">
-		<img src="{{ 'img/about2.jpg'|theme_resource }}" alt="">
-		<h2>Jennifer Bronson</h2>
-		<hr>
-		<p>Artist/Poet/Writer</p>
-	</div>
-	<div class="col-md-8 col-md-offset-2">
-		
-	</div>
-</div>

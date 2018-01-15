@@ -1,0 +1,45 @@
+{% set product_image = product.images.first.thumbnail(510, 'auto', { crop: true }) %}
+
+<div class="product text-center">
+    
+    <div class="product-image">        
+
+        {% if theme.enableProductOverlay %}
+            
+            <img class="img-fluid" src="{{ product_image }}" alt="{{ product.name }}">
+
+            <div class="product-image-overlay">
+
+                {{ open_form({'class': 'custom', 'onsubmit': 'return false'}) }}
+
+                    <input name="productId" type="hidden" value="{{ product.id }}">
+                    <input name="quantity" type="hidden" value="1">
+                    
+                    <a class="btn btn-outline-primary" href="{{ site_url('/product/' ~ product.url_name) }}">View Product</a>
+
+                {{ close_form() }}                
+
+            </div>
+
+        {% else %}
+
+            <a href="{{ site_url('/product/' ~ product.url_name) }}">
+            
+                <img class="img-fluid" src="{{ product_image }}" alt="{{ product.name }}">
+            
+            </a>
+
+        {% endif %}
+
+        {% if product.onSale() %}
+            <span class="product-badge">Sale</span>
+        {% endif %}
+
+    </div>
+
+    <h4 class="product-name"><a href="{{ site_url('/product/' ~ product.url_name) }}">{{ product.name }}</a></h4>
+
+    {{ partial('shop-product-rating', { product: product }) }}
+    {{ partial('shop-product-price', { product: product }) }}
+
+</div>

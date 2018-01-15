@@ -1,0 +1,23 @@
+{{ code_block('setup') }}
+
+<meta charset="utf-8">
+<meta name="description" content="{{ page.description }}">
+<meta name="keywords" content="{{ page.keywords }}">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>{{ page.title }} | {{ theme.storeTitle }}</title>
+
+<link rel="shortcut icon" href="{{ theme.faviconImage.thumbnail('auto', 'auto') }}" type="image/png">
+<link rel="icon" href="{{ theme.faviconImage.thumbnail('auto', 'auto') }}" type="image/png">
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="/cms/lemonstand.css">
+<link rel="stylesheet" href="{{ 'css/main.css'|theme_resource }}">
+<link rel="stylesheet" href="{{ 'css/custom.css'|theme_resource }}">
+
+{% if globals.redirect %}
+    <style>body { display: none !important; }</style>
+    <script>window.location = '{{ globals.redirect }}';</script>
+{% endif %}

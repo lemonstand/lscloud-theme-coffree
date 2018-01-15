@@ -1,23 +1,25 @@
-<h4 class="text-center">Your Cart</h4>
-<br>
-<div class="col-md-12">
-    <div class="items-holder">
-        
-        {{ partial('shop-cart-items', {'edit_cart': true}) }}
+{% if cart.listitems|length %}
+
+    <div class="container">
+    
+        {{ partial('flash') }}
+
+        {{ open_form({'class': 'custom'}) }}
+            
+            {{ partial('shop-cart-items', { 'items': cart.listitems, 'edit_cart': true }) }}            
+            {{ partial('shop-cart-totals') }}
+
+        {{ close_form() }}        
 
     </div>
 
-</div>
-<div class="col-md-12">
-    <div class="col-md-8 col-sm-12 col-xs-12" id="summary">
-        {{ partial('shop-checkout-totals') }}
-        <input type="text" class="form-control" id="coupon-code" name="coupon" placeholder="Coupon Code" value="{{ coupon_code }}" /><br><br>
-        {{ flash() }}
-        <a class="btn btn-default col-xs-12 btn-lg solid refresh-cart" href="#" data-ajax-handler="shop:cart" data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart-totals">Update Cart <i class="fa fa-refresh"></i></a><br><br>
-        {% if customer %}
-            <a class="col-xs-12 btn btn-important solid btn-lg" href="{{ site_url('/checkout') }}">Checkout</a>
-        {% else %}
-            <a class="col-xs-12 btn btn-important solid btn-lg" href="{{ site_url('/checkout-start') }}">Checkout</a>
-        {% endif %}
+{% else %}
+
+    <div class="container text-center">
+    
+        <h1 class="display-4 mb-5">Shopping Cart is Empty</h1>
+        <a class="btn btn-primary btn-lg" href="{{ site_url('/shop') }}">Continue Shopping</a>
+
     </div>
-</div>
+    
+{% endif %}

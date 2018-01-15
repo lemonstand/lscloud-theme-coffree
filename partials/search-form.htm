@@ -1,0 +1,17 @@
+{{ open_form({'class': 'form form-search', 'method': 'get', 'action': site_url('/search')}) }}
+
+    <div class="input-group">
+        <input class="form-control" name="query" placeholder="Search {{ theme.storeTitle }}" type="text" value="{{ query|unescape }}">
+        <div class="input-group-append">
+            <button class="btn" type="submit"><span class="fa fa-search"></span></button>
+        </div>
+
+        {% if close_button %}
+            <div class="input-group-append">
+                <button class="btn" type="button" data-toggle="search"><span class="fa fa-close"></span></button>
+            </div>
+        {% endif %}
+
+    </div>
+
+{{ close_form() }}

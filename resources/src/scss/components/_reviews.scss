@@ -1,0 +1,23 @@
+.review {
+    .review-header {
+        p {
+            font-size: $font-size-sm;
+        }
+    }
+
+    .review-rating {
+        .fa-star {
+            color: $product-rating-color;
+    
+            &.active {
+                color: $product-rating-active-color;
+            }
+        }
+    }
+
+    &:nth-child(n+2) {
+        border-top: $border-width solid $border-color;
+        margin-top: map-get($spacers, 3);
+        padding-top: map-get($spacers, 3);        
+    }
+}

@@ -1,9 +1,23 @@
 ---
 action: 'shop:category'
-template: template-1
+template: master
 protocol: all
 published: true
 name: Category
 url: '/category/:urlName@/:page?'
 ---
-{{ partial('shop', { 'product': product, 'products': products }) }}
+
+{{ partial('page-header', {
+    'background': theme.imageCategoriesHeader,
+    'title': 'Category: ' ~ category.name
+}) }}
+
+<div id="content" class="block block-gray">
+    <div class="block-content">
+        <div class="container">                
+
+            {{ partial('shop-products', { 'products': products }) }}
+            
+        </div>
+    </div>    
+</div>

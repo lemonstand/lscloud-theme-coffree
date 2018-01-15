@@ -1,0 +1,23 @@
+<div class="btn-group">
+    
+    <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" id="manufacturersMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ manufacturer ? manufacturer.name : 'Manufacturer' }}
+    </button>
+    
+    <div class="dropdown-menu" aria-labelledby="manufacturersMenuButton">
+        
+        <div class="dropdown-items">
+
+            {% for manufacturer in manufacturers %}
+                
+                <a class="dropdown-item" href="{{ site_url('/manufacturer/' ~ manufacturer.url_name) }}">
+                    {{ manufacturer.name }}
+                </a>
+
+            {% endfor %}
+        
+        </div>
+
+    </div>
+    
+</div>

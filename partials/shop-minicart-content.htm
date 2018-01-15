@@ -1,0 +1,17 @@
+<div class="minicart-body">
+    
+    {% if cart.listitems|length %}
+        {{ partial('shop-minicart-items', { 'edit_cart': edit_cart }) }}
+    {% else %}
+        <p>There are currently no items in the cart.</p>
+    {% endif %}
+
+</div>
+    
+<div class="minicart-footer">
+    <div class="minicart-footer-group">
+        <span class="total">Subtotal: {{ cart.getSubtotal()|currency }}</span>
+        <a class="btn btn-outline-dark btn-sm" href="{{ site_url('cart') }}">View Cart</a>
+    </div>
+    <a class="btn btn-primary btn-block" href="{{ site_url('/checkout') }}">Checkout</a>
+</div>

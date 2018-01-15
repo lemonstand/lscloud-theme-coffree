@@ -1,0 +1,163 @@
+{{ open_form({'class': 'custom', 'onsubmit': 'return false'}) }}
+
+    <header class="product-header mb-4">
+        <h2>{{ product.name }}</h2>
+
+        {{ partial('shop-product-rating', { 'include_count': true }) }}
+        {{ partial('shop-product-price') }}
+
+    </header>
+
+    <div class="product-description mb-4">
+        
+        {% if theme.enableProductMinimalView %}
+            
+            {{ product.description|unescape }}
+
+        {% else %}
+
+            <p>{{ product.short_description }}</p>
+            
+        {% endif %}
+
+    </div>
+
+    <ul class="product-attributes list-unstyled mb-4">
+
+        {% for attribute in product.productAttributes %}
+
+            <li><strong>{{ attribute.name }}:</strong> {{ attribute.value }}</li>
+
+        {% endfor %}
+
+        {% if product.sku %}
+            
+            <li><strong>SKU:</strong> {{ product.sku }}</li>
+
+        {% endif %}
+
+        {% if theme.enableManufacturers and product.manufacturer %}
+
+            <li>
+                <strong>Manufacturer:</strong>
+                <a href="{{ site_url('/manufacturer/' ~ product.manufacturer.url_name) }}">{{ product.manufacturer.name }}</a>
+            </li>
+        
+        {% endif %}
+
+    </ul>
+
+    {% if 0 != product.extras|length %}
+        <div class="product-extras">                
+                
+            <div class="form-row">
+
+                {% for extra in product.extras %}
+
+                    <div class="form-group col-md-6">
+                        <label class="custom-control custom-checkbox">
+                            <input class="custom-control-input"
+                                name="extras[{{ extra.id }}]"
+                                type="checkbox"
+                                data-ajax-handler="shop:product"
+                                data-ajax-update="#shop-product-content=shop-product-content"
+                                {{ checkbox_state(postedExtras[extra.id], extra.id) }}>
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">{{ extra.name }} ({{ extra.price|currency }})</span>
+                        </label>
+                    </div>
+                
+                {% endfor %}
+
+            </div>
+            
+        </div>
+    {% endif %}
+
+    {% if product.options.count %}
+
+        <div class="product-options mb-4">
+            <div class="row">
+
+                {% for index, option in product.options %}
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label" for="option-{{ loop.index }}">{{ option.name }}</label>
+                        <select id="option-{{ loop.index }}" class="form-control custom-select" name="options[{{ option.id }}]">
+        
+                            {% for key, value in option.values %}
+        
+                                <option value="{{ key }}" {{ option_state(postedOptions[option.id], key) }}>{{ value }}</option>
+        
+                            {% endfor %}
+        
+                        </select>
+                    </div>
+        
+                {% endfor %}
+
+            </div>
+        </div>
+
+    {% endif %}
+
+    {% if product.enabled %}
+        
+        {% if not product.isOutOfStock() or product.allow_preorder %}
+        
+            <input name="productId" type="hidden" value="{{ product.id }}">                    
+
+            {% if product.subscriptionPlans|length %}
+                <div class="row">
+                    <div class="form-group col-lg-6">                    
+                        <label class="control-label" for="product_billing_plan">Billing Plan</label>
+                        <select class="form-control custom-select" name="product_billing_plan">
+                            <option value="">No subscription</option>
+                            {% for plan in product.subscriptionPlans %}
+                                <option value="{{ plan.id }}" {{ option_state(plan.id, cart_billing_plan) }}>{{ plan.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            {% endif %}
+
+            <hr>
+
+            <div class="product-actions">        
+
+                {% if theme.enableQuantity %}
+
+                    <div class="product-quantity">
+                        <button class="btn" data-delta="-1">-</button>
+                        <input id="quantity" class="form-control" name="quantity" type="text" value="{{ quantity|default('1') }}" readonly>
+                        <button class="btn" data-delta="1">+</button>
+                    </div>
+
+                {% else %}
+
+                    <input name="quantity" type="hidden" value="1">
+
+                {% endif %}
+                
+                <a class="btn btn-primary" href="{{ root_url('/cart') }}" 
+                    data-ajax-handler="shop:onAddToCart"
+                    data-ajax-update=".minicart=shop-minicart, .minicart-content=shop-minicart-content, .minicart-counter=shop-minicart-counter,#product-content=shop-product-content">
+                    Add to Cart
+                </a>
+            </div>                        
+
+        {% else %}
+
+            <p>Sorry! This product is temporarily unavailable.</p>
+
+        {% endif %}
+
+    {% else %}
+
+            <p>This product is not currently available.</p>
+
+    {% endif %}
+
+    {{ partial('flash') }}
+
+{{ close_form() }}

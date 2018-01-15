@@ -1,0 +1,166 @@
+{{ partial('flash', { max_alerts: 1 }) }}
+
+{{ open_form({
+    'class': 'custom',
+    'data-ajax-handler': 'shop:onUpdateCustomerProfile', 
+    'data-ajax-update': '#profile-edit-form=profile-edit-form', 
+    'data-validation-message' : ''
+}) }}
+
+    <input name="billing[id]" type="hidden" value="{{ billing.id }}">    
+
+    <div class="card sidebar-card mb-4">
+        <div class="card-body">
+            <h4 class="card-title">Billing Address</h4>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="billing-first-name">First Name</label>
+                    <input id="billing-first-name" class="form-control" name="billing[first_name]" type="text" value="{{ billing.first_name }}">
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="billing-last-name">Last Name</label>
+                    <input id="billing-last-name" class="form-control" name="billing[last_name]" type="text" value="{{ billing.last_name }}">
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="billing-phone">Phone Number</label>
+                    <input id="billing-phone" class="form-control" name="billing[phone]" type="text" value="{{ billing.phone }}">
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="billing-email">Email</label>
+                    <input id="billing-email" class="form-control" name="billing[email]" type="email" value="{{ customer.email }}">
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label class="control-label" for="billing-street-address">Street Address</label>
+                    <input id="billing-street-address" class="form-control" name="billing[street_address]" type="text" value="{{ billing.street_address }}">
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="billing-city">City</label>
+                    <input id="billing-city" class="form-control" name="billing[city]" type="text" value="{{ billing.city }}">
+                    <span class="error small text-danger"></span>
+                </div>
+                
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="billing-postal-code">Postal Code</label>
+                    <input id="billing-postal-code" class="form-control" name="billing[postal_code]" type="text" value="{{ billing.postal_code }}">
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="billing-country">Country</label>                        
+                    <select id="billing-country" class="chzn-select form-control custom-select" name="billing[shop_country_id]"
+                        data-state-selector="#billing-state" 
+                        data-current-state="{{ billing.country.id }}">
+                        {% for country in countries %}
+                            <option {{ option_state(billing.country.id, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="billing-state">State</label>                        
+                    <select id="billing-state" class="chzn-select form-control custom-select" name="billing[shop_state_id]" data-ajax-refresh>
+                        {{ partial('shop-state-options', {
+                            'states': billingStates, 
+                            'selected': billing.state.id
+                        }) }}
+                    </select>
+                    <span class="error small text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card sidebar-card mb-4">
+        <div class="card-body">
+            <h4 class="card-title">Shipping Address</h4>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="shipping-first-name">First Name</label>
+                    <input id="shipping-first-name" class="form-control" name="shipping[first_name]" type="text" value="{{ shipping.first_name }}">
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="shipping-last-name">Last Name</label>
+                    <input id="shipping-last-name" class="form-control" name="shipping[last_name]" type="text" value="{{ shipping.last_name }}">
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label class="control-label" for="shipping-phone">Phone Number</label>
+                    <input id="shipping-phone" class="form-control" name="shipping[phone]" type="text" value="{{ shipping.phone }}">
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label class="control-label" for="shipping-street-address">Street Address</label>
+                    <input id="shipping-street-address" class="form-control" name="shipping[street_address]" type="text" value="{{ shipping.street_address }}">
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="shipping-city">City</label>
+                    <input id="shipping-city" class="form-control" name="shipping[city]" type="text" value="{{ shipping.city }}">
+                    <span class="error small text-danger"></span>
+                </div>
+                
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="shipping-postal-code">Postal Code</label>
+                    <input id="shipping-postal-code" class="form-control" name="shipping[postal_code]" type="text" value="{{ shipping.postal_code }}">
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="shipping-country">Country</label>                        
+                    <select id="shipping-country" class="chzn-select form-control custom-select" name="shipping[shop_country_id]"
+                        data-state-selector="#shipping-state" 
+                        data-current-state="{{ billing.country.id }}">
+                        {% for country in countries %}
+                            <option {{ option_state(billing.country.id, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="control-label" for="shipping-state">State</label>                        
+                    <select id="shipping-state" class="chzn-select form-control custom-select" name="shipping[shop_state_id]" data-ajax-refresh>
+                        {{ partial('shop-state-options', {
+                            'states': billingStates, 
+                            'selected': billing.state.id
+                        }) }}
+                    </select>
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <a class="btn btn-outline-dark btn-sm" href="#"
+                        data-ajax-handler="shop:onUpdateCustomerProfile"
+                        data-ajax-update="#profile-edit-form=profile-edit-form",                         
+                        data-ajax-extra-fields="copy_billing_to_shipping='1'"
+                        data-validation-message="">
+                        <span class="fa fa-refresh" id="check-box"></span> Copy from billing address
+                    </a>                      
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="form-group col-md-12">
+            <button class="btn btn-primary" type="submit">Update Profile</button>
+        </div>
+    </div>
+
+{{ close_form() }}

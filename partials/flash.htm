@@ -1,0 +1,18 @@
+{% set flashMessages = flash()|split('</p>') %}
+{% set messages = [] %}
+
+{% for message in flashMessages %}
+    {% if message matches '/flash success/' %}
+        {% set messages = messages|merge([{ type: 'success', text: message|striptags }])%}
+    {% elseif message matches '/flash error/' %}
+        {% set messages = messages|merge([{ type: 'danger', text: message|striptags }])%}
+    {% endif %}
+{% endfor %}
+
+{% for message in messages %}
+    {% if not max_alerts or loop.index <= max_alerts %}
+        <div class="alert alert-{{ message.type }}" role="alert">
+            {{ message.text|unescape }}
+        </div>
+    {% endif %}
+{% endfor %}

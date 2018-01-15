@@ -1,0 +1,17 @@
+{% set social_links = [
+    { 'icon': 'facebook', 'title': 'Facebook', 'url': theme.socialFacebookUrl },
+    { 'icon': 'instagram', 'title': 'Instagram', 'url': theme.socialInstagramUrl },
+    { 'icon': 'pinterest', 'title': 'Pinterest', 'url': theme.socialPinterestUrl },
+    { 'icon': 'twitter', 'title': 'Twitter', 'url': theme.socialTwitterUrl }
+] %}
+
+{% for social_link in social_links %}
+    {% if not social_link.url is empty %}
+        <a class="nav-item nav-link" 
+            href="{{ social_linkurl }}"
+            target="_blank"
+            title="{{ social_link.title }}">
+            <span class="fa fa-{{ social_link.icon }}"></span>
+        </a>
+    {% endif %}
+{% endfor %}
