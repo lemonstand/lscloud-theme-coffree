@@ -1,0 +1,25 @@
+{% if cart.listitems|length %}
+
+    <div class="container">
+    
+        {{ partial('flash') }}
+
+        {{ open_form({'class': 'custom'}) }}
+            
+            {{ partial('shop-cart-items', { 'items': cart.listitems, 'edit_cart': true }) }}            
+            {{ partial('shop-cart-totals') }}
+
+        {{ close_form() }}        
+
+    </div>
+
+{% else %}
+
+    <div class="container text-center">
+    
+        <h1 class="display-4 mb-5">Shopping Cart is Empty</h1>
+        <a class="btn btn-primary btn-lg" href="{{ site_url('/shop') }}">Continue Shopping</a>
+
+    </div>
+    
+{% endif %}

@@ -1,0 +1,32 @@
+---
+content_type: 'text/html; charset=utf-8'
+---
+<!doctype html>
+<html lang="en">
+<head>
+
+   {{ partial('template-head') }}
+
+</head>
+<body>
+
+    {{ code_block('before-page') }}
+
+    <div id="page" class="page-basic" style="background-image: url({{ theme.comingSoonBackgroundImage.thumbnail('auto', 'auto') }});">
+        
+        {{ partial('basic-header') }}
+
+        <main id="main" role="main">
+            {{ page() }}
+        </main>
+
+        {{ partial('basic-footer') }}
+
+    </div>
+
+    {{ code_block('after-page') }}
+
+    {{ partial('template-foot') }}
+
+</body>
+</html>

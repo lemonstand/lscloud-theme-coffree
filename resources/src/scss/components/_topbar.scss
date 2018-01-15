@@ -1,0 +1,17 @@
+// Variables
+// ***************************************************************************
+
+$topbar-bg:             $primary !default;
+$topbar-color:          $white;
+$topbar-padding-y:      $navbar-padding-y !default;
+
+// Component
+// ***************************************************************************
+
+#topbar {
+    background-color: $topbar-bg;
+    color: $topbar-color;
+    padding-bottom: $topbar-padding-y;
+    padding-top: $topbar-padding-y;
+    text-align: center;
+}

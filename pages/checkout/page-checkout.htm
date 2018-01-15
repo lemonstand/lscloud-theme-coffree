@@ -1,0 +1,32 @@
+---
+action: 'shop:checkout'
+template: master
+protocol: all
+published: true
+name: 'Checkout'
+url: '/checkout'
+---
+
+{{ partial('page-header', { 
+    'background': theme.imageCheckoutHeader,
+    'title': page.title })
+ }}
+
+<div id="content" class="block block-gray">
+    <div class="block-content">
+        <div class="container">
+            <div class="row row-divider-lg">
+                <div class="col-lg-8">
+                    <div id="checkout-content">
+                        {{ partial('checkout-billing') }}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div id="checkout-summary">
+                        {{ partial('checkout-summary') }}
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

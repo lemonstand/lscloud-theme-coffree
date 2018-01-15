@@ -1,0 +1,44 @@
+{% set column_class = 'col-lg-4 mb-5 mb-lg-0' %}
+
+<div id="how-it-works" class="block">
+    <div class="block-content">
+        <div class="container">
+            
+            <div class="block-header text-center">
+                {{ content_block('home-features-header') }}                
+            </div>
+                
+            
+            <div class="row">
+
+                <div class="{{ column_class }}">
+                    <div class="feature feature-1">
+                        <div class="feature-image">
+                            <img class="img-fluid" src="{{ theme.imageHomeFeatureIcon1.thumbnail('auto', 'auto') }}">
+                        </div>
+                        {{ content_block('home-features-content-1') }}                     
+                    </div>
+                </div>
+
+                <div class="{{ column_class }}">
+                    <div class="feature feature-2">
+                        <div class="feature-image">
+                            <img class="img-fluid" src="{{ theme.imageHomeFeatureIcon2.thumbnail('auto', 'auto') }}">
+                        </div>
+                        {{ content_block('home-features-content-2') }}                        
+                    </div>
+                </div>
+
+                <div class="{{ column_class }}">
+                    <div class="feature feature-3">
+                        <div class="feature-image">
+                            <img class="img-fluid" src="{{ theme.imageHomeFeatureIcon3.thumbnail('auto', 'auto') }}">
+                        </div>
+                        {{ content_block('home-features-content-3') }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

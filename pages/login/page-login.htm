@@ -1,0 +1,46 @@
+---
+template: master
+protocol: all
+published: true
+name: 'Login'
+url: /login
+---
+
+{{ partial('page-header', {
+    'background': theme.imageLoginHeader,
+    'title': page.tiitle
+}) }}
+
+<div id="content" class="block block-gray">
+    <div class="block-content">
+        <div class="container">
+
+            <div class="block-header">
+                <h2>Sign In</h2>
+            </div>
+
+            <div class="card-deck">
+
+                <div class="card">                      
+                    <div class="card-body">
+                        <h5 class="card-title">New Customers</h5>
+                        <p>Create an account to manage your subscriptions, view and track your orders and checkout more quickly.</p>
+                        <a class="btn btn-primary" href="{{ site_url('/register') }}">Create an account</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <h5 class="card-title">Returning Customers</h5>
+                        <p>Please login to access your existing account.</p>
+                        
+                        {{ partial('login-form', { 'redirect': site_url('/account/profile') }) }}    
+                        {{ partial('flash') }}
+
+                    </div>
+                </div>              
+            </div>
+        </div>
+    </div>
+</div>

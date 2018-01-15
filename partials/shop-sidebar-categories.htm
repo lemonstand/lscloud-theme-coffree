@@ -1,0 +1,36 @@
+<div class="card card-transparent">
+
+    <div class="card-body">
+
+        <h5 class="card-title">Categories</h5>
+
+        {% tree categories %}
+
+            <ul class="nav flex-column">
+
+                {% for category in tree.items %}                                    
+
+                    {% set prefix = '/category/' %}
+
+                    {% if category.parent %}
+                        {% set prefix = prefix ~ category.parent.url_name ~ '/' %}
+                    {% endif %}
+
+                    <li class="nav-item">
+                    
+                        <a class="nav-link pl-0 pr-0" href="{{ site_url(prefix ~ category.url_name) }}">
+                            {{ category.name }}
+                        </a>
+                        
+                        {% branch category.children %}
+                    </li>
+
+                {% endfor %}                
+
+            </ul>
+
+        {% endtree %}
+
+    </div>
+
+</div>

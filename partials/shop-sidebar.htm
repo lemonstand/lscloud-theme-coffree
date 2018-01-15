@@ -1,0 +1,15 @@
+<aside class="shop-sidebar">
+
+    {% if theme.enableCategories %}
+        
+        {{ partial('shop-sidebar-categories') }}
+
+    {% endif %}
+
+    {% if theme.enableManufacturers %}
+            
+        {{ partial('shop-sidebar-manufacturers') }}
+
+    {% endif %}
+    
+</aside>

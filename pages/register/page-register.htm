@@ -1,0 +1,90 @@
+---
+template: master
+protocol: all
+published: true
+name: 'Register'
+url: /register
+---
+
+{{ partial('page-header', {
+    'background': theme.imageRegisterHeader,
+    'title': page.title
+}) }}
+
+<div id="content" class="block block-gray">
+    <div class="block-content">
+        <div class="container">            
+            <div class="row">
+                
+                <div class="col-lg-8 offset-lg-2">
+
+                    <div class="block-header">
+                        <h2>My Account</h2>
+                    </div>
+
+                    <div class="card mb-3">
+                        
+                        <div class="card-body">
+
+                            {{ open_form({ 'class' : 'form', 'data-ajax-handler': 'shop:onSignup', 'data-validation-message' : '' }) }}
+                
+                                <input name="autologin" type="hidden" value="1">
+                                <input name="redirect" type="hidden" value="{{ site_url('/account/profile') }}"/>
+            
+                                <div class="row">
+            
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label" for="signup-first-name">First Name</label><br>
+                                        <input id="signup-first-name" class="form-control" name="signup[first_name]" type="text" value="{{ post('signup[first_name]') }}">
+                                        <span class="error small text-danger"></span>
+                                    </div>
+                                
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label" for="signup-last-name">Last Name</label><br>
+                                        <input id="signup-last-name" class="form-control" name="signup[last_name]" type="text" value="{{ post('signup[last_name]') }}">
+                                        <span class="error small text-danger"></span>
+                                    </div>
+            
+                                    <div class="form-group col-md-12">
+                                        <label class="control-label" for="signup-email">Email</label><br>
+                                        <input id="signup-email" class="form-control" name="signup[email]" type="email" value="{{ post('signup[email]') }}">
+                                        <span class="error small text-danger"></span>
+                                    </div>
+            
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label" for="signup-password">Password</label><br>
+                                        <input id="signup-password" class="form-control" name="signup[password]" type="password">
+                                        <span class="error small text-danger"></span>
+                                    </div>
+                                
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label" for="signup-password-confirmation">Password (Confirmation)</label><br>
+                                        <input id="signup-password-confirmation" class="form-control" name="signup[password_confirmation]" type="password">
+                                        <span class="error small text-danger"></span>
+                                    </div>
+            
+                                    <div class="form-group col-md-12">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" name="accepts_marketing" type="checkbox" checked>
+                                            <label class="custom-control-label">I agree to receive promotional emails</label>
+                                        </div>                                    
+                                    </div>
+            
+                                    <div class="form-group col-md-12">
+                                        <button class="btn btn-primary" type="submit">Register</button>                                        
+                                    </div>
+                                </div>                                                
+                
+                            {{ close_form() }}                            
+    
+                        </div>
+                        
+                    </div>
+
+                    <a href="{{ site_url('/login') }}">Return to sign in</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

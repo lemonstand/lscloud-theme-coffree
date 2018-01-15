@@ -1,0 +1,24 @@
+// Variables
+// ***************************************************************************
+
+$search-btn-padding-x:      $spacer * 0.25;
+    
+// Component
+// ***************************************************************************
+
+.form-search {
+    .form-control {
+        border: none;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .btn {
+        background-color: transparent;
+        color: $primary;
+        padding-left: $search-btn-padding-x;
+        padding-right: $search-btn-padding-x;
+    }
+}

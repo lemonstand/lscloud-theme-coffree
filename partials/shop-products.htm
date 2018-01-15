@@ -1,0 +1,31 @@
+{% if theme.enableShopSidebar and (theme.enableCategories or theme.enableManufacturers) %}
+
+    <div class="row row-divider-lg">
+
+        <div class="col-lg-3">
+
+            {{ partial('shop-sidebar') }}
+
+        </div>
+
+        <div class="col-lg-9">
+            
+            {{ partial('shop-products-loop', {
+                'products': products,
+                'enable_pagination': true
+            }) }}
+
+        </div>
+
+    </div>                                
+
+{% else %}
+
+    {{ partial('shop-filters') }}
+    
+    {{ partial('shop-products-loop', {
+        'products': products,
+        'enable_pagination': true
+    }) }}
+
+{% endif %}

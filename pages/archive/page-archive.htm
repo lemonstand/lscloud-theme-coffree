@@ -1,0 +1,67 @@
+---
+action: 'cmscontent:archive'
+template: master
+protocol: all
+published: true
+name: 'Archive'
+url: /archive/:type/:page?
+---
+
+{% set title = 'Archive' %}
+{% set type = param('type') %}
+
+{% if 'blog' == type %}
+    {% set title = 'Blog' %}
+{% elseif 'page' == type %}
+    {% set title = 'Pages' %}
+{% endif %}
+
+{{ partial('page-header', { 
+    'background': theme.imageBlogHeader,
+    'title': title 
+}) }}
+
+
+<div id="content" class="block block-gray">
+    <div class="block-content">    
+        <div class="container">                        
+
+            {% paginate archives by 6 %}
+                    
+                <div class="row">
+
+                    {% for post in pagination.items %}
+
+                        <div class="col-lg-6">
+                            <article class="card article-card" data-match-group="archive-cards">
+                                
+                                {% if post.featured_image %}
+                                    <a class="article-image" href="{{ post.permalink }}">
+                                        <img class="card-img-top" src="{{ post.featured_image.thumbnail('auto', 'auto') }}" alt="{{ post.title }}">
+                                    </a>
+                                {% endif %}              
+
+                                <div class="card-body">                                                                        
+                                    
+                                    {{ partial('post-meta', { layout: 'vertical', post: post }) }}
+                                    
+                                    <h4><a href="{{ post.permalink }}">{{ post.title }}</a></h4>
+                                    <p>{{ post.excerpt | unescape }}</p>                                    
+                                    
+                                    <a class="font-weight-bold text-uppercase" href="{{ post.permalink }}">Read More</a>
+
+                                </div>
+                            </article>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+                {{ partial('pagination', { 'pagination': pagination }) }}
+
+            {% endpaginate %}                
+
+        <div>
+    </div>
+</div>

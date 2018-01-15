@@ -1,0 +1,21 @@
+// Checkout Footer
+// ***************************************************************************
+
+.checkout-footer {
+    margin-top: map-get($spacers, 4);
+    margin-bottom: map-get($spacers, 4);
+
+    .btn-block {
+        margin-bottom: map-get($spacers, 3);
+    }
+}
+
+// Checkout Totals
+// ***************************************************************************
+
+.checkout-totals {
+    border-top: 1px solid $gray-300;
+    font-size: $font-size-sm;
+    margin-top: map-get($spacers, 3);
+    padding-top: map-get($spacers, 3);
+}

@@ -1,0 +1,52 @@
+.owl-carousel {
+    position: relative;
+
+    .owl-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .owl-dots {
+        align-items: center;
+        display: flex;
+        justify-content: center;        
+        padding-bottom: map-get($spacers, 3);
+        padding-top: map-get($spacers, 3);
+        
+        .owl-dot {
+            display: block;
+
+            span {
+                background-color: $primary;
+                border-radius: 50%;
+                display: block;
+                height: 1.125rem;
+                opacity: 0.4;
+                transition: all 0.5s ease;
+                width: 1.125rem;
+            }
+
+            &.active span {
+                opacity: 1.0;
+            }
+
+            &:nth-child(n+2) {
+                margin-left: map-get($spacers, 3);
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .owl-carousel {    
+        .owl-dots {         
+            .owl-dot {  
+                span {
+                    height: 0.875rem;
+                    width: 0.875rem;
+                }
+            }
+        }
+    }
+}

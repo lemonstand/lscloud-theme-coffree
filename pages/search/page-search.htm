@@ -1,0 +1,40 @@
+---
+action: 'shop:search'
+template: master
+protocol: all
+published: true
+name: 'Search Results'
+url: /search
+---
+
+{{ partial('page-header', {
+    'title': 'Search Results',
+    'content': products.get().count() ~ ' results found for "' ~ query ~ '"'
+}) }}
+
+<div id="content" class="block block-gray">
+
+    <div class="block-content">                         
+
+        {% if 0 != products.count() %}
+
+            <div class="container"> 
+            
+                {{ partial('shop-products', { 'products': products }) }}
+
+            </div>
+
+        {% else %}
+
+            <div class="container text-center"> 
+                
+                <h2 class="display-4 mb-5">Your search for "{{ query }}" returned no results</h2>
+                <a class="btn btn-primary btn-lg" href="{{ site_url('/shop') }}">Continue Shopping</a>
+
+            </div>
+
+        {% endif %}
+        
+    </div>
+    
+</div>

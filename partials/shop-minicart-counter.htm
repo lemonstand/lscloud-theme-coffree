@@ -1,0 +1,14 @@
+{% if theme.enableMinicartCounter %}
+    
+    <div class="icon-group {{ theme.enableMinicartCounterBadge ? 'icon-group-badge' : '' }}">
+        <span class="fa fa-shopping-cart"></span>                                    
+        {% if theme.enableMinicartCounter %}
+            <span class="count">{{ cart.getItemNum() }}</span>
+        {% endif %}
+    </div>
+
+{% else %}
+
+    <span class="fa fa-shopping-cart"></span>
+    
+{% endif %}

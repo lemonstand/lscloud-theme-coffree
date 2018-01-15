@@ -1,0 +1,61 @@
+// Component
+// ***************************************************************************
+
+h1, h2, h3, h4, h5, h6 {
+    text-transform: uppercase;
+}
+
+::-moz-selection {
+    background-color: $primary;
+    color: $white;
+}
+
+::selection { 
+    background-color: $primary;
+    color: $white;
+}
+
+a.link-muted {
+    color: $gray-400;
+
+    &:hover {
+        color: $gray-600;
+    }
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @include media-breakpoint-up($breakpoint) {
+        .row-divider#{$infix} {
+            > [class^="col#{$infix}"]:nth-child(n+2) {
+                border-left: $border-width solid $gray-300;
+            }
+        }
+    }
+}
+
+.testimonial {
+    blockquote {
+        font-size: 1.5rem;
+
+        &::before { content: open-quote; }
+        &::after  { content: close-quote; }
+    }
+
+    cite {        
+        font-style: normal;
+
+        &::before {
+            content: "\2014";
+        }
+
+        span.author {
+            font-weight: $font-weight-bold;            
+        }
+
+        span.title {
+            color: $gray-500;
+        }
+    }
+}

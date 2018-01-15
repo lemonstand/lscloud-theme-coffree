@@ -1,0 +1,54 @@
+---
+template: master
+protocol: all
+published: true
+name: 'Contact'
+url: /contact
+---
+
+{{ partial('page-header', {
+    'background': theme.imageContactHeader,
+    'title': page.title
+}) }}
+
+<div id="content" class="block block-gray">
+    <div class="block-content">
+        <div class="container">            
+
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+
+                    <div class="block-header">
+                        {{ content_block('contact-content') }}
+                    </div>
+
+                    {{ open_form({'class': 'form', 'data-ajax-handler': 'system:onSendMessage'}) }}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label" for="name">Name</label>
+                                <input id="name" class="form-control" name="fields[name]" type="text">
+                                <small class="error form-text text-danger"></small>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label" for="email">Email</label>
+                                <input id="email" class="form-control" name="fields[email]" type="email">
+                                <small class="error form-text text-danger"></small>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label" for="message">Message</label>
+                                <textarea id="message" class="form-control" name="fields[message]" rows="8"></textarea>
+                                <small class="error form-text text-danger"></small>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <button class="btn btn-primary">Send Message</button>
+                            </div>
+                        </div>
+                    {{ close_form() }}
+
+                    {{ partial('flash') }}
+
+                </div>                        
+            </div>
+        </div>
+    </div>
+</div>

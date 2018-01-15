@@ -1,0 +1,3 @@
+{% if not cart.listitems|length %}
+    {% global redirect = site_url('/cart') %}
+{% endif %}

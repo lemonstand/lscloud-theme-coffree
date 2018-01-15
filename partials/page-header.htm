@@ -1,0 +1,14 @@
+{% set classes = [ 'block', 'block-primary' ] %}
+
+{% if theme.transparentHeader %}
+    {% set classes = classes|merge([ 'block-header-overlay' ]) %}
+{% endif %}
+
+<div id="page-header" class="{{ classes|join(' ') }}" style="background-image: url({{ background.thumbnail('auto', 'auto') }});">
+    <div class="block-content">
+        <div class="container text-center text-white">
+            {% if title %}<h1>{{ title }}</h1>{% endif %}
+            {% if content %}<p class="lead">{{ content }}</p>{% endif %}
+        </div>
+    </div>
+</div>

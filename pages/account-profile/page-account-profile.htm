@@ -1,0 +1,31 @@
+---
+action: 'shop:customerProfile'
+template: master
+protocol: all
+published: true
+name: 'Profile'
+url: '/account/profile'
+---
+
+{{ partial('page-header', {
+    'background': theme.imageProfileHeader,
+    'title': page.title
+}) }}
+
+<div id="content" class="block block-gray">
+    <div class="block-content">           
+        <div class="container">        
+            <div class="row">
+
+                <div class="col-lg-3">                
+                    {{ partial('account-sidebar') }}
+                </div>
+
+                <div class="col-lg-9">
+                    {{ partial('account-profile-edit-form') }}
+                </div>
+
+            </div>
+        </div>        
+    </div>    
+</div>

@@ -1,0 +1,29 @@
+
+<div class="shop-totals mb-3">
+    <div class="row text-center">
+        
+        <div class="col-lg-3">            
+            {% set itemTotalNoTax = 0 %}
+            {% for shipment in invoice.shipments %}
+                {% for item in shipment.shipmentItems %}
+                    {% set itemTotalNoTax = itemTotalNoTax + item.original_price * item.quantity %}
+                {% endfor %}
+            {% endfor %}
+
+            Subtotal: <span class="shop-total-value font-weight-bold">{{ itemTotalNoTax|currency }}</span>
+        </div>
+
+        <div class="col-lg-3">
+            Tax: <span class="shop-total-value font-weight-bold">{{ invoice.tax_total|currency }}</span>
+        </div>        
+
+        <div class="col-lg-3">
+            Shipping: <span class="shop-total-value font-weight-bold">{{ invoice.total_shipping_quote|currency }}</span>
+        </div>
+
+        <div class="col-lg-3">
+            Total: <span class="shop-total-value font-weight-bold">{{ invoice.total|currency }}</span>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,45 @@
+{% if enable_pagination %}
+
+    {% set shop_items = 9 %}
+
+    {% paginate products by shop_items %}
+
+        <div class="row">
+            
+            {% for product in pagination.items %}
+            
+                <div class="{{ column_class ? column_class : 'col-lg-4 col-md-6' }}">
+                    
+                    {{ partial('shop-product-item', {
+                        'product': product
+                    }) }}
+
+                </div>  
+            
+            {% endfor %}
+
+        </div>
+        
+        {{ partial('pagination', { 
+            'pagination': pagination
+        }) }}
+
+    {% endpaginate %}
+
+{% else %}
+
+    <div class="row">
+
+        {% for product in products %}
+            
+            <div class="{{ column_class ? column_class : 'col-lg-4 col-md-6' }}">
+                
+                {{ partial('shop-product-item', { product: product }) }}
+
+            </div>
+
+        {% endfor %}
+    
+    </div>
+
+{% endif %}

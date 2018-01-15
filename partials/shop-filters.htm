@@ -1,0 +1,19 @@
+{% if theme.enableCategories or theme.enableManufacturers %}
+    
+    <div class="block-header">
+            
+        {% if theme.enableCategories %}
+                
+            {{ partial('shop-filters-categories') }}
+            
+        {% endif %}
+
+        {% if theme.enableManufacturers %}
+
+            {{ partial('shop-filters-manufacturers') }}
+
+        {% endif %}
+
+    </div>
+
+{% endif %}

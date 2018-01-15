@@ -1,0 +1,8 @@
+{% for shipment in invoice.shipments %}
+
+    {{ partial('shop-cart-items', { 
+        'edit_cart': false,
+        'items': shipment.shipmentItems
+     }) }}
+    
+{% endfor %}

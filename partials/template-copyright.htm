@@ -1,0 +1,6 @@
+{% set copyright = theme.storeCopyright|replace({
+    '%current_year%': 'now'|date('Y'),
+    '%store_title%': theme.storeTitle
+}) %}
+
+<small class="copyright">{{ copyright|unescape }}</small>

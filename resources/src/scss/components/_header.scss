@@ -1,0 +1,112 @@
+#header {
+    padding-bottom: $header-padding-y;
+    padding-top: $header-padding-y;
+    position: relative;
+    transition: all 0.5s ease;
+
+    .navbar {
+        padding-bottom: 0;
+        padding-top: 0;
+
+        .navbar-brand {
+            padding-bottom: 0;
+            padding-top: 0;
+
+            .navbar-logo {
+                height: $header-brand-height;
+
+                &.navbar-logo-light {
+                    display: none;
+                }
+            }
+        }
+
+        .navbar-content {
+            position: relative;
+
+            .navbar-actions {
+                .btn {
+                    color: $black;
+                    font-size: 1.5rem;
+                }
+            }
+
+            .navbar-nav {
+                .nav-link {
+                    color: $black;
+                    padding-left: $spacer * 0.75;
+                    padding-right: $spacer * 0.75;
+                }
+            }
+        }
+    }
+}
+
+#header:not(.header-transparent),
+#header-sticky-wrapper.is-sticky #header {
+    background-color: $header-bg;
+    box-shadow: 0px 3px 30px 0px rgba($gray-900, 0.25);
+}
+
+// Transparent Header
+// ***************************************************************************
+
+#header:not(.header-sticky).header-transparent,
+#header-sticky-wrapper:not(.is-sticky) #header.header-transparent {    
+    border-bottom: $border-width solid rgba($white, 0.125);
+
+    .navbar {
+        .navbar-brand {
+            .navbar-logo {
+                &.navbar-logo-dark {
+                    display: none;
+                }
+
+                &.navbar-logo-light {
+                    display: block;
+                }
+            }
+        }
+
+        .navbar-actions {
+            .btn {
+                color: $white;
+            }
+        }
+
+        .navbar-nav {
+            .nav-link {
+                color: $white;
+            }
+        }
+    }
+}
+
+#header.header-transparent:not(.header-sticky),
+#header-sticky-wrapper.header-sticky-wrapper-transparent {
+    margin-bottom: -$header-height;
+}
+
+// Header Search Form
+// ***************************************************************************
+
+#header-search {
+    background-color: $header-bg;
+    bottom: 0;
+    left: 0;
+    opacity: 0.0;
+    padding-left: $header-search-padding-x;
+    padding-right: $header-search-padding-x;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: all 0.5s ease;
+    visibility: hidden;
+
+    &.header-search-open {
+        opacity: 1.0;
+        pointer-events: auto;
+        visibility: visible;
+    }
+}

@@ -1,0 +1,11 @@
+{{ open_form({ 'class': 'form', 'action': theme.mailchimpSubscribeUrl, 'method': 'post', 'target': '_blank' }) }}
+
+    <div class="form-group">
+        <input class="form-control" name="EMAIL" placeholder="Email Address" type="email">
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary btn-block">Subscribe</button>
+    </div>
+    
+{{ close_form() }}

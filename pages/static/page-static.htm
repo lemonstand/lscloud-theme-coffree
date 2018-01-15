@@ -1,0 +1,50 @@
+---
+action: 'cmscontent:page'
+template: master
+protocol: all
+published: true
+name: 'Static Page'
+url: '/page/:slug'
+---
+
+{{ partial('page-header', {
+    'background': theme.imagePageHeader,
+    'title': page.title
+}) }}
+
+<div id="content" class="block block-gray">
+    
+    <div class="block-content">
+    
+        <div class="container">  
+
+            <div class="row">
+
+                <div class="col-lg-10 offset-lg-1">
+
+                    <article class="post">
+
+                        {% if post.featured_image %}
+                            <figure class="post-image">
+                                <img class="img-fluid" src="{{ post.featured_image.thumbnail('auto', 'auto') }}" alt="{{ post.title }}">
+                            </figure>
+                        {% endif %}
+
+                        <div class="post-content">
+                            
+                            {{ post.body|unescape }}
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+                
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

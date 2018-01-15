@@ -1,0 +1,36 @@
+<dl class="checkout-totals row">
+
+    {% if cart.getTotal() > 0 %}        
+        {% set itemTotalNoTax = cart.getTotal() - cart.getTotalTax() %}
+
+        <dt class="col-6">Item Total:</dt>
+        <dd class="col-6 text-right">{{ itemTotalNoTax|currency }}</dd>
+        
+        {% for plan in billingPlans %}
+            {% if cart_billing_plan == plan.id and totals.setupFee > 0%}
+                                
+                <dt class="col-6">Subscription Setup:</dt>
+                <dd class="col-6 text-right">{{ totals.setupFee|currency }}</dd>            
+            {% endif %}    
+        {% endfor %}
+    {% endif %}
+
+    {% if totals.totalShippingQuote > 0 %}
+        <dt class="col-6">Shipping:</dt>
+        <dd class="col-6 text-right">{{ totals.totalShippingQuote|currency }}</dd>        
+    {% endif %}
+
+    {% if totals.totalTax > 0 %}
+        <dt class="col-6">Tax:</dt>
+        <dd class="col-6 text-right">{{ totals.totalTax|currency }}</dd>
+    {% endif %}
+
+    {% if totals.discountTotal > 0 %}
+        <dt class="col-6">Discount</dt>
+        <dd class="col-6 text-right">-{{ totals.discountTotal|currency }}</dd>        
+    {% endif %}
+
+    <dt class="col-6">Grand Total:</dt>
+    <dd class="col-6 text-right">{{ totals.total|currency }}</dd>
+    
+</dl>

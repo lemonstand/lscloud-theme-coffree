@@ -1,0 +1,70 @@
+---
+action: 'subscriptions:subscriptions'
+template: master
+protocol: all
+published: true
+name: 'Subscriptions'
+url: '/account/subscriptions'
+---
+
+{{ partial('page-header', {
+    'background': theme.imageSubscriptionsHeader,
+    'title': page.title
+}) }}
+
+<div id="content" class="block block-gray">
+    <div class="block-content">           
+        <div class="container">        
+            <div class="row">
+
+                <div class="col-lg-3">
+                    {{ partial('account-sidebar', { active: 'subscriptions' }) }}
+                </div>
+
+                <div class="col-lg-9">
+
+                    {{ partial('flash') }}
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Subscriptions</h4>
+
+                            {% if subscriptions and subscriptions.count %}
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Subscription #</th>
+                                                <th>Started</th>
+                                                <th>Status</th>
+                                                <th class="text-right">&nbsp;</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            {% for subscription in subscriptions %}
+                                                
+                                                <tr>
+                                                    <td><a href="{{ site_url('/account/subscription/' ~ subscription.id) }}">{{ '%04d'|format(subscription.id) }}</a></td>
+                                                    <td>{{ subscription.created_at.format('M jS, Y') }}</td>
+                                                    <td>{{ subscription.status.name }}</td>
+                                                    <td class="text-right"><a href="{{ site_url('/account/subscription/' ~ subscription.id) }}">View</a></td>
+                                                </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {% else %}
+                                <p>There is currently no subscriptions for your account.</p>
+                                <a class="btn btn-primary" href="{{ site_url('/shop') }}">Continue Shopping</a>
+                            {% endif %}
+
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

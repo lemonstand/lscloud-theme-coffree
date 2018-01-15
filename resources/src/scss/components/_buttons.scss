@@ -1,0 +1,42 @@
+// Buttons
+// ***************************************************************************
+
+.btn {
+    text-transform: uppercase;
+}
+
+// Expanding Button Groups
+// ***************************************************************************
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .btn-group-expand#{$infix} {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .btn {
+            display: block;
+    
+            &:nth-child(n+2) {
+                margin-top: map-get($spacers, 2);
+            }
+        }
+    }
+
+    @include media-breakpoint-up($breakpoint) {    
+        .btn-group-expand#{$infix} {
+            flex-direction: row;
+
+            .btn {
+                display: inline-block;
+
+                &:nth-child(n+2) {
+                    margin-left: map-get($spacers, 2);
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+}

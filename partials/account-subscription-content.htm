@@ -1,0 +1,131 @@
+
+
+{% if param('updated') %}
+    <p class="alert alert-success">Your subscription was updated successfully!</p>
+{% else %}
+    {{ partial('flash') }}
+{% endif %}
+
+<div class="card mb-4">
+    <div class="card-body">
+                    
+        {% set has_options = false %}
+        
+        {% for item in subscription.products %}
+            <h4>{{ item.product.name }}</h4>
+
+            {% if theme.allowOptionChanges and 0 != item.product.options.count %}
+
+                {% set has_options = true %}
+                
+                {{ open_form({ 'class': 'subscription-product-form' }) }}
+
+                    <input name="subscription_id" type="hidden" value="{{ subscription.id }}">
+                    <input name="item_id" type="hidden" value="{{ item.id }}">
+                    <input name="product_id" type="hidden" value="{{ item.product.id }}">
+                    <input name="quantity" type="hidden" value="{{ item.quantity }}">
+
+                    <div class="row">
+
+                        {% for index, option in item.product.options %}
+
+                            <div class="form-group col-md-6">
+                                <label class="control-label" for="option-{{ loop.index }}">{{ option.name }}</label>
+
+                                <select id="option-{{ loop.index }}" class="form-control custom-select" name="options[{{ option.id }}]">
+                
+                                    {% for key, value in option.values %}                
+                                        <option value="{{ key }}" {{ option_state(item.options[option.id]['valueId'], key) }}>{{ value }}</option>                
+                                    {% endfor %}
+                
+                                </select>
+                            </div>
+                
+                        {% endfor %}
+
+                    </div>
+
+                {{ close_form() }}
+            {% endif %}
+
+        {% endfor %}
+
+        {% if has_options %}
+            <button class="btn btn-primary btn-update-subscription" type="button">Update Options</button>
+        {% endif %}
+
+        <hr>
+
+        <div class="row">       
+            <div class="col-lg-4">Subscription: <span class="font-weight-bold">{{ '%04d'|format(subscription.id) }}</span></div>                         
+            <div class="col-lg-4">Started: <span class="font-weight-bold">{{ subscription.created_at.format('M jS, Y') }}</span></div>
+            <div class="col-lg-4">Status: <span class="font-weight-bold">{{ subscription.status.name }}</span></div>
+        </div>
+
+    </div>
+</div>
+                            
+                           
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Update Subscription</h4>
+        <div class="row">
+            <div class="col-lg-6">
+
+                {{ open_form({
+                    'class': 'custom',
+                    'data-ajax-handler': 'subscriptions:onUpdateSubscriptionStatus',
+                    'data-ajax-redirect': root_url('/account/subscription/' ~ subscription.id),
+                    'data-validation-message' : ''
+                }) }}
+
+                    <input name="subscription_id" type="hidden" value="{{ subscription.id }}">
+
+                    <div class="form-group">
+                        <label class="control-label" for="subscription-status">Status</label>
+                        <select id="subscription-status" class="form-control custom-select" name="subscription_status">
+                            {% for status in subscriptionStatuses if (status.code == 'active' or status.code == 'paused' or status.code == 'cancelled') %}
+                                <option value="{{ status.code }}" {{ option_state(status.code, subscription.status.code) }}>{{ status.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Update Status</button>
+                    </div>
+                    
+                {{ close_form() }}
+
+            </div>
+                    
+            <div class="col-lg-6">
+
+                {{ open_form({
+                    'class': 'custom',
+                    'data-ajax-handler': 'subscriptions:onUpdateBillingPlan',
+                    'data-ajax-redirect': root_url('/account/subscription/' ~ subscription.id),
+                    'data-validation-message' : ''
+                }) }}
+                        
+                    <input name="subscription_id" type="hidden" value="{{ subscription.id }}">
+
+                    <div class="form-group">
+                        <label class="control-label" for="billing-plan">Billing Plan</label>
+                        <select id="billing-plan" class="form-control custom-select" name="billing_plan">
+                            {% for plan in billingPlans %}
+                                <option value="{{ plan.id }}" {{ option_state(plan.id, subscription.billingPlan.id) }}>{{ plan.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Update Billing Plan</button>
+                    </div>
+
+                {{ close_form() }}
+
+            </div>
+
+        </div>
+    </div>
+</div>

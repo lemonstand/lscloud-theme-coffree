@@ -1,0 +1,45 @@
+---
+action: 'shop:order'
+template: master
+protocol: all
+published: true
+name: 'Order Details'
+url: '/account/order/:orderId'
+---
+
+{{ partial('page-header', {
+    'background': theme.imageOrdersHeader,
+    'title': page.title
+}) }}
+
+<div id="content" class="block block-gray">
+    <div class="block-content">           
+        <div class="container">        
+            <div class="row">
+
+                <div class="col-lg-3">
+                    {{ partial('account-sidebar', { active: 'orders' }) }}
+                </div>
+
+                <div class="col-lg-9">
+                    
+                    {{ partial('flash') }}
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Order #{{ '%04d'|format(order.number) }}</h4>                            
+                            
+                            {% for invoice in order.invoices %}
+
+                                {{ partial('shop-invoice-items', { 'invoice': invoice }) }}
+                                {{ partial('shop-invoice-totals', { 'invoice': invoice }) }}
+
+                            {% endfor %}
+
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

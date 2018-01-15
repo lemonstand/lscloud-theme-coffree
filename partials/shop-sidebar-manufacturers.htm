@@ -1,0 +1,25 @@
+<div class="card card-transparent">
+
+    <div class="card-body">
+
+        <h4 class="card-title">Manufacturers</h4>
+
+        <ul class="nav nav-sidebar flex-column">
+
+            {% for manufacturer in manufacturers %}
+
+                <li class="nav-item">
+
+                    <a class="nav-link pl-0 pr-0" href="{{ site_url('/manufacturer/' ~ manufacturer.url_name) }}">
+                        {{ manufacturer.name }}
+                    </a>
+
+                </li>
+
+            {% endfor %}
+
+        </ul>
+        
+    </div>
+
+</div>

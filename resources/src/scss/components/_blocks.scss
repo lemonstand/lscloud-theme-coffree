@@ -1,0 +1,73 @@
+// Variables
+// ***************************************************************************
+
+$block-padding-y:       $spacer * 6;
+$block-large-padding-y: $spacer * 8;
+
+// Component
+// ***************************************************************************
+
+.block {
+    background-repeat: no-repeat;
+    background-size: cover;    
+    background-position: center;
+    padding-bottom: $block-padding-y;
+    padding-top: $block-padding-y;
+}
+
+.block-large {
+    padding-bottom: $block-large-padding-y;
+    padding-top: $block-large-padding-y;
+}
+
+.block-middle {
+    align-items: center;
+    display: flex;
+
+    .block-content {
+        flex: 1;
+    }
+}
+
+.block-gray {
+    background: $gray-100;
+}
+
+.block-primary {
+    background-color: $primary;
+    color: $white;
+}
+
+.block-banner,
+.block-callout {
+    h1 {
+        font-size: 3.75rem;
+        margin-bottom: map-get($spacers, 4);
+    }
+
+    p {
+        margin-bottom: map-get($spacers, 5);
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .block-banner {
+        min-height: 31.25rem;
+    }    
+}
+
+.block-full-height {
+    min-height: 100vh;
+}
+
+.block-header {    
+    margin-bottom: $block-padding-y / 2;
+
+    h2 {
+        color: $primary;
+    }
+}
+
+.block-header-overlay {
+    padding-top: $block-padding-y + $header-height;
+}

@@ -1,0 +1,19 @@
+.table {
+    border-bottom: $border-width solid $border-color;
+    
+    thead th {
+        background-color: $primary;
+        border-top: none;
+        border-bottom: none;
+        color: $white;
+        padding-bottom: 1.25rem;
+        padding-top: 1.25rem;
+    }
+
+    tbody th,
+    tbody td {
+        padding-bottom: 1.5rem;
+        padding-top: 1.5rem;
+        vertical-align: middle;
+    }
+}

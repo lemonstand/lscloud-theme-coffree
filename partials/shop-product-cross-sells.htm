@@ -1,0 +1,13 @@
+{% if 0 != product.crossSells.count %}
+    
+    <div class="product-upsells mt-5">
+    
+        <div class="block-header">
+            <h4>Related Products</h4>
+        </div>
+        
+        {{ partial('shop-products-loop', { 'products': product.crossSells, 'column_class': 'col-lg-3' }) }}
+        
+    </div>
+    
+{% endif %}

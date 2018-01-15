@@ -1,0 +1,45 @@
+---
+action: 'shop:product'
+template: master
+protocol: all
+published: true
+name: Product
+url: '/product/:urlName'
+---
+
+{{ partial('page-header', {
+    'background': theme.imageShopHeader,
+    'title': page.title
+}) }}
+
+<div id="content">
+    <div class="block block-gray">
+        <div class="block-content">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="owl-carousel mb-4 mb-lg-0">
+
+                            {% for image in product.images %}
+                                <img class="img-fluid" src="{{ image.thumbnail('auto', 'auto') }}" alt="{{ image.title }}" title="{{ image.description }}">
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+                    <div id="product-content" class="col-lg-6">                     
+                        {{ partial('shop-product-content') }}
+                    </div>
+
+                    <div class="col-lg-12">
+                        
+                        {{ partial('shop-product-tabs') }}
+                        {{ partial('shop-product-cross-sells') }}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

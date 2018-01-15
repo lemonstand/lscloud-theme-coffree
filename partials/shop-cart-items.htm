@@ -1,0 +1,156 @@
+{% set billingPlan = billingPlans.find(cart_billing_plan) %}
+
+<div class="table-responsive">
+    <table class="table cart-table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                {% if theme.enableQuantity %}<th class="text-right">Quantity</th>{% endif %}
+                <th class="text-right">Price</th>
+                <th class="text-right">Total</th>
+                {% if edit_cart %}<th>&nbsp;</th>{% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>
+                        <div class="cart-item">
+                            <a class="cart-item-thumb" href="{{ product_url }}">
+                                <img src="{{ item.product.images.first.thumbnail(80, 80) }}" alt="{{ item.product.name }}">
+                            </a>
+                            <div class="cart-item-info">
+                                <h4 class="cart-item-title"><a href="{{ product_url }}">{{ item.product.name }}</a></h4>
+
+                                {% if not item.options is empty %}
+                                    <ul class="cart-item-options">
+                                        {% for option in item.options %}
+                                            <li><strong>{{ option.name }}:</strong> {{ option.value }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                                
+                                {% if item.is_trial_product %}
+                                    <p class="small">* This item is a trial product and is only included in the first order.</p>
+                                {% endif %}
+                                
+                                {% if billingPlan.trial_period_enabled %}
+                                    <p class="small">* Trial Period lasts {{ billingPlans.find(cart_billing_plan).trial_period }} days.</p>                    
+                                {% endif %}
+
+                                {% if item.x_billing_plan_id == billingPlan.id and billingPlan.first_order_discount_enabled %}
+                                    {% set discount = billingPlan.first_order_discount %}
+                                    <p class="small">* The first order will be discounted by {{ discount matches '/%$/' ? discount : discount|currency }}.</p>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </td>
+
+                    {% if theme.enableQuantity %}
+                        <td class="cart-item-quantity text-right">
+                            {% if edit_cart %}
+                                <div class="product-quantity">
+                                    <button class="btn" data-delta="-1">-</button>
+                                    <input id="quantity" class="form-control" name="item_quantity[{{ item.key }}]" type="text" value="{{ item.quantity }}" readonly>
+                                    <button class="btn" data-delta="1">+</button>
+                                </div>
+                            {% else %}
+                                {{ item.quantity|number_format }}
+                            {% endif %}
+                        </td>
+                    {% endif %}
+
+                    <td class="cart-item-price text-right">
+                        {% if not item.is_trial_product %}
+
+                            {% if item.product.onSale() %}
+    
+                                <del>{{ item.product.fullPrice()|currency }}</del>
+                                <ins>{{ item.price()|currency }}</ins>
+    
+                            {% else %}
+    
+                                {{ item.price()|currency }}
+    
+                            {% endif %}
+    
+                            {% if cart.getDiscountTotal() > 0 %}
+    
+                                <span class="discount">(-{{ item.totalDiscount()|currency }})</span>
+    
+                            {% endif %}
+    
+                        {% else %}
+    
+                            {{ 0|currency }}
+    
+                        {% endif %}
+                    </td>
+
+                    <td class="cart-item-total text-right">
+                        {% if not item.is_trial_product %}
+                            {{ item.total|currency }}
+                        {% else %}
+                            {{ 0|currency }}
+                        {% endif %}
+                    </td>
+
+                    {% if edit_cart %}
+                        <td class="cart-item-actions">
+                            <a class="link-muted" href="#" data-toggle="tooltip" title="Remove Item"
+                                data-ajax-handler="shop:cart" 
+                                data-ajax-update=".minicart=shop-minicart, .minicart-content=shop-minicart-content, .minicart-counter=shop-minicart-counter, #cart-content=shop-cart-content"
+                                data-ajax-extra-fields="delete_item='{{ item.key }}'">
+                                <span class="fa fa-trash"></span>
+                            </a>
+                        </td>
+                    {% endif %}
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{#
+<div class="table-responsive">
+    <table class="table cart-table">    
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                {% if theme.enableQuantity %}<th>Quantity</th>{% endif %}
+                <th>Subtotal</th>
+                <th>Discount</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for item in items %}
+
+                {% set product_url = site_url('/product/' ~ item.product.url_name) %}
+
+                <tr>
+
+                    <td>
+                        <div class="cart-item">
+                            
+                            <a class="cart-item-thumb" href="{{ product_url }}">
+                                <img class="img-fluid" src="{{ item.product.images.first.thumbnail(80, 80) }}" alt="{{ item.product.name }}">
+                            </a>
+
+                            <div class="cart-item-info">                            
+
+                            </div>
+
+                        </div>
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+#}

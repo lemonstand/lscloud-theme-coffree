@@ -1,0 +1,29 @@
+---
+content_type: 'text/html; charset=utf-8'
+---
+<!doctype html>
+<html lang="en">
+<head>
+
+   {{ partial('template-head') }}
+
+</head>
+<body>
+
+    <div id="page">
+        {{ partial('master-topbar') }}
+        {{ partial('master-header') }}
+
+        <main id="main" role="main">
+            {{ page() }}
+        </main>
+
+        {{ partial('master-footer') }}
+    </div>
+
+    {{ partial('master-offcanvas') }}
+
+    {{ partial('template-foot') }}
+
+</body>
+</html>

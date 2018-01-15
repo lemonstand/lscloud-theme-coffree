@@ -1,0 +1,197 @@
+
+{# Get states for the USA #}
+{% set states = [] %}
+{% for country in countries %}
+    {% if country.id == 1 %}
+        {% set states = country.states %}
+    {% endif %}
+{% endfor %}
+
+{{ open_form({
+    'class': 'custom',
+    'data-ajax-handler': 'shop:checkout',
+    'data-ajax-update': '#checkout-content=checkout-shipping-method,#checkout-summary=checkout-summary',
+    'data-validation-message' : ''
+}) }}
+
+    <input id="step" type="hidden" name="step" value="billing_info,shipping_info">
+    <input id="next_step" type="hidden" name="nextStep" value="shipping_method">
+    <input id="billing_country_id" type="hidden" name="billingInfo[countryId]" value="1">
+    <input id="shipping_country_id" type="hidden" name="shippingInfo[countryId]" value="1">
+    
+    <div id="shipping-fields">
+        
+        <div class="row mb-4">
+            <div class="form-group col-sm-12">
+                <h4>Customer Information</h4>
+            </div>
+            
+            <div class="form-group col-sm-6">
+                <label class="control-label" for="shipping-first-name">First Name</label>
+                <input class="form-control" id="shipping-first-name" name="shippingInfo[firstName]" type="text" value="{{ shippingInfo.firstName }}" data-mirror="#billing-first-name">
+                <span class="error small text-danger"></span>
+            </div>
+            
+            <div class="form-group col-sm-6">
+                <label class="control-label" for="shipping-last-name">Last Name</label>
+                <input class="form-control" id="shipping-last-name" name="shippingInfo[lastName]" type="text" value="{{ shippingInfo.lastName }}" data-mirror="#billing-last-name">
+                <span class="error small text-danger"></span>
+            </div>
+
+            <div class="form-group col-sm-12">
+                <label class="control-label" for="shipping-email">Email</label>
+                <input class="form-control" id="shipping-email" name="billingInfo[email]" type="email" value="{{ billingInfo.email }}">
+                <span class="error small text-danger"></span>
+            </div>
+
+            {% if not customer %}
+                <div class="form-group col-sm-6">
+                    <label class="control-label" for="shipping-password">Password</label>
+                    <input class="form-control" id="shipping-password" name="billingInfo[password]" type="password">
+                    <span class="error small text-danger"></span>
+                </div>
+                
+                <div class="form-group col-sm-6">
+                    <label class="control-label" for="shipping-password-confirmation">Password (Confirmation)</label>
+                    <input class="form-control" id="shipping-password-confirmation" name="billingInfo[password_confirmation]" type="password">
+                    <span class="error small text-danger"></span>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <a href="{{ site_url('/login') }}">Already have an account?</a>
+                </div>
+            {% endif %}
+
+        </div>
+        
+        <div class="row mb-4">
+            
+            <div class="form-group col-sm-12">
+                <h4>Where should we ship your order?</h4>
+            </div>
+
+            <div class="form-group col-sm-9">
+                <label class="control-label" for="shipping-address-1">Street Address</label>
+                <input class="form-control" id="shipping-address-1" name="shippingInfo[streetAddressLine1]" type="text" value="{{ shippingInfo.streetAddressLine1 }}" data-mirror="#billing-address-1">
+                <span class="error small text-danger"></span>
+            </div>
+
+            <div class="form-group col-sm-3">
+                <label class="control-label" for="shipping-address-2">Apt/Suite #</label>
+                <input class="form-control" id="shipping-address-2" name="shippingInfo[streetAddressLine2]" type="text" value="{{ shippingInfo.streetAddressLine2 }}" data-mirror="#billing-address-2">
+                <span class="error small text-danger"></span>
+            </div>
+
+            <div class="form-group col-sm-4">
+                <label class="control-label" for="shipping-postal-code">Zip Code</label>
+                <input class="form-control" id="shipping-postal-code" name="shippingInfo[postalCode]" type="text" value="{{ shippingInfo.postalCode }}"  data-mirror="#billing-postal-code">
+                <span class="error small text-danger"></span>
+            </div>
+
+            <div class="form-group col-sm-4">
+                <label class="control-label" for="shipping-city">City</label>
+                <input class="form-control" id="shipping-city" name="shippingInfo[city]" type="text" value="{{ shippingInfo.city }}" data-mirror="#billing-city">
+                <span class="error small text-danger"></span>
+            </div>
+
+            <div class="form-group col-sm-4">
+                <label class="control-label" for="shipping-state">State</label>
+                <select id="shipping-state" class="form-control custom-select" name="shippingInfo[stateId]" data-mirror="#billing-state">
+                    <option value="" disabled="disabled" selected="selected">State</option>
+                    {% for state in states %}
+                        <option value="{{ state.id }}" {{ state.id == shippingInfo.state.id ? 'selected="selected"' : '' }}>{{ state.name }}</option>
+                    {% endfor %}
+                </select>        
+                <span class="error small text-danger"></span>
+            </div>
+
+            <div class="form-group col-sm-12">
+                <label class="control-label" for="shipping-phone">Phone Number (optional)</label>
+                <input class="form-control" id="shipping-phone" name="shippingInfo[phone]" type="text" value="{{ shippingInfo.phone }}"  data-mirror="#billing-phone">
+                <span class="error small text-danger"></span>
+            </div>
+
+        </div>        
+
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-sm-12">            
+            <div class="custom-control custom-checkbox">
+                <input id="billing-same" class="custom-control-input" type="checkbox" checked>
+                <label class="custom-control-label" for="billing-same">My billing address and shipping address are the same.</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="billing-fields" class="mb-4" style="display: none;">
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <h4>What's your billing address?</h4>
+            </div>
+
+            <div class="form-group col-sm-6">
+                <label class="control-label" for="billing-first-name">First Name</label>
+                <input class="form-control" id="billing-first-name" name="billingInfo[firstName]" type="text" value="{{ billingInfo.firstName }}">
+                <span class="error small text-danger"></span>
+            </div>
+            
+            <div class="form-group col-sm-6">
+                <label class="control-label" for="billing-last-name">Last Name</label>
+                <input class="form-control" id="billing-last-name" name="billingInfo[lastName]" type="text" value="{{ billingInfo.lastName }}">
+                <span class="error small text-danger"></span>
+            </div>
+
+            <div class="form-group col-sm-9">
+                <label class="control-label" for="billing-address-1">Street Address</label>
+                <input class="form-control" id="billing-address-1" name="billingInfo[streetAddressLine1]" type="text" value="{{ billingInfo.streetAddressLine1 }}">
+                <span class="error small text-danger"></span>
+            </div>
+
+            <div class="form-group col-sm-3">
+                <label class="control-label" for="billing-address-2">Apt/Suite #</label>
+                <input class="form-control" id="billing-address-2" name="billingInfo[streetAddressLine2]" type="text" value="{{ billingInfo.streetAddressLine2 }}">
+                <span class="error small text-danger"></span>
+            </div>
+
+            <div class="form-group col-sm-4">
+                <label class="control-label" for="billing-postal-code">Zip Code</label>
+                <input class="form-control" id="billing-postal-code" name="billingInfo[postalCode]" type="text" value="{{ billingInfo.postalCode }}">
+                <span class="error small text-danger"></span>
+            </div>
+
+            <div class="form-group col-sm-4">
+                <label class="control-label" for="billing-city">City</label>
+                <input class="form-control" id="billing-city" name="billingInfo[city]" type="text" value="{{ billingInfo.city }}">
+                <span class="error small text-danger"></span>
+            </div>
+
+            <div class="form-group col-sm-4">
+                <label class="control-label" for="billing-state">State</label>
+                <select id="billing-state" class="form-control custom-select" name="billingInfo[stateId]">
+                    <option value="" disabled="disabled" selected="selected">State</option>
+                    {% for state in states %}
+                        <option value="{{ state.id }}" {{ state.id == billingInfo.state.id ? 'selected="selected"' : '' }}>{{ state.name }}</option>
+                    {% endfor %}
+                </select>        
+                <span class="error small text-danger"></span>
+            </div>
+
+            <div class="form-group col-sm-12">
+                <label class="control-label" for="billing-phone">Phone Number (optional)</label>
+                <input class="form-control" id="billing-phone" name="billingInfo[phone]" type="text" value="{{ billingInfo.phone }}">
+                <span class="error small text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkout-footer">
+        <button class="btn btn-primary btn-block" type="submit">
+            Continue to Shipping Method <span class="fa fa-chevron-right"></span>
+        </button>
+        <a class="btn-prev-step" href="{{ site_url('/cart') }}">
+            <span class="fa fa-chevron-left"></span> Return to cart
+        </a>
+    </div>
+
+{{ close_form() }}

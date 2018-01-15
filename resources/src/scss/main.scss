@@ -1,0 +1,15 @@
+// Import bootstrap variable overrides:
+@import "bootstrap";
+
+// Import dependencies:
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/scss/font-awesome";
+@import "~owl.carousel/src/scss/owl.carousel";
+@import "~malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar";
+
+// Import theme variables/mixins:
+@import "variables";
+@import "mixins";
+
+// Import theme components:
+@import "components/components";

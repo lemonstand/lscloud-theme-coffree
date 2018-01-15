@@ -1,0 +1,59 @@
+---
+template: master
+protocol: all
+published: true
+name: 'About'
+url: /about
+---
+
+{{ partial('page-header', {
+    'background': theme.imageAboutHeader,
+    'title': page.title
+}) }}
+
+<div id="content">
+
+    <div class="block">
+        <div class="block-content">            
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 order-lg-1">
+                        <img class="img-fluid mb-5 mb-lg-0" src="{{ theme.imageAbout1.thumbnail('auto', 'auto') }}" alt="">
+                    </div>
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="block-header">
+                            {{ content_block('about-header-1') }}                            
+                        </div>
+                        <div class="block-body">
+                            {{ content_block('about-content-1') }}                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+
+    <div class="block block-gray">
+        <div class="block-content">            
+            <div class="container">
+                <div class="row">                                    
+                    <div class="col-lg-6 order-lg-2">
+                        <img class="img-fluid mb-5 mb-lg-0" src="{{ theme.imageAbout2.thumbnail('auto', 'auto') }}" alt="">
+                    </div>
+                    <div class="col-lg-6 order-lg-1">                        
+                        <div class="block-header">
+                            {{ content_block('about-header-2') }}                            
+                        </div>
+                        <div class="block-body">
+                            {{ content_block('about-content-2') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+
+    {{ partial('callout') }}
+    
+</div>
+

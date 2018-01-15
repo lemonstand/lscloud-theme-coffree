@@ -1,0 +1,25 @@
+<script>
+
+    !(function($) {
+        $(document).ready(function() {
+            $(document).on('change', '#billing-same', function(e) {
+                var billingFields = $('#billing-fields');
+
+                if (!$(this).is(':checked')) {
+                    billingFields.slideDown();
+                } else {
+                    billingFields.slideUp();
+                }
+            });
+
+            $(document).on('change', '[name="paymentMethodId"]', function(e) {
+                $(this).sendRequest('shop:onUpdatePaymentMethod', {
+                    update: {
+                        '#payment-form': 'checkout-payment-form'
+                    }
+                });
+            });
+        });        
+    })(jQuery);
+
+</script>

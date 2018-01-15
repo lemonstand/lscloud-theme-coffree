@@ -1,0 +1,8 @@
+<div class="product-price">
+    {% if product.onSale() %}
+        <del>{{ product.fullPrice|currency }}</del>
+        <ins>{{ product.price|currency }}</ins>
+    {% else %}
+        {{ product.price|currency }}
+    {% endif %} 
+</div>

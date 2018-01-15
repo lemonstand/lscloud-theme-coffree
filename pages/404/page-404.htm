@@ -1,0 +1,27 @@
+---
+template: master
+protocol: all
+published: true
+name: '404'
+url: /404
+---
+
+{{ partial('page-header', {
+    'background': theme.image404Header,
+    'title': page.title
+}) }}
+
+<div id="content" class="block block-gray">    
+    <div class="block-content">        
+        <div class="container">
+
+            <h2 class="display-4">Well, this is embarassing...</h2>        
+            <p>
+                Sorry! We can't seem to find the page you're looking for. If you feel you've reached this
+                page in error, please <a href="{{ site_url('/contact') }}">contact us</a>.
+            </p>
+            <a class="font-weight-bold text-uppercase" href="{{ site_url('/') }}">Return to Homepage</a>
+
+        </div>
+    </div>    
+</div>

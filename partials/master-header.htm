@@ -1,0 +1,84 @@
+{% set header_classes = [] %}
+
+{% if theme.stickyHeader %}
+    {% set header_classes = header_classes|merge([ 'header-sticky' ]) %}
+{% endif %}
+
+{% if not globals.disable_transparent_header and theme.transparentHeader %}
+    {% set header_classes = header_classes|merge([ 'header-transparent' ]) %}
+{% endif %}
+
+<header id="header" class="{{ header_classes|join(' ') }}" role="banner">
+    <div class="{{ theme.headerEnableFluid ? 'container-fluid' : 'container' }}">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            
+            <a class="navbar-brand" href="{{ site_url('/') }}">
+                <img class="navbar-logo navbar-logo-dark" src="{{ theme.logo.thumbnail('auto', 'auto') }}" alt="{{ theme.siteTitle }}">
+                <img class="navbar-logo navbar-logo-light" src="{{ theme.logoLight.thumbnail('auto', 'auto') }}" alt="{{ theme.siteTitle }}">
+            </a>
+
+            <div class="navbar-content ml-auto">
+
+                <div class="navbar-actions {{ not theme.headerDesktopOffcanvas ? 'd-lg-none d-xl-none' : '' }}">
+
+                    <a class="btn minicart-counter" href="{{ site_url('/cart') }}">
+
+                        {{ partial('shop-minicart-counter') }}
+
+                    </a>
+
+                    <a class="btn" href="#" data-toggle="offcanvas">
+                        <span class="fa fa-bars"></span>
+                    </a>
+                    
+                </div>
+
+                {% if not theme.headerDesktopOffcanvas %}
+                
+                    <div class="navbar-nav d-none d-lg-flex d-xl-flex">
+
+                        {{ partial('navigation') }}
+
+                        {% if theme.enableSearch %}
+                            <a class="nav-item nav-link" href="#" data-toggle="search">
+                                <span class="fa fa-search"></span>
+                            </a>
+                        {% endif %}
+                        
+                        {% if theme.enableMinicart %}
+                            
+                            <div class="nav-item nav-link">
+
+                                <div class="minicart header-minicart">
+                                    
+                                    {{ partial('shop-minicart') }}
+
+                                </div>
+
+                            </div>
+
+                        {% else %}
+
+                            <a class="nav-item nav-link minicart-counter" href="{{ site_url('/cart') }}">
+
+                                {{ partial('shop-minicart-counter') }}
+                                
+                            </a>
+
+                        {% endif %}
+
+                    </div>
+
+                {% endif %}
+
+                {% if theme.enableSearch %}
+                    <div id="header-search">
+                        {{ partial('search-form', { close_button: true }) }}
+                    </div>
+                {% endif %}
+                
+            </div>
+
+        </nav>
+    </div>
+</header>

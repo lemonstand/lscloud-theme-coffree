@@ -1,0 +1,48 @@
+@import "base";
+@import "block-ui";
+@import "blocks";
+@import "buttons";
+@import "callout";
+@import "cards";
+@import "carousel";
+@import "cart-table";
+@import "checkout";
+@import "coupon-form";
+@import "feature";
+@import "footer";
+@import "forms";
+@import "header";
+@import "layout";
+@import "minicart";
+@import "nav";
+@import "offcanvas";
+@import "pagination";
+@import "payment-form";
+@import "post";
+@import "product";
+@import "reviews";
+@import "search-form";
+@import "table";
+@import "topbar";
+
+.icon-group {
+    position: relative;
+
+    &.icon-group-badge {
+        align-items: center;
+        display: flex;
+
+        .count {
+            background-color: $primary;
+            border-radius: 50%;
+            color: $white;
+            display: inline-block;
+            font-size: 0.875rem;
+            height: 1.25rem;
+            line-height: 1.25rem;
+            margin-left: map-get($spacers, 2);
+            text-align: center;
+            width: 1.25rem;
+        }
+    }
+}

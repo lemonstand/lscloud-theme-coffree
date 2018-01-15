@@ -1,0 +1,23 @@
+---
+action: 'shop:cart'
+template: master
+protocol: all
+published: true
+name: 'Cart'
+url: '/cart'
+---
+
+{{ partial('page-header', {
+    'background': theme.imageCartHeader,
+    'title': page.title
+}) }}
+
+<div id="content" class="block block-gray">
+    <div class="block-content">             
+        <div id="cart-content">
+            
+            {{ partial('shop-cart-content') }}
+
+        </div>        
+    </div>    
+</div>

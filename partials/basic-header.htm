@@ -1,0 +1,26 @@
+<header id="header" class="header-transparent" role="banner">
+
+    <div class="{{ theme.headerEnableFluid ? 'container-fluid' : 'container' }}">
+
+        <nav class="navbar navbar-expand-lg flex-column flex-md-row justify-content-center justify-content-md-start">
+
+                <a class="navbar-brand" href="{{ site_url('/') }}">
+                    <img class="navbar-logo navbar-logo-dark" src="{{ theme.logo.thumbnail('auto', 'auto') }}" alt="{{ theme.siteTitle }}">
+                    <img class="navbar-logo navbar-logo-light" src="{{ theme.logoLight.thumbnail('auto', 'auto') }}" alt="{{ theme.siteTitle }}">
+                </a>
+
+            <div class="navbar-content ml-md-auto">
+
+                <div class="navbar-nav flex-row">
+
+                    {{ partial('navigation-social') }}
+
+                </div>
+
+            </div>
+
+        </nav>
+        
+    </div>
+    
+</header>

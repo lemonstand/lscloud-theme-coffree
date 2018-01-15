@@ -1,0 +1,18 @@
+---
+template: master
+protocol: all
+published: true
+name: 'Home'
+url: /
+---
+
+{{ partial('banner', {
+    'background': theme.imageHomeBanner,
+    'heading':    theme.textHomeBannerHeading,
+    'content':    theme.textHomeBannerContent
+}) }}
+
+{{ partial('home-howitworks') }}
+{{ partial('home-featured-testimonial') }}
+{{ partial('home-featured-plans') }}
+{{ partial('callout') }}

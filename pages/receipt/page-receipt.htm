@@ -1,0 +1,34 @@
+---
+action: 'shop:receipt'
+template: master
+protocol: all
+published: true
+name: 'Receipt'
+url: '/receipt/:paymenthash'
+---
+
+{{ partial('page-header', {
+    'background': theme.imageShopHeader,
+    'title': page.title
+}) }}
+
+<div id="content">
+    <div class="block block-gray">
+        <div class="block-content">
+            <div class="container">
+                
+                <div class="block-header text-center">
+                    <h2>Thank you for your order!</h2>
+                    <p>Your order has been placed and will be processed as soon as possible.</p>
+                </div>
+
+                <h4>Order #{{ '%04d'|format(invoice.order.number) }}</h4>
+                <p>Order Date: {{ invoice.order.created_at.format('M jS, Y') }}</p>
+
+                {{ partial('shop-invoice-items', { 'invoice': invoice }) }}
+                {{ partial('shop-invoice-totals', { 'invoice': invoice }) }}
+                
+            </div>
+        </div>
+    </div>
+</div>

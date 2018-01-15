@@ -1,0 +1,76 @@
+<h4>Choose Your Shipping Method</h4>
+
+{{ open_form({
+    'class': 'custom',
+    'data-ajax-handler': 'shop:checkout',
+    'data-ajax-update': '#checkout-content=checkout-payment,#checkout-summary=checkout-summary',  
+    'data-validation-message' : ''
+}) }}
+
+    <input id="step" type="hidden" name="step" value="shipping_method,review">
+    <input id="next_step" type="hidden" name="nextStep" value="pay">
+    <input type="hidden" value="" name="shippingMethod">
+    
+    {% if shippingOptions %}
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>                
+                    <th>Shipping Method</th>
+                    <th>Quote</th>
+                    <th>&nbsp;</th>
+                </thead>
+                <tbody>
+
+                    {% for index, option in shippingOptions %}
+                        <tr>
+                            <td>
+                                <label for="shipping-method-{{ index }}">
+                                    {{ option.shippingMethodName }}
+                                    {% if option.shippingServiceName %}({{ option.shippingServiceName }}){% endif %}
+                                </label>                            
+                                {% if option.error_hint %}
+                                    <span class="choice-description error-hint">{{ option.error_hint }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if not option.error_hint  %}
+                                    {{ not option.is_free ? option.quote|currency : 'free' }}
+                                {% endif %}
+                            </td>
+                            <td class="text-right">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="shipping-method-{{ index }}" 
+                                        class="custom-control-input"
+                                        name="shippingMethod"
+                                        type="radio"
+                                        value="{{ index }}"
+                                        {{ not option.error_hint and 1 == loop.index ? ' checked' : '' }}
+                                        {{ option.error_hint ? 'disabled' : null }}>
+                                    <label class="custom-control-label" for="shipping-method-{{ index }}"></label>
+                                </div>
+                            </td>                        
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="checkout-footer">
+            <button class="btn btn-primary btn-block" type="submit">
+                Continue to Payment <span class="fa fa-chevron-right"></span>
+            </button>
+            <a class="btn-prev-step" href="#"
+                data-ajax-handler="shop:checkout"
+                data-ajax-update="#checkout-content=checkout-billing"
+                data-ajax-extra-fields="nextStep=shipping_method">
+                <span class="fa fa-chevron-left"></span> Back to billing/shipping info
+            </a>
+        </div>
+
+    {% else %}
+        <p>We're sorry, there are currently no shipping options available for your location.</p>
+    {% endif %}
+
+{{ close_form() }}

@@ -1,0 +1,32 @@
+<div class="btn-group">
+
+    <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" id="categoriesMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ category ? category.name : 'Category' }}
+    </button>
+
+    <div class="dropdown-menu" aria-labelledby="categoriesMenuButton">
+        
+        {% tree categories %}
+        
+            <div class="dropdown-items">
+                
+                {% for category in tree.items %}
+                
+                    {% set prefix = '/category/' %}
+
+                    {% if category.parent %}
+                        {% set prefix = prefix ~ category.parent.url_name ~ '/' %}
+                    {% endif %}
+
+                    <a class="dropdown-item" href="{{ site_url(prefix ~ category.url_name) }}">
+                        {{ category.name }}
+                    </a>
+                    
+                    {% branch category.children %}
+                    
+                {% endfor %}
+            </div>        
+        {% endtree %}
+    </div>
+    
+</div>

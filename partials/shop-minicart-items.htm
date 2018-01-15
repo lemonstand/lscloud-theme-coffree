@@ -1,0 +1,20 @@
+<ul class="minicart-items">  
+    {% for item in cart.listitems %}
+        <li class="minicart-item">
+            <img src="{{ item.product.images.first.thumbnail(40, 40) }}" alt="{{ item.product.name }}">
+            <div class="minicart-item-details">
+                <span class="minicart-item-name"><a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a></span>
+                <span class="minicart-item-info">{{ item.quantity }} x {{ item.price|currency }}</span>
+            </div>
+            {% if edit_cart %}
+                <a class="btn link-muted" href="#" title="Remove Item"
+                    data-ajax-handler="shop:cart" 
+                    data-ajax-update=".minicart=shop-minicart, .minicart-content=shop-minicart-content, .minicart-counter=shop-minicart-counter, #cart-content=shop-cart-content"
+                    data-ajax-extra-fields="delete_item='{{ item.key }}'"
+                    data-toggle="tooltip">
+                    <span class="fa fa-trash"></span>
+                </a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
