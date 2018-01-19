@@ -1,5 +1,5 @@
 ---
-name: Coffree
+name: 'Coffree - Jenn'
 description: 'A theme made for subscription box businesses.'
 author: 'Dan Reed'
 website: 'https://itsdanreed.com'
@@ -73,4 +73,5 @@ customFields:
     imageManufacturersHeader: { type: image, title: 'Manufacturers: Header Image', default: '' }
     imagePasswordRestoreHeader: { type: image, title: 'Password Restore: Header Image', default: '' }
     imageRegisterHeader: { type: image, title: 'Register: Header Image', default: '' }
+    homeFeaturedHeader: { type: text, title: 'Home: Featured Products Header', default: '' }
 ---

@@ -1,0 +1,165 @@
+{% set on_sale = product.onSale %}
+
+<div class="col-md-7">
+  <div class="item-images">
+    <div class="big-image col-md-12">
+      <img src="{{ product.images.first.thumbnail(746, 'auto')|default('http://placehold.it/460x300') }}" alt="{{ product.name }}"/>
+    </div>
+    
+    {% if product.images.count > 1 %}
+    <ul class="product-thumbnails">
+      {% for image in product.images %}
+        <li class="col-xs-3 col-md-3 product-thumbnail"><a href="{{ image.thumbnail(746, 'auto') }}"><img src="{{ image.thumbnail(367, 367) }}"/></a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</div>
+
+<div class="col-md-5">
+    {{ open_form({'class': 'custom', 'onsubmit': 'return false'}) }}
+    <div class="col-md-12">
+        <h2 class="uppercase">{{ product.name }}</h2> 
+        
+        <h3 id="why">{{ product.price|currency }}</h3>
+        {% if on_sale %}
+            <small class="previous-price">{{ product.fullPrice|currency }}</small>
+        {% endif %} 
+        <p>{{product.description|unescape}}</p>
+    </div>
+    {{ partial('shop-product-attributes') }}
+    {{ partial('shop-product-extras') }}
+    {{ partial('shop-product-options') }}
+    <br>
+    {% if product.enabled %}
+        {% if not product.isOutOfStock() or product.allow_preorder %}
+            <input type="hidden" name="productId" value="{{ product.id }}"/>
+
+            <div class="col-md-12">
+                <div class="col-md-3">
+                    <p class="title" for="quantity">Quantity</p>
+                    <input class="product-qty" type="text" value="{{ quantity|default("1") }}" name="quantity"/>
+                </div>
+            </div>
+
+            {% if product.subscriptionPlans|length %}
+                <div class="product-options col-md-12">
+                    <p class="title" for="product_billing_plan">Billing plan</p>
+                        <span class="col-md-12 custom-dropdown option-dropdown" style="width: 100%">
+                        <select id="product_billing_plan" class="select_option" name="product_billing_plan"> 
+                            <option value="">No subscription</option>
+                            {% for plan in product.subscriptionPlans %}
+                                <option value="{{ plan.id }}" {{ option_state(plan.id, cart_billing_plan) }}>{{ plan.name }}</option>
+                            {% endfor %}
+                        </select>
+                        </span>
+                </div>
+            {% endif %}
+
+            <div class="add-cart-holder form-group col-md-12">
+                {{ flash() }}
+                <a class="btn btn-important btn-add-cart " href="{{ root_url('/cart') }}" data-ajax-handler="shop:onAddToCart" data-ajax-update="#mini-cart=shop-minicart-totals, #shop-product=shop-product">Add to Cart</a>
+            </div>
+        {% else %}
+            <div class="not-available">
+                <h5>This product is temporarily unavailable</h5> 
+            </div>
+        {% endif %}
+        
+    {% else %}
+        <div class="not-available">
+          <h5>This product is not available</h5>
+        </div>
+    {% endif %}
+    
+    <div class="jumbotron">
+        {% if product.upsells.isEmpty() == false %}
+            <h1 class="col-md-12">You Might Also be Interested in These:</h1>
+            <ul class="col-md-12 shop-flex">
+              {% for upsell in product.upsells %}
+                  <li class="shop-flex-item">
+                  <div class="shop-list-content text-center">
+                  {% set page_url = '/product/' ~ upsell.url_name %}
+                      <a href="{{ page_url }}">
+                      <img src="{{ upsell.images.first.thumbnail(250, 250)|default('http://placehold.it/250x250') }}" width="250" height="250" alt="{{ upsell.images.first.description }}" title="{{ upsell.images.first.title }}"/>
+                      </a>
+                        <h3><a href="/product/{{ upsell.url_name }}" class="btn btn-default">{{ upsell.name }}</a></h3>
+                        <td class="narrow">
+                            <a class="button"
+                                href="#"
+                                data-ajax-handler="shop:onAddToCart"
+                                data-ajax-update="#mini-cart=shop-minicart, #product-page=shop-product"
+                                data-ajax-extra-fields="upsellId='{{ upsell.id }}', subscribe=0, noFlash=1, emptyCart=0"
+                                >Buy Now</a>
+                                </td>
+                        {% if upsell.discount %}
+                          <h1>{{ upsell.price|currency }}</h1>
+                          <small class="previous-price">{{ (upsell.base_price + upsell.discount)|currency }}</small>
+                        {% else %}
+                          <h1>{{ upsell.price|currency }}</h1>
+                        {% endif %}
+                  </div>
+                  </li>
+              {% endfor %}
+            </ul>
+        {% endif %}
+    </div>  
+{{ close_form() }}
+
+{% if theme.productReview %}
+<div class="product-review col-md-12">
+    <h1>Product Reviews</h1>
+    <button id="review-form-toggle" class="btn-important">Write a review</button>
+    <div id="product-review-form">
+        {{ partial('shop-product-review-form') }}
+    </div>
+
+    <div class="review-avg">
+        {% set product_rating = product.rating() %}
+        {% if product_rating.total_reviews %}
+          {% for i in range(1, product_rating.average_int) %}★{% endfor %}
+            {% if product_rating.average_int != 5 %}
+                {% for i in range(1, 5 - product_rating.average_int) %}
+                    ☆
+                {% endfor %}
+            {% endif %}
+             Based on {{ product_rating.total_reviews }} review(s)
+        {% else %}
+            ☆☆☆☆☆ (no reviews yet)
+        {% endif %}
+    </div>
+
+    {% if product_rating.total_reviews %}
+        <div class="reviews">
+            <div>
+                {% for review in product.reviews() %}
+                    {% if review.item_rating == 5 %}
+                        <div class="review-body">★★★★★</div>
+                    {% endif %}
+                    {% if review.item_rating == 4 %}
+                        <div class="review-body">★★★★☆</div>
+                    {% endif %}
+                    {% if review.item_rating == 3 %}
+                        <div class="review-body">★★★☆☆</div>
+                    {% endif %}
+                    {% if review.item_rating == 2 %}
+                        <div class="review-body">★★☆☆☆</div>
+                    {% endif %}
+                    {% if review.item_rating == 1 %}
+                        <div class="review-body">★☆☆☆☆</div>  
+                    {% endif %}
+                    <div class="review-body" >
+                        <p><strong>{{ review.title }}</strong></p>
+                    </div>
+                    <div class="review-body">
+                        <p>By {{ review.from_name }} on {{ review.created_at|date('M jS, Y') }}</p>
+                        <p>{{ review.comment }}</p>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endif %}
+</div>

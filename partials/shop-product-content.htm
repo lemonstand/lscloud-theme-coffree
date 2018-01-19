@@ -47,6 +47,15 @@
 
     </ul>
 
+    {% if product.priceTiers.count %}
+        <div class="">
+          <h6>Bulk Pricing</h6>
+            <div>
+              {{ partial('shop-product-bulk-pricing')}}
+            </div>
+        </div>
+    {% endif %}
+
     {% if 0 != product.extras|length %}
         <div class="product-extras">                
                 
@@ -55,15 +64,13 @@
                 {% for extra in product.extras %}
 
                     <div class="form-group col-md-6">
-                        <label class="custom-control custom-checkbox">
-                            <input class="custom-control-input"
-                                name="extras[{{ extra.id }}]"
-                                type="checkbox"
-                                data-ajax-handler="shop:product"
-                                data-ajax-update="#shop-product-content=shop-product-content"
-                                {{ checkbox_state(postedExtras[extra.id], extra.id) }}>
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">{{ extra.name }} ({{ extra.price|currency }})</span>
+                        <label class="title" for="{{ 'extra-'~index }}">
+                          {% if extra.enabled %}
+                              <input type="checkbox" id="{{ 'extra-'~index }}" {{ checkbox_state(postedExtras[extra.id], extra.id) }} name="extras[{{ extra.id }}]" data-ajax-handler="shop:product" data-ajax-update="#shop-product-content=shop-product-content">
+                          {% else %}
+                              <input type="checkbox" disabled="disabled">
+                          {% endif %}
+                          {{ extra.name }} ({{ extra.price|currency }})
                         </label>
                     </div>
                 

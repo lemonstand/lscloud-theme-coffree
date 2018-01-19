@@ -1,0 +1,46 @@
+---
+action: 'shop:order'
+template: template-1
+protocol: all
+published: true
+name: Order
+url: /order/:orderId
+---
+<div class="full-jumbotron no-padding row contact-head contact">
+<div class="col-md-12 text-center">
+<h1>Order: {{ order.id }}</h1>
+</div>
+</div>
+<div class="jumbotron row">
+    <div class="content col-md-12 columns">
+        {% if not order %}
+          <p class="flash info">Order not found</p>
+        {% else %}
+          <div class="row col-md-12" id="subscription-row-full" >
+            <div class="col-md-2">
+              <p><span class="strong">Id:</span> {{ order.id }}</p>
+            </div>
+            <div class="col-md-8">
+              <p><span class="strong">Started:</span> {{ order.created_at.format('M jS, Y') }}</p>
+            </div>
+            <div class="col-md-2">
+              <p><span class="strong">Payment Method:</span> {{ order.invoices[0].payments().last().guessPaymentMethod().name }}</p>
+            </div>
+          </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+    {% for invoice in order.invoices %}
+        {% for shipment in invoice.shipments %}
+          {% for item in shipment.shipmentItems %}
+            {{ partial('shop-purchaseditems', {'invoice': invoice, 'item': item, }) }}
+          {% endfor %}
+        {% endfor %}
+        <div class="order-total col-md-8 col-sm-12 col-xs-12 pull-right">
+          <p>Order Summary</p>
+        {{ partial('shop-invoicetotals', {'invoice': invoice}) }}
+        </div>
+    {% endfor %}
+  </div>
+
+</div>

@@ -1,0 +1,37 @@
+{% for item in items %}
+    <div class="row" id="checkout-row">
+        <div class="col-sm-3 col-xs-12" id="cart-img" style="padding:0;">
+            <img src="{{ item.product.images.first.thumbnail('auto', 'auto') }}" alt="{{ item.product.name }}">
+        </div>
+        <div class="col-sm-9 col-xs-12" style="padding-right:0px;">
+            <a href="/product/{{ item.product.url_name }}"><span style="font-weight: bold">{{ item.product.name }}</span>
+            {% set options = item.optionsString() %}
+            {% if options %}
+                - <span class="h6">{{ options|unescape }}</span>
+            {% endif %}
+            </a><br>
+            {% if item.x_billing_plan_id %}
+                <li class="list-group-item">Subscription plan: <div class="pull-right">{{ item.product.subscriptionPlans.find(item.x_billing_plan_id).name }}</div></li>
+            {% endif %}
+            <li class="list-group-item">Quantity: <div class="pull-right">{{item.quantity}} x {% if item.product.onSale() %}<s>{{ item.product.fullPrice()|currency }}</s>{% endif %} {{ item.price()|currency }}</div></li>
+            {% if item.totalDiscount() > 0 %}
+                <li class="list-group-item">Discount: <div class="pull-right">- {{item.totalDiscount()|currency}}</div></li>
+            {% endif %}
+                <li class="list-group-item">Total: <div class="pull-right">{{ item.total()|currency }}</div></li>
+            {% if item.is_trial_product %}
+                <div>
+                    <span class="h6">
+                        *This item is a Trial Product, and is only included in the first order.
+                    </span>
+                </div>
+                {% if billingPlans.find(cart_billing_plan).trial_period_enabled %}
+                <div>
+                    <span class="h6">
+                        *Trial Period lasts {{ billingPlans.find(cart_billing_plan).trial_period }} days.
+                    </span>
+                </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}

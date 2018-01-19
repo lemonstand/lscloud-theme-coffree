@@ -1,0 +1,18 @@
+{% set shop_item = 6 %}
+
+<ul class="shop-flex">
+{% paginate products by shop_item %}
+{% for product in products %}
+	<li class="feature-item shop-flex-item">
+	       {{ partial('shop-grid-item', {'product':product}) }}
+	</li>
+{% endfor %}
+</ul>
+
+<div class="pagination-centered">
+  <div class="pagination">
+    {% navigation %}
+  </div>
+</div>
+
+{% endpaginate %}

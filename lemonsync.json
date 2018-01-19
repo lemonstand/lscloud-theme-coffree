@@ -1,0 +1,6 @@
+{
+  "theme_code": "coffree2-1-1",
+  "store": "https://rockwithdigital.lemonstand.com",
+  "api_token": "4c5sHOe3nqBGbkgKGgXwFVyB7A89TKRncOWRpry0",
+  "ignore_patterns": [ "*.tmp", ".git", "lemonsync.json" ]
+}
