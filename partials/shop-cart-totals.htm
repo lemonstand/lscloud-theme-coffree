@@ -13,7 +13,15 @@
         </div>
         <div class="col-md-4 align-self-center">
             <div class="cart-total text-center text-md-right">
-                <strong>Total:</strong> {{ cart.getTotal()|currency }}
+            		{% if cart.getDiscountTotal > 0 %}
+            		   	 <div class="cart-total text-center text-md-right">
+            		   	 	<strong>Sales Tax:</strong> {{ cart.getTotalTax|currency }}
+            		      </div>
+            			 <div class="cart-total text-center text-md-right">
+            		     <strong>Discount applied:</strong> {{ cart.getDiscountTotal()|currency }}
+            		   </div>
+            		{% endif %}
+                <strong>Total:</strong> {{ totals.total|currency }}
             </div>
         </div>
     </div>

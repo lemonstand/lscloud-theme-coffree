@@ -11,6 +11,7 @@
                 {% if edit_cart %}<th>&nbsp;</th>{% endif %}
             </tr>
         </thead>
+
         <tbody>
             {% for item in items %}
                 <tr>
@@ -29,6 +30,23 @@
                                         {% endfor %}
                                     </ul>
                                 {% endif %}
+
+                                {% if cart_billing_plan and (item.product.subscriptionPlans.count > 0) %}
+                                    <div style="margin-top: 10px;">
+                                        <span class="custom-dropdown option-dropdown" style="width: 100%">
+                                            <select class="form-control custom-select" id="billing_plan" name="item_subscription_plan[{{ item.key }}]" 
+                                            data-ajax-handler="shop:cart" 
+                                            data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart-totals"> 
+                                                <option value="">No subscription</option>
+                                                {% for plan in item.product.subscriptionPlans %}
+                                                    <option value="{{ plan.id }}" {{ option_state(plan.id, item.x_billing_plan_id) }}>{{ plan.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </span>
+                                    </div>
+                                    {% else %}
+
+                                    {% endif %}
                                 
                                 {% if item.is_trial_product %}
                                     <p class="small">* This item is a trial product and is only included in the first order.</p>
@@ -42,7 +60,6 @@
                                     {% set discount = billingPlan.first_order_discount %}
                                     <p class="small">* The first order will be discounted by {{ discount matches '/%$/' ? discount : discount|currency }}.</p>
                                 {% endif %}
-
                             </div>
                         </div>
                     </td>
@@ -74,6 +91,7 @@
                                 {{ item.price()|currency }}
     
                             {% endif %}
+
     
                             {% if cart.getDiscountTotal() > 0 %}
     

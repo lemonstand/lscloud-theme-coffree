@@ -7,6 +7,24 @@
 {% if not globals.disable_transparent_header and theme.transparentHeader %}
     {% set header_classes = header_classes|merge([ 'header-transparent' ]) %}
 {% endif %}
+<style>
+	body {
+		color: {{ theme.textColor }};
+	}
+	.text-white {
+	  color: {{ theme.secondaryTextColor }} !important;
+	}
+	.block-primary {
+	    color: {{ theme.secondaryTextColor }};
+	    background-color: {{ theme.primaryColor }};
+	}
+	.block-gray {
+		background-color: {{ theme.secondaryColor }};
+	}
+	.widget-footer .widget-content {
+		color: {{ theme.footerTextColor }};
+	}
+</style>
 
 <header id="header" class="{{ header_classes|join(' ') }}" role="banner">
     <div class="{{ theme.headerEnableFluid ? 'container-fluid' : 'container' }}">
