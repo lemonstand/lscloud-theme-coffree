@@ -18,11 +18,26 @@
 	    color: {{ theme.secondaryTextColor }};
 	    background-color: {{ theme.primaryColor }};
 	}
+	.product-badge {
+		color: {{ theme.primaryColor }};
+	}
 	.block-gray {
 		background-color: {{ theme.secondaryColor }};
 	}
-	.widget-footer .widget-content {
-		color: {{ theme.footerTextColor }};
+	.btn-primary,
+	.btn-outline-primary {
+		background-color: {{ theme.buttonColor }};
+	}
+	.btn-primary:hover,
+	.btn-outline-primary:hover {
+		background-color: {{ theme.buttonHoverColor }};
+	}
+	.btn-primary,
+	.btn-outline-primary {
+		border-color: {{ theme.buttonBorderColor }};
+	}
+	.page-item.active .page-link {
+
 	}
 </style>
 

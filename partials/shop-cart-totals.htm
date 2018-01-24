@@ -3,22 +3,36 @@
     <div class="row mb-4 mb-md-0">
         <div class="col-md-8 align-self-center">
             <div class="coupon-form mb-4 mb-md-0">
-                <input id="coupon-code" class="form-control mr-md-2" type="text" name="coupon" placeholder="Coupon Code" value="{{ coupon_code }}">
-                <a class="btn btn-outline-dark" href="#" 
-                    data-ajax-handler="shop:cart"
-                    data-ajax-update=".minicart=shop-minicart, .minicart-content=shop-minicart-content, .minicart-counter=shop-minicart-counter, #cart-content=shop-cart-content">
-                    Apply Coupon
-                </a>
+            	<input class="form-control mr-md-2" name="coupon" id="coupon" type="text" value="{{ coupon_code }}">
+              <a class="btn btn-outline-dark" data-ajax-handler="shop:cart" data-ajax-update="">Apply Coupon</a>
+
             </div> 
         </div>
         <div class="col-md-4 align-self-center">
+        		{% if cart.getTotal() > 0 %}
+        		    {% set itemTotalNoTax = cart.getTotal() - cart.getTotalTax() %}
+        		    <div class="cart-total text-center text-md-right">
+        		    	<strong>Item Total:</strong> {{ itemTotalNoTax|currency }}
+        		    </div>
+        		{% endif %}
             <div class="cart-total text-center text-md-right">
-            		{% if cart.getDiscountTotal > 0 %}
-            		   	 <div class="cart-total text-center text-md-right">
-            		   	 	<strong>Sales Tax:</strong> {{ cart.getTotalTax|currency }}
-            		      </div>
+            		{% if cart.getTotal() > 0 %}
+            		    {% for plan in billingPlans %}
+            		        {% if cart_billing_plan == plan.id %}
+            		            {% if totals.setupFee > 0 %}
+            		                <div><strong>Subscription Setup:</strong> {{ totals.setupFee|currency }}</div>
+            		            {% endif %}
+            		        {% endif %}    
+            		    {% endfor %}
+            		{% endif %}
+            	  {% if totals.totalTax > 0 %}
+          		   	  <div class="cart-total text-center text-md-right">
+          		   	 		<strong>Sales Tax:</strong> {{ cart.getTotalTax|currency }}
+          		      </div>
+            		{% endif %}
+            		{% if totals.discountTotal > 0 %}
             			 <div class="cart-total text-center text-md-right">
-            		     <strong>Discount applied:</strong> {{ cart.getDiscountTotal()|currency }}
+            		     <strong>Discount applied:</strong> -{{ totals.discountTotal|currency }}
             		   </div>
             		{% endif %}
                 <strong>Total:</strong> {{ totals.total|currency }}

@@ -96,7 +96,7 @@
 
             <div class="form-group col-sm-6">
             		<label class="control-label" for="shipping-state">Country</label>
-                <select class="form-control custom-select" id="billing_country" name="billingInfo[countryId]" data-state-selector="#billing_state" data-current-state="{{ billingInfo.stateId }}">
+                <select class="form-control custom-select" id="billing_country" name="shippingInfo[countryId]" data-state-selector="#billing_state" data-current-state="{{ shippingInfo.stateId }}">
                     {% for country in countries %}
                     <option {{ option_state(billingInfo.countryId, country.id) }} value="{{ country.id }}">{{ country.name }}</option>
                     {% endfor %}
@@ -105,8 +105,8 @@
             </div>
             <div class="form-group col-sm-6">
             		<label class="control-label" for="shipping-state">State</label>
-                <select class="form-control custom-select" id="billing_state" name="billingInfo[stateId]" data-ajax-refresh >
-                    {{ partial('shop-stateoptions', {'states': billingStates, 'selected': billingInfo.stateId}) }}
+                <select class="form-control custom-select" id="billing_state" name="shippingInfo[stateId]" data-ajax-refresh >
+                    {{ partial('shop-stateoptions', {'states': billingStates, 'selected': shippingInfo.stateId}) }}
                 </select>
                 <span class="error"></span>
             </div>

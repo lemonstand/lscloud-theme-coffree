@@ -47,7 +47,6 @@
                     <p class="title" for="product_billing_plan">Billing plan</p>
                         <span class="col-md-12 custom-dropdown option-dropdown" style="width: 100%">
                         <select id="product_billing_plan" class="select_option" name="product_billing_plan"> 
-                            <option value="">No subscription</option>
                             {% for plan in product.subscriptionPlans %}
                                 <option value="{{ plan.id }}" {{ option_state(plan.id, cart_billing_plan) }}>{{ plan.name }}</option>
                             {% endfor %}
@@ -55,6 +54,8 @@
                         </span>
                 </div>
             {% endif %}
+
+            
 
             <div class="add-cart-holder form-group col-md-12">
                 {{ flash() }}

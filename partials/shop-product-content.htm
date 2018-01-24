@@ -57,28 +57,7 @@
     {% endif %}
 
     {% if 0 != product.extras|length %}
-        <div class="product-extras">                
-                
-            <div class="form-row">
-
-                {% for extra in product.extras %}
-
-                    <div class="form-group col-md-6">
-                        <label class="title" for="{{ 'extra-'~index }}">
-                          {% if extra.enabled %}
-                              <input type="checkbox" id="{{ 'extra-'~index }}" {{ checkbox_state(postedExtras[extra.id], extra.id) }} name="extras[{{ extra.id }}]" data-ajax-handler="shop:product" data-ajax-update="#shop-product-content=shop-product-content">
-                          {% else %}
-                              <input type="checkbox" disabled="disabled">
-                          {% endif %}
-                          {{ extra.name }} ({{ extra.price|currency }})
-                        </label>
-                    </div>
-                
-                {% endfor %}
-
-            </div>
-            
-        </div>
+        {{ partial('shop-product-extras')}}
     {% endif %}
 
     {% if product.options.count %}
@@ -119,7 +98,6 @@
                     <div class="form-group col-lg-6">                    
                         <label class="control-label" for="product_billing_plan">Billing Plan</label>
                         <select class="form-control custom-select" name="product_billing_plan">
-                            <option value="">No subscription</option>
                             {% for plan in product.subscriptionPlans %}
                                 <option value="{{ plan.id }}" {{ option_state(plan.id, cart_billing_plan) }}>{{ plan.name }}</option>
                             {% endfor %}

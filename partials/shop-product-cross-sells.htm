@@ -7,6 +7,8 @@
         </div> 
         
         {{ partial('shop-products-loop', { 'products': product.crossSells, 'column_class': 'col-lg-3' }) }}
+
+        {{ partial('shop-products-loop', { 'products': product.upsells, 'column_class': 'col-lg-3' }) }}
         
     </div>
     

@@ -16339,14 +16339,14 @@ a.link-muted:hover {
 
 .icon-group.icon-group-badge .count {
   background-color: #494c50;
-  border-radius: 50%;
-  color: #ffffff;
-  display: inline-block;
-  font-size: 0.875rem;
-  height: 1.25rem;
-  line-height: 1.25rem;
-  margin-left: 0.5rem;
-  text-align: center;
-  width: 1.25rem;
+	border-radius: 50%;
+	color: #ffffff;
+	display: inline-block;
+	font-size: 0.875rem;
+	height: 1.3rem;
+	line-height: 1.5rem;
+	margin-left: 0.5rem;
+	text-align: center;
+	width: 1.3rem;
 }
 

@@ -60,6 +60,8 @@ customFields:
     imageHomeFeatureIcon1: { type: image, title: 'Home: Feature Icon #1', default: '@/images/home-icon-1.png' }
     imageHomeFeatureIcon2: { type: image, title: 'Home: Feature Icon #2', default: '@/images/home-icon-2.png' }
     imageHomeFeatureIcon3: { type: image, title: 'Home: Feature Icon #3', default: '@/images/home-icon-3.png' }
+    homeHeading: { type: text, title: 'First Heading Home Page', default: 'How Coffree Works' }
+    homeFeaturedHeader: { type: text, title: 'Home: Featured Products Header', default: 'Our Plans' }
     imageOrdersHeader: { type: image, title: 'Order List:  Header Image', default: '' }
     imageOrderHeader: { type: image, title: 'Order Details: Header Image', default: '' }
     imageChangePasswordHeader: { type: image, title: 'Change Password: Header Image', default: '' }
@@ -74,4 +76,15 @@ customFields:
     imagePasswordRestoreHeader: { type: image, title: 'Password Restore: Header Image', default: '' }
     imageRegisterHeader: { type: image, title: 'Register: Header Image', default: '' }
     homeFeaturedHeader: { type: text, title: 'Home: Featured Products Header', default: '' }
+    primaryColor: { type: color, title: 'Primary Theme Color', default: '#494c50', comment: 'Primary Theme Color' }
+    secondaryColor: { type: color, title: 'Secondary Theme Color', default: '#f5f5f5', comment: 'Secondary Theme Color' }
+    textColor: { type: color, title: 'Text Color', default: '#212121', comment: 'Theme Primary Text Color' }
+    secondaryTextColor: { type: color, title: 'Secondary Text Color', default: '#ffffff', comment: 'Secondary Text Color - Banner Text' }
+    linkColor: { type: color, title: 'Link Color', default: '#ffffff', comment: 'Secondary Text Color - Banner Text' }
+    buttonColor: { type: color, title: 'Button Color', default: '#494c50', comment: 'Color used for Add To Cart and Checkout buttons.' }
+    buttonHoverColor: { type: color, title: 'Button Hover Color', default: '##37393c', comment: 'Button hover color used for Add To Cart and Checkout buttons.' }
+    buttonBorderColor: { type: color, title: 'Button Hover Color', default: '#494c50', comment: 'Button border color when you hover your mouse cursor over.' }
+    homeBannerColor: { type: color, title: 'Home Banner Color', default: '#494c50', comment: 'Home Banner Color' }
+    bannerAlignRight: { type: checkbox, title: 'Home Banner Text: Align Right', default: '0' }
+    bannerAlignLeft: { type: checkbox, title: 'Home Banner Text: Align Left', default: '0' }
 ---

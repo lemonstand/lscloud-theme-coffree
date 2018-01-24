@@ -1,0 +1,49 @@
+<h3 class="ls-heading letter-spacing-2 padding-y-medium">Saved Cards</h3>
+<div class="row">
+    <div class="row">
+        {% if customer.cards|length %}
+        <table class="card-table">
+            {% for card in customer.cards %}
+            <tr>
+                <th>{{card.card_and_brand}}</th>
+                <th>
+                    <a
+                    id="edit-card"
+                    card="{{card.id}}"
+                    href="javascript:void(0)"
+                    >Edit Card</a>
+                </th>
+                <th>
+                    <a
+                    id="delete-card"
+                    href="javascript:void(0)"
+                    data-ajax-handler="shop:onDeleteCustomerCard"
+                    data-ajax-update="#profile-edit-card=partial-account-edit-card"
+                    data-ajax-extra-fields="deleteCardId='{{ card.id }}'"
+                    >Delete Card</a>
+                </th>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <input type="button" class="ls-button no-margin-x  ls-button-wide md-button md-ink-ripple flex-order-xs-1" id="add-card" value="Add Card">
+
+        {% else %}
+            <p>
+                No saved cards available.
+            </p>
+
+            <input type="button" class="ls-button no-margin-x  ls-button-wide md-button md-ink-ripple flex-order-xs-1" id="add-card" value="Add Card">
+            
+        {% endif %}
+        {{ flash() }}
+    </div>
+
+    <div class="row">
+        {% for card in customer.cards %}
+            {{ partial('partial-account-edit-card-form', {'card' : card}) }}
+        {% endfor %}
+        
+        {{ partial('partial-account-add-card-form') }}
+    </div>
+</div>
