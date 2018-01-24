@@ -59,12 +59,13 @@
         <div class="row">       
             <div class="col-lg-4">Subscription: <span class="font-weight-bold">{{ '%04d'|format(subscription.id) }}</span></div>                         
             <div class="col-lg-4">Started: <span class="font-weight-bold">{{ subscription.created_at.format('M jS, Y') }}</span></div>
-            <div class="col-lg-4">Status: <span class="font-weight-bold">{{ subscription.status.name }}</span></div>
+            <div class="col-lg-4 mb-3">Status: <span class="font-weight-bold">{{ subscription.status.name }}</span></div>
+            <div class="col-lg-4">Next Renewal Date: <span class="font-weight-bold">{{ subscription.nextRenewalDate() }}</span></div>
+            <div class="col-lg-4">Next Renewal Amount: <span class="font-weight-bold">{{ subscription.nextRenewalAmount() }}</span></div>
         </div>
 
     </div>
-</div>
-                            
+</div>            
                            
 <div class="card">
     <div class="card-body">

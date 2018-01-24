@@ -1,0 +1,75 @@
+---
+action: 'shop:customerProfile'
+template: master
+protocol: all
+published: true
+name: Profile
+url: '/account/payment-method
+---
+
+{{ partial('page-header', {
+    'background': theme.imageOrdersHeader,
+    'title': page.title
+}) }}
+
+<div id="content" class="block block-gray">
+    <div class="block-content">           
+        <div class="container">        
+            <div class="row">
+
+                <div class="col-lg-3">
+                    {{ partial('account-sidebar', { active: 'orders' }) }}
+                </div>
+
+                <div class="col-lg-9">
+                    
+                    {{ partial('flash') }}
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Update Subscription Card</h4>
+                            
+                            <div id="subscription-card-editor" class="col-md-6 row mt-md-2">
+                                {% if card %}
+                                  <!-- Render card details -->
+                                    {{ subscriptionCardForm('update',
+                                        {
+                                            card: card,
+                                            options: {
+                                                number: {
+                                                    placeholder: 'Card number',
+                                                    style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; line-height: 42px; width: 100%;"
+                                                },
+                                                cvv: {
+                                                    placeholder: 'CVV',
+                                                    style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; line-height: 42px; width: 100%;"
+                                                }
+                                            }
+                                        },
+                                    { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
+                                {% else %}
+                                  <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
+                                    <p>Add Payment Method</p>
+                                    {{ subscriptionCardForm('add',
+                                        {
+                                            options: {
+                                                number: {
+                                                    placeholder: 'Card number',
+                                                    style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; line-height: 42px; width: 100%;"
+                                                },
+                                                cvv: {
+                                                    placeholder: 'CVV',
+                                                    style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; line-height: 42px; width: 100%;"
+                                                }
+                                            }
+                                        },
+                                    { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
