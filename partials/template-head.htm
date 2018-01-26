@@ -22,20 +22,22 @@
     <script>window.location = '{{ globals.redirect }}';</script>
 {% endif %}
 
-<!-- <meta property="og:url" content="{{ site_url('/') }}{{ '/product/' ~ product.url_name }}" />
-<meta property="og:type" content="product" />
-<meta property="og:title" content="{{ product.name }}" />
-<meta property="og:description" content="{{ product.short_description }}" />
-<meta property="og:image" content="{{ product.featured_image.thumbnail('auto', 'auto') }}" />
-
-<meta property="og:url" content="{{ post.permalink|url_encode }}" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="{{ post.title }}" />
-<meta property="og:description" content="{{ post.excerpt | unescape }}" />
-<meta property="og:image" content="{{ post.featured_image.thumbnail('auto', 'auto') }}" /> -->
-
-<!-- {% if '/blog/' in url %}
-    blog
-{% elseif '/product/' in url %}
-    product
-{% endif %} -->
+{% if page_code() == 'blog-post' %}
+    <meta property="og:url" content="{{ post.permalink|url_encode }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ post.title }}" />
+    <meta property="og:description" content="{{ post.excerpt | unescape }}" />
+    <meta property="og:image" content="{{ post.featured_image.thumbnail('auto', 'auto') }}" />
+{% elseif page_code() == 'product' %}
+    <meta property="og:url" content="{{ site_url('/') }}{{ '/product/' ~ product.url_name }}" />
+    <meta property="og:type" content="product" />
+    <meta property="og:title" content="{{ product.name }}" />
+    <meta property="og:description" content="{{ product.short_description }}" />
+    <meta property="og:image" content="{{ item.product.images.first.thumbnail('auto', 'auto') }}" />
+{% else %}
+		<meta property="og:url" content="{{ site_url('/') }}" />
+		<meta property="og:type" content="page" />
+		<meta property="og:title" content="{{ page.title }}" />
+		<!-- <meta property="og:description" content="{{ product.short_description }}" /> -->
+		<meta property="og:image" content="{{ theme.logo.thumbnail('auto', 'auto') }}" />
+{% endif %}

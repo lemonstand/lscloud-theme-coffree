@@ -10,15 +10,9 @@
 
     <div class="product-description mb-4">
         
-        {% if theme.enableProductMinimalView %}
             
-            {{ product.description|unescape }}
-
-        {% else %}
-
-            <p>{{ product.short_description }}</p>
-            
-        {% endif %}
+            <p class="small">{{ product.short_description }}</p>
+            <p>{{ product.description|unescape }}</p>
 
     </div>
 
@@ -35,6 +29,7 @@
             <li><strong>SKU:</strong> {{ product.sku }}</li>
 
         {% endif %}
+			
 
         {% if theme.enableManufacturers and product.manufacturer %}
 
@@ -47,6 +42,16 @@
 
     </ul>
 
+        {% if theme.enableDimensions %}
+        		<h6>Product Dimensions</h6>
+						<ul class="list-unstyled mb-4">
+	    	    	<li><strong>Height:</strong> {{ product.height }}</li>
+	    	    	<li><strong>Width:</strong> {{ product.width }}</li>
+	    	    	<li><strong>Depth:</strong> {{ product.depth }}</li>
+	    	    	<li><strong>Weight:</strong> {{ product.weight }}</li>
+						</ul>
+        {% endif %}
+
     {% if product.priceTiers.count %}
         <div class="">
           <h6>Bulk Pricing</h6>
@@ -54,6 +59,12 @@
               {{ partial('shop-product-bulk-pricing')}}
             </div>
         </div>
+    {% endif %}
+	
+		{% if theme.showStockAmount %}
+
+    	<p><strong>In Stock Amount:</strong> {{ product.in_stock_amount }}</p>
+
     {% endif %}
 
     {% if 0 != product.extras|length %}
@@ -86,6 +97,7 @@
         </div>
 
     {% endif %}
+
 
     {% if product.enabled %}
         
@@ -133,8 +145,8 @@
                                  
 
         {% else %}
-
-            <p>Sorry! This product is temporarily unavailable.</p>
+            
+            <p class="alert alert-light">Sorry! This product is temporarily unavailable.</p>
 
         {% endif %}
 
