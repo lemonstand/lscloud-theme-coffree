@@ -87,4 +87,5 @@ customFields:
     homeBannerColor: { type: color, title: 'Home Banner Color', default: '#494c50', comment: 'Home Banner Color' }
     bannerAlignRight: { type: checkbox, title: 'Home Banner Text: Align Right', default: '0' }
     bannerAlignLeft: { type: checkbox, title: 'Home Banner Text: Align Left', default: '0' }
+    addToCart: { type: text, title: 'Add To Cart Text', default: 'Add To Cart' }
 ---

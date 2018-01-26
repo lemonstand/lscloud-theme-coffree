@@ -59,7 +59,7 @@
 
             <div class="add-cart-holder form-group col-md-12">
                 {{ flash() }}
-                <a class="btn btn-important btn-add-cart " href="{{ root_url('/cart') }}" data-ajax-handler="shop:onAddToCart" data-ajax-update="#mini-cart=shop-minicart-totals, #shop-product=shop-product">Add to Cart</a>
+                <a class="btn btn-important btn-add-cart " href="{{ root_url('/cart') }}" data-ajax-handler="shop:onAddToCart" data-ajax-update="#mini-cart=shop-minicart-totals, #shop-product=shop-product">{{ theme.addToCart }}</a>
             </div>
         {% else %}
             <div class="not-available">
