@@ -12,7 +12,18 @@ url: /
     'content':    theme.textHomeBannerContent
 }) }}
 
-{{ partial('home-howitworks') }}
-{{ partial('home-featured-testimonial') }}
-{{ partial('home-featured-plans') }}
-{{ partial('callout') }}
+{% if theme.enableHowItWorks %}
+	{{ partial('home-howitworks') }}
+{% endif %}
+
+{% if theme.enableFeaturedTestimonial %}
+	{{ partial('home-featured-testimonial') }}
+{% endif %}
+
+{% if theme.enableFeaturedPlan %}
+	{{ partial('home-featured-plans') }}
+{% endif %}
+
+{% if theme.enableCallout %}
+	{{ partial('callout') }}
+{% endif %}

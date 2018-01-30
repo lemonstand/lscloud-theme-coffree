@@ -4,5 +4,10 @@
         <nav class="nav justify-content-center justify-content-lg-start">
             {{ partial('navigation-social') }}
         </nav>
+        {% if theme.footerNewsletter %}
+	        <div>
+	        	{{ partial('subscribe-form') }}
+	        </div>
+        {% endif %}
     </div>
 </div>

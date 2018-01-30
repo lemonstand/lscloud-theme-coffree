@@ -27,8 +27,14 @@ customFields:
     calloutButtonText: { type: text, title: 'Callout: Button Text', default: 'Shop Now' }
     calloutTitle: { type: text, title: 'Callout: Title', default: 'Ready to get started?' }
     calloutContent: { type: text, title: 'Callout: Content', default: '' }
+    enableCallout: { type: checkbox, title: 'Home: Enable Callout', default: '1' }
+    enableFeaturedPlan: { type: checkbox, title: 'Home: Enable Featured Plan', default: '1' }
+    enableFeaturedBlogPosts: { type: checkbox, title: 'Home: Enable Featured Blog Posts', default: '0' }
+    enableHowItWorks: { type: checkbox, title: 'Home: Enable How It Works Section', default: '1' }
+    enableFeaturedTestimonial: { type: checkbox, title: 'Home: Enable Featured Testinomial', default: '1' }
     imageCalloutBackground: { type: image, title: 'Callout: Background Image', default: '@/images/callout.jpg' }
     footerMinimalMode: { type: checkbox, title: 'Footer: Minimal Mode', default: '0' }
+    footerNewsletter: { type: checkbox, title: 'Footer: Newsletter', default: '0' }
     mailchimpSubscribeUrl: { type: text, title: 'MailChimp: Subscribe URL', default: '' }
     enableMinicartCounter: { type: checkbox, title: 'Store: Enable Minicart Counter', default: '0' }
     enableShopSidebar: { type: checkbox, title: 'Store: Enable Sidebar', default: '1' }
@@ -56,6 +62,7 @@ customFields:
     imageHomeBanner: { type: image, title: 'Home: Banner Image', default: '' }
     textHomeBannerHeading: { type: text, title: 'Home: Banner Heading', default: '' }
     textHomeBannerContent: { type: text, title: 'Home: Banner Content', default: '' }
+    latestBlogPosts: { type: checkbox, title: 'Home: Latest Blog Posts', default: '0' }
     image404Header: { type: image, title: 'Error 404: Header Image', default: '' }
     imageAbout1: { type: image, title: 'About: Image #1', default: '@/images/about-1.jpg' }
     imageAbout2: { type: image, title: 'About: Image #2', default: '@/images/about-2.jpg' }

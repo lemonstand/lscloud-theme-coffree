@@ -182,6 +182,13 @@
                 </select>        
                 <span class="error small text-danger"></span>
             </div>
+            <div class="form-group col-sm-6">
+            		<label class="control-label" for="shipping-state">State</label>
+                <select class="form-control custom-select" id="billing_state" name="billingInfo[stateId]" data-ajax-refresh >
+                    {{ partial('shop-stateoptions', {'states': billingStates, 'selected': billingInfo.stateId}) }}
+                </select>
+                <span class="error"></span>
+            </div>
 
             <div class="form-group col-sm-12">
                 <label class="control-label" for="billing-phone">Phone Number (optional)</label>

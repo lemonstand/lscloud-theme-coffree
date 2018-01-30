@@ -21,7 +21,7 @@ url: /orders
         <a href="{{ url }}">
             <div class="row" id="subscription-row">
                 <div class="col-md-2">
-                    <p><span class="strong">Id:</span> {{ subscription.id }}</p>
+                    <p><span class="strong">Number:</span> {{ '%04d'|format(order.number) }}</p>
                 </div>
                 <div class="col-md-8">
                     <p><span class="strong">Started:</span> {{ subscription.created_at.format('M jS, Y') }}</p>

@@ -1,0 +1,3 @@
+{% for content in cmsContent('blog')|extended_sort('published_on', false) %}
+  {{ content.title }}
+{% endfor %}
