@@ -27,7 +27,6 @@ url: '/account/order/:orderId'
 
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Order #{{ '%04d'|format(order.number) }}</h4>                            
                             
                             {% for invoice in order.invoices %}
 

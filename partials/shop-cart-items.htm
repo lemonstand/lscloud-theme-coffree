@@ -12,6 +12,7 @@
             </tr>
         </thead>
 
+
         <tbody>
             {% for item in items %}
                 <tr>
@@ -21,7 +22,7 @@
                                 <img src="{{ item.product.images.first.thumbnail(80, 80) }}" alt="{{ item.product.name }}">
                             </a>
                             <div class="cart-item-info">
-                                <h4 class="cart-item-title"><a href="{{ product_url }}">{{ item.product.name }}</a></h4>
+                                <h4 class="cart-item-title"><a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a></h4>
 
                                 {% if not item.options is empty %}
                                     <ul class="cart-item-options">
@@ -39,6 +40,7 @@
                                 {% endif %}
 
                                 {% if cart_billing_plan and (item.product.subscriptionPlans.count > 0) %}
+                                
                                     <div style="margin-top: 10px;">
                                         <span class="custom-dropdown option-dropdown" style="width: 100%">
                                             <select class="form-control custom-select" id="billing_plan" name="item_subscription_plan[{{ item.key }}]" 
@@ -50,6 +52,8 @@
                                             </select>
                                         </span>
                                     </div>
+
+
                                     {% else %}
 
                                     {% endif %}
@@ -66,6 +70,9 @@
                                     {% set discount = billingPlan.first_order_discount %}
                                     <p class="small">* The first order will be discounted by {{ discount matches '/%$/' ? discount : discount|currency }}.</p>
                                 {% endif %}
+
+																	
+
                             </div>
                         </div>
                     </td>

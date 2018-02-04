@@ -33,9 +33,10 @@ url: '/account/orders'
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Order #</th>
+                                                <th>Product</th>
                                                 <th>Date</th>
                                                 <th>Status</th>
+                                                <th>Started</th>
                                                 <th class="text-right">Order Total</th>
                                                 <th class="text-right">&nbsp;</th>
                                             </tr>
@@ -48,6 +49,7 @@ url: '/account/orders'
                                                     <td><a href="{{ site_url('/account/order/' ~ order.id) }}">{{ '%04d'|format(order.number) }}</a></td>
                                                     <td>{{ order.created_at.format('M jS, Y') }}</td>
                                                     <td>{{ order.orderStatus.name }}</td>
+                                                    <td>Created at: {{ subscription.created_at.format('M jS, Y') }}</td>
                                                     <!-- <td>{{ order.status.name }}</td> -->
                                                     <td class="text-right">{{ order.total|currency }}</td>
                                                     <td class="text-right"><a href="{{ site_url('/account/order/' ~ order.id) }}">View</a></td>

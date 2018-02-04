@@ -16217,6 +16217,7 @@ a.link-muted:hover {
       -ms-flex-pack: center;
           justify-content: center;
   width: 7.5rem;
+  float: right;
 }
 
 .product-quantity .form-control {

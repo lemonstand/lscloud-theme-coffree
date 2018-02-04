@@ -27,3 +27,7 @@ url: /
 {% if theme.enableCallout %}
 	{{ partial('callout') }}
 {% endif %}
+
+{% if theme.enableFeaturedBlogPosts %}
+	{{ partial('home-featured-blog') }}
+{% endif %}

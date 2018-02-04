@@ -13,6 +13,7 @@ customFields:
     socialTwitterUrl: { type: text, title: 'Social: Twitter URL', default: '' }
     storeCopyright: { type: text, title: 'Store: Copyright', default: '&copy; %current_year% %store_title%' }
     logo: { type: image, title: 'Store: Logo (Default)', default: '@/images/logo-default.png' }
+    defaultBanner: { type: image, title: 'Banner Image: Default', default: '@/images/coming-soon-default.jpg' }
     logoLight: { type: image, title: 'Store: Logo (White)', default: '@/images/logo-white-default.png' }
     comingSoonBackgroundImage: { type: image, title: 'Coming Soon: Background Image', default: '@/images/coming-soon-default.jpg' }
     enableSearch: { type: checkbox, title: 'Store: Enable Search', default: '1' }

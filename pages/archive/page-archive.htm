@@ -24,7 +24,11 @@ url: /archive/:type/:page?
 
 <div id="content" class="block block-gray">
     <div class="block-content">    
-        <div class="container">                        
+        <div class="container"> 
+
+       <div class="col-lg-6 my-5">
+        <h6>Categories:</h6> {{ partial('blog-categories') }}                   
+       </div>    
 
             {% paginate archives by 6 %}
                     
