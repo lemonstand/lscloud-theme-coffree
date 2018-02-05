@@ -18,6 +18,9 @@
                 <thead>                
                     <th>Shipping Method</th>
                     <th>Quote</th>
+                    {% if option.deliveryDate  %}
+                    	<th>Date</th>
+                    {% endif %}
                     <th>&nbsp;</th>
                 </thead>
                 <tbody>
@@ -27,7 +30,8 @@
                             <td>
                                 <label for="shipping-method-{{ index }}">
                                     {{ option.shippingMethodName }}
-                                    {% if option.shippingServiceName %}({{ option.shippingServiceName }}){% endif %}
+                                    	{% if option.shippingServiceName %}({{ option.shippingServiceName }})
+                                    {% endif %}
                                 </label>                            
                                 {% if option.error_hint %}
                                     <span class="choice-description error-hint">{{ option.error_hint }}</span>
@@ -38,6 +42,11 @@
                                     {{ not option.is_free ? option.quote|currency : 'free' }}
                                 {% endif %}
                             </td>
+                            {% if option.deliveryDate  %}
+	                            <td>
+	                            	{{ option.deliveryDate }}
+	                            </td>
+                            {% endif %}
                             <td class="text-right">
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input id="shipping-method-{{ index }}" 

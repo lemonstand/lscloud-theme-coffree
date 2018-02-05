@@ -34,10 +34,11 @@ url: '/account/orders'
                                         <thead>
                                             <tr>
                                                 <th>Product</th>
-                                                <th>Date</th>
+                                                <th>Recieved</th>
                                                 <th>Status</th>
-                                                <th>Started</th>
+                                                <th>Updated</th>
                                                 <th class="text-right">Order Total</th>
+                                                <th class="text-right">&nbsp;</th>
                                                 <th class="text-right">&nbsp;</th>
                                             </tr>
                                         </thead>
@@ -46,11 +47,10 @@ url: '/account/orders'
                                             {% for order in customer.orders %}
                                                 
                                                 <tr>
-                                                    <td><a href="{{ site_url('/account/order/' ~ order.id) }}">{{ '%04d'|format(order.number) }}</a></td>
+                                                    <td><a href="{{ site_url('/account/order/' ~ order.id) }}">{% for item in order.orderItems %}   {{ item.name }}{% endfor %}</a></td>
                                                     <td>{{ order.created_at.format('M jS, Y') }}</td>
                                                     <td>{{ order.orderStatus.name }}</td>
-                                                    <td>Created at: {{ subscription.created_at.format('M jS, Y') }}</td>
-                                                    <!-- <td>{{ order.status.name }}</td> -->
+                                                    <td>{{ order.status_updated_at }}</td>
                                                     <td class="text-right">{{ order.total|currency }}</td>
                                                     <td class="text-right"><a href="{{ site_url('/account/order/' ~ order.id) }}">View</a></td>
                                                 </tr>
