@@ -15540,7 +15540,9 @@ a.link-muted:hover {
 }
 
 #header .navbar .navbar-brand .navbar-logo {
-  height: 3.75rem;
+  height: 2rem;
+  position: relative;
+  top: -4px;
 }
 
 #header .navbar .navbar-brand .navbar-logo.navbar-logo-light {
@@ -16244,7 +16246,7 @@ a.link-muted:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .product-actions .btn-primary {

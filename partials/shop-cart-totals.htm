@@ -8,6 +8,7 @@
 
             </div> 
         </div>
+        
         <div class="col-md-4 align-self-center">
         		{% if cart.getTotal() > 0 %}
         		    {% set itemTotalNoTax = cart.getTotal() - cart.getTotalTax() %}
@@ -25,11 +26,19 @@
             		        {% endif %}    
             		    {% endfor %}
             		{% endif %}
+
+
             	  {% if totals.totalTax > 0 %}
           		   	  <div class="cart-total text-center text-md-right">
           		   	 		<strong>Sales Tax:</strong> {{ cart.getTotalTax|currency }}
           		      </div>
             		{% endif %}
+
+            		<div><strong>Next Renewal Date:</strong>
+            				{{ currentSubscription.nextRenewalDate()|date("M jS") }}
+            		</div>
+            		
+
             		{% if totals.discountTotal > 0 %}
             			 <div class="cart-total text-center text-md-right">
             		     <strong>Discount applied:</strong> -{{ totals.discountTotal|currency }}
