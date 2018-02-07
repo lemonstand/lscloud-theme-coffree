@@ -18,9 +18,9 @@ customFields:
     comingSoonBackgroundImage: { type: image, title: 'Coming Soon: Background Image', default: '@/images/coming-soon-default.jpg' }
     enableSearch: { type: checkbox, title: 'Store: Enable Search', default: '1' }
     enableMinicart: { type: checkbox, title: 'Store: Enable Minicart', default: '1' }
-    featuredQuoteContent: { type: text, title: 'Home: Featured Quote Content', default: '' }
-    featuredQuoteAuthor: { type: text, title: 'Home: Featured Quote Author', default: '' }
-    featuredQuoteAuthorTitle: { type: text, title: 'Home: Featured Quote Author Title', default: '' }
+    featuredQuoteContent: { type: text, title: 'Home: Featured Quote Content', default: 'Great coffee brews and even better customer service! Love being able to try a variety of flavors every month.' }
+    featuredQuoteAuthor: { type: text, title: 'Home: Featured Quote Author', default: 'Danny Halarewitch' }
+    featuredQuoteAuthorTitle: { type: text, title: 'Home: Featured Quote Author Title', default: 'LemonStand' }
     stickyHeader: { type: checkbox, title: 'Header: Enable Sticky', default: '1' }
     transparentHeader: { type: checkbox, title: 'Header: Transparent', default: '1' }
     enableReviews: { type: checkbox, title: 'Store: Enable Reviews', default: '1' }
@@ -61,8 +61,8 @@ customFields:
     imagePostHeader: { type: image, title: 'Post: Header Image', default: '' }
     imageAccountHeader: { type: image, title: 'Account: Header Image', default: '' }
     imageHomeBanner: { type: image, title: 'Home: Banner Image', default: '' }
-    textHomeBannerHeading: { type: text, title: 'Home: Banner Heading', default: '' }
-    textHomeBannerContent: { type: text, title: 'Home: Banner Content', default: '' }
+    textHomeBannerHeading: { type: text, title: 'Home: Banner Heading', default: 'THE BEST COFFEE BLENDS DELIVERED MONTHLY' }
+    textHomeBannerContent: { type: text, title: 'Home: Banner Content', default: 'Fresh and better tasting coffee roasted and personalized for you. Order today to get 30% off your first month.' }
     latestBlogPosts: { type: checkbox, title: 'Home: Latest Blog Posts', default: '0' }
     image404Header: { type: image, title: 'Error 404: Header Image', default: '' }
     imageAbout1: { type: image, title: 'About: Image #1', default: '@/images/about-1.jpg' }

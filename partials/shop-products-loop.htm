@@ -1,32 +1,22 @@
-<div class="mb-lg-4">
-	<!-- A script to pick up the change event on the drop-down list below and redirect to the option selected's value. -->
-<!-- 	<script type="text/javascript">
-	            $(document).on('change', 'select[data-sort-redirect]', function(){
-	                path = window.location.pathname + '?' + $(this).val(),
-	                baseUrl = window.location.protocol + '//' + window.location.host;
-	                window.location = baseUrl + path;
-	            });
-	</script> -->
-	<!-- A drop-down list with hard-coded values.  -->
-	<h6>Sort By:</h6>
-	<select data-sort-redirect>
-	          <option id="1" value="orderBy=base_price&order=asc"{% if sortField == 'base_price' and sortOrder == 'asc'  %} selected="selected"{% endif %}>Price - Ascending</option>
-	          <option id="2" value="orderBy=base_price&order=desc"{% if sortField == 'base_price' and sortOrder == 'desc'  %} selected="selected"{% endif %}>Price - Descending</option>
-	          <option id="3" value="orderBy=name&order=asc"{% if sortField == 'name' and sortOrder == 'asc'  %} selected="selected"{% endif %}>Name - Ascending</option>
-	          <option id="4" value="orderBy=name&order=desc"{% if sortField == 'name' and sortOrder == 'desc'  %} selected="selected"{% endif %}>Name - Descending</option>
-	          <option id="5" value="orderBy=sku&order=asc"{% if sortField == 'sku' and sortOrder == 'asc'  %} selected="selected"{% endif %}>SKU - Ascending</option>
-	          <option id="6" value="orderBy=sku&order=desc"{% if sortField == 'sku' and sortOrder == 'desc'  %} selected="selected"{% endif %}>SKU - Descending</option>
-	          <option id="7" value="orderBy=created_at&order=asc"{% if sortField == 'created_at' and sortOrder == 'asc'  %} selected="selected"{% endif %}>Date Created - Ascending</option>
-	          <option id="8" value="orderBy=base_price&order=desc"{% if sortField == 'created_at' and sortOrder == 'desc'  %} selected="selected"{% endif %}>Date Created - Descending</option>
-	</select>
-</div>
-
-
 {% if enable_pagination %}
 
     {% set shop_items = 9 %}
 
     {% paginate products by shop_items %}
+
+    	<div class="mb-lg-5">
+    		<h6>Sort By:</h6>
+    		<select data-sort-redirect>
+    		          <option id="1" value="orderBy=base_price&order=asc"{% if sortField == 'base_price' and sortOrder == 'asc'  %} selected="selected"{% endif %}>Price - Ascending</option>
+    		          <option id="2" value="orderBy=base_price&order=desc"{% if sortField == 'base_price' and sortOrder == 'desc'  %} selected="selected"{% endif %}>Price - Descending</option>
+    		          <option id="3" value="orderBy=name&order=asc"{% if sortField == 'name' and sortOrder == 'asc'  %} selected="selected"{% endif %}>Name - Ascending</option>
+    		          <option id="4" value="orderBy=name&order=desc"{% if sortField == 'name' and sortOrder == 'desc'  %} selected="selected"{% endif %}>Name - Descending</option>
+    		          <option id="5" value="orderBy=sku&order=asc"{% if sortField == 'sku' and sortOrder == 'asc'  %} selected="selected"{% endif %}>SKU - Ascending</option>
+    		          <option id="6" value="orderBy=sku&order=desc"{% if sortField == 'sku' and sortOrder == 'desc'  %} selected="selected"{% endif %}>SKU - Descending</option>
+    		          <option id="7" value="orderBy=created_at&order=asc"{% if sortField == 'created_at' and sortOrder == 'asc'  %} selected="selected"{% endif %}>Date Created - Ascending</option>
+    		          <option id="8" value="orderBy=base_price&order=desc"{% if sortField == 'created_at' and sortOrder == 'desc'  %} selected="selected"{% endif %}>Date Created - Descending</option>
+    		</select>
+    	</div>
 
         <div class="row">
             
