@@ -34,15 +34,11 @@ url: '/account/subscriptions'
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <!-- <th>Subscription</th> -->
                                                 <th>Started</th>
                                                 <th>Product</th>
                                                 <!-- <th>Quantity</th> -->
                                                 <th>Billing Plan</th>
-                                                <!-- <th>Name</th> -->
-                                                <th>Status</th>
-                                                <th>Next Renewal Date</th>
-                                                <th>Next Renewal Amount</th>
+                                                <th>Next Renewal</th>
                                                 <th class="text-right">&nbsp;</th>
                                             </tr>
                                         </thead>
@@ -53,12 +49,16 @@ url: '/account/subscriptions'
                                                 <tr>
                                                     <td>{{ subscription.created_at.format("m/d/Y") }}</td>
                                                     <td><a href="{{ site_url('/account/subscription/' ~ subscription.id) }}">{% for subscriptionProduct in subscription.products %}{{ subscriptionProduct.product.name }}{% endfor %}</a></td>
-                                                    <!-- <td>{{ subscriptionProduct.quantity }}</td> -->
-                                                    <td>{{ subscription.billing_plan.name }}</td>
-                                                    <td>{{ subscription.status.name }}</td>
-                                                    <td>{{ subscription.nextRenewalDate() }}</td>
-                                                    <!-- <td>{{ subscription.status.name }}</td> -->
-                                                    <td>{{ subscription.nextRenewalAmount() }}</td>
+                                                   <!--  <td>
+                                                    	{% if subscription.x_billing_plan_id %}
+                                                    	  {{ subscription.x_billing_plan_id|length }}
+                                                    	{% endif %}
+                                                    </td> -->
+                                                    <td>
+                                                    	{{ subscription.billing_plan.name }}
+                                                    	<div class="active">{{ subscription.status.name }}</div>
+                                                    </td>
+                                                    <td><strong>{{ subscription.nextRenewalDate() }}</strong><div class="total">{{ subscription.nextRenewalAmount() }}</div></td>
                                                     <td class="text-right"><a href="{{ site_url('/account/subscription/' ~ subscription.id) }}">View</a></td>
                                                 </tr>
                                               </a>

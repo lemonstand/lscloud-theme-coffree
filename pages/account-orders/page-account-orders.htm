@@ -33,13 +33,14 @@ url: '/account/orders'
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Product</th>
                                                 <th>Recieved</th>
+                                                <th>Product</th>
+                                                <th>Quantity</th>
                                                 <th>Status</th>
-                                                <th>Updated</th>
+                                                <!-- <th>Updated</th> -->
                                                 <th class="text-right">Order Total</th>
                                                 <th class="text-right">&nbsp;</th>
-                                                <th class="text-right">&nbsp;</th>
+                                                <!-- <th class="text-right">&nbsp;</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -47,11 +48,15 @@ url: '/account/orders'
                                             {% for order in customer.orders %}
                                                 
                                                 <tr>
-                                                    <td><a href="{{ site_url('/account/order/' ~ order.id) }}">{% for item in order.orderItems %}   {{ item.name }}{% endfor %}</a></td>
                                                     <td>{{ order.created_at.format("m/d/Y") }}</td>
-                                                    <td>{{ order.orderStatus.name }}</td>
-                                                    <td>{{ order.status_updated_at|date("m/d/Y") }}</td>
-                                                    <td class="text-right">{{ order.total|currency }}</td>
+                                                    <td><a href="{{ site_url('/account/order/' ~ order.id) }}">{% for item in order.orderItems %}   {{ item.name }}{% endfor %}</a></td>
+                                                    <td>{{ order.item.quantity }}</td>
+                                                    <!-- <td>{{ order.orderStatus.name }}</td> -->
+                                                    <td>
+                                                    	<!-- Updated: {{ order.status_updated_at|date("m/d/Y") }} -->
+                                                    	<div class="active">{{ order.orderStatus.name }}</div>
+                                                    </td>
+                                                    <td class="text-right total">{{ order.total|currency }}</td>
                                                     <td class="text-right"><a href="{{ site_url('/account/order/' ~ order.id) }}">View</a></td>
                                                 </tr>
 

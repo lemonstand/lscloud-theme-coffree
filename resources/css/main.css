@@ -16246,7 +16246,7 @@ a.link-muted:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0;
 }
 
 .product-actions .btn-primary {
@@ -16353,3 +16353,14 @@ a.link-muted:hover {
 	width: 1.3rem;
 }
 
+.table-responsive .active {
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 12px;
+	color: #28a745;
+}
+
+.table-responsive .total {
+	font-size: 14px;
+	color: #494c50;
+}

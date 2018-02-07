@@ -15,7 +15,7 @@
 
     </div>
 
-    <ul class="product-attributes list-unstyled mb-4">
+<!--     <ul class="product-attributes list-unstyled mb-4">
 
         {% for attribute in product.productAttributes %}
 
@@ -43,22 +43,30 @@
 
         {% if theme.enableDimensions %}
         		<h6>Product Dimensions</h6>
-						<ul class="list-unstyled mb-4">
-	    	    	<li><strong>Height:</strong> {{ product.height }}</li>
-	    	    	<li><strong>Width:</strong> {{ product.width }}</li>
-	    	    	<li><strong>Depth:</strong> {{ product.depth }}</li>
-	    	    	<li><strong>Weight:</strong> {{ product.weight }}</li>
-						</ul>
-        {% endif %}
+						<table class="mb-4">
+							<tr>
+								<th class="pr-3">Height:</th>
+								<th class="pr-3">Width:</th>
+								<th class="pr-3">Depth:</th>
+								<th class="pr-3">Weight:</th>
+							</tr>
+							<tr>
+								<td>{{ product.height }}</td>
+								<td>{{ product.width }}</td>
+								<td>{{ product.depth }}</td>
+								<td>{{ product.weight }}</td>
+							</tr>
+						</table>
+        {% endif %} -->
 
-    {% if product.priceTiers.count %}
+    <!-- {% if product.priceTiers.count %}
         <div class="">
           <h6>Bulk Pricing</h6>
             <div>
               {{ partial('shop-product-bulk-pricing')}}
             </div>
         </div>
-    {% endif %}
+    {% endif %} -->
 
     {% if 0 != product.extras|length %}
         {{ partial('shop-product-extras')}}
@@ -66,7 +74,7 @@
 
     {% if product.options.count %}
 
-        <div class="product-options mb-4">
+        <div class="product-options">
             <div class="row">
 
                 {% for index, option in product.options %}

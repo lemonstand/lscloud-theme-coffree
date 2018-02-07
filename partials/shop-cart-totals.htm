@@ -8,7 +8,7 @@
 
             </div> 
         </div>
-        
+
         <div class="col-md-4 align-self-center">
         		{% if cart.getTotal() > 0 %}
         		    {% set itemTotalNoTax = cart.getTotal() - cart.getTotalTax() %}
@@ -35,7 +35,9 @@
             		{% endif %}
 
             		<div><strong>Next Renewal Date:</strong>
-            				{{ currentSubscription.nextRenewalDate()|date("M jS") }}
+            			{% for subscription in subscriptions %}
+            				{{ subscription.nextRenewalDate() }}
+            			{% endfor %}
             		</div>
             		
 
