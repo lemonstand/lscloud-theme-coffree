@@ -6,8 +6,13 @@ name: 'Home'
 url: /
 ---
 
+<style>
+	.block-banner {
+		background-image: url('{{ theme.imageHomeBanner.thumbnail('auto', 'auto') }}') no-repeat;
+	}
+</style>
+
 {{ partial('banner', {
-    'background': theme.imageHomeBanner,
     'heading':    theme.textHomeBannerHeading,
     'content':    theme.textHomeBannerContent
 }) }}

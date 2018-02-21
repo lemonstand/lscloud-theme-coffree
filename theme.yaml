@@ -49,7 +49,10 @@ customFields:
     blogEnableAuthor: { type: checkbox, title: 'Blog: Enable Author', default: '1' }
     enableProductOverlay: { type: checkbox, title: 'Store: Enable Product Overlay', default: '1' }
     faviconImage: { type: image, title: 'Store: Favicon Image', default: '@/images/favicon.png' }
-    enableProductShortDescription: { type: checkbox, title: 'Shop: Enable Short Descriptions', default: '1' }
+    # enableProductShortDescription: { type: checkbox, title: 'Shop: Enable Short Descriptions', default: '1' }
+    # enableLongDescAboveFold: { type: checkbox, title: 'Shop: Enable Long Description Under Price', default: '0' }
+    # enableDescriptionTab: { type: checkbox, title: 'Shop: Enable Description Tab', default: '1' }
+    descriptionsDropdown: { type: dropdown, title: 'Product Description', default: first, options: { first: 'Enable Short Description and Long Description Tab', second: 'Enable Long Description and Disable Short Description and Description Tab' } }
     enableQuantity: { type: checkbox, title: 'Shop: Enable ProductQuantity', default: '1' }
     enableInverseFooter: { type: checkbox, title: 'Footer: Dark Theme', default: '0' }
     allowOptionChanges: { type: checkbox, title: 'Subscriptions: Allow Option Changes', default: '1' }
@@ -99,4 +102,5 @@ customFields:
     bannerAlignLeft: { type: checkbox, title: 'Home Banner Text: Align Left', default: '0' }
     addToCart: { type: text, title: 'Add To Cart Text', default: 'Add To Cart' }
     homeBannerButtonText: { type: text, title: 'Home Banner Button Text', default: 'Get Started' }
+
 ---

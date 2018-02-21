@@ -24171,3 +24171,13 @@ $(document).ready(function () {
         });
     });
 });
+
+/* fix pagination when there are a lot of products */
+
+$( document ).ready(function() {
+    var $item = $('.pagination .page-item');
+    if ($item.length > 10) {
+        $item.slice(+3, -4).hide();
+        $(".pagination .page-item:nth-child(3)").after("<p>...</p>");
+    }
+});

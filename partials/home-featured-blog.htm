@@ -3,34 +3,36 @@
 		<div class="block-header text-center">
 			<h2>Recent Blog Posts</h2>
 		</div>
-	{% for content in cmsContent('blog')|extended_sort('published_on', false) %}
-			<div class="row">
+		<div class="row">
+
+			{% for content in cmsContent('blog')|extended_sort('published_on', false) %}
 				<div class="col-lg-6">
 			    <article class="card article-card" data-match-group="archive-cards">
 			        
 
-			        {% if post.featured_image %}
-			            <a class="article-image" href="{{ post.permalink }}">
-			                <img class="card-img-top" src="{{ post.featured_image.thumbnail('auto', 'auto') }}" alt="{{ post.title }}">
+			        {#{% if post.featured_image.thumbnail %}#}
+			            <a class="article-image" href="{{ permalink }}">
+			                <img class="card-img-top" src="{{ featured_image.thumbnail('auto', 'auto')|default('http://placehold.it/200x220') }}" alt="{{ content.title }}">
 			            </a>
-			        {% endif %}  
+			        {#{% endif %} #}
+
 
 
 			        <div class="card-body">                                                                        
-			        		<h6><a href="{{ permalink }}">{{ content.title }}</a></h6>          
+			        		<h6><a href="{{ content.permalink }}">{{ content.title }}</a></h6>          
 			            
 			            {{ partial('post-meta', { layout: 'vertical', post: post }) }}
 			            
-			            <h4><a href="{{ post.permalink }}">{{ post.title }}</a></h4>
-			            <p>{{ post.excerpt | unescape }}</p>                                    
+			            <h4><a href="{{ content.permalink }}">{{ post.title }}</a></h4>
+			            <p>{{ content.excerpt | unescape }}</p>                                    
 			            
-			            <a class="font-weight-bold text-uppercase" href="{{ post.permalink }}">Read More</a>
+			            <a class="font-weight-bold text-uppercase" href="{{ content.permalink }}">Read More</a>
 
 			        </div>
 			    </article>
 					
 				</div>
-			</div>
-	{% endfor %}
+			{% endfor %}
+		</div>
 	</div>
 </div>

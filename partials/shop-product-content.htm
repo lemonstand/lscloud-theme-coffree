@@ -9,64 +9,16 @@
     </header>
 
     <div class="product-description mb-4">
+
+    	{% if theme.descriptionsDropdown[0] %}
+    	1111
+
+    	{% endif %}
         
             
             <p class="small">{{ product.short_description }}</p>
 
     </div>
-
-<!--     <ul class="product-attributes list-unstyled mb-4">
-
-        {% for attribute in product.productAttributes %}
-
-            <li><strong>{{ attribute.name }}:</strong> {{ attribute.value }}</li>
-
-        {% endfor %}
-
-        {% if product.sku %}
-            
-            <li><strong>SKU:</strong> {{ product.sku }}</li>
-
-        {% endif %}
-			
-
-        {% if theme.enableManufacturers and product.manufacturer %}
-
-            <li>
-                <strong>Manufacturer:</strong>
-                <a href="{{ site_url('/manufacturer/' ~ product.manufacturer.url_name) }}">{{ product.manufacturer.name }}</a>
-            </li>
-        
-        {% endif %}
-
-    </ul>
-
-        {% if theme.enableDimensions %}
-        		<h6>Product Dimensions</h6>
-						<table class="mb-4">
-							<tr>
-								<th class="pr-3">Height:</th>
-								<th class="pr-3">Width:</th>
-								<th class="pr-3">Depth:</th>
-								<th class="pr-3">Weight:</th>
-							</tr>
-							<tr>
-								<td>{{ product.height }}</td>
-								<td>{{ product.width }}</td>
-								<td>{{ product.depth }}</td>
-								<td>{{ product.weight }}</td>
-							</tr>
-						</table>
-        {% endif %} -->
-
-    <!-- {% if product.priceTiers.count %}
-        <div class="">
-          <h6>Bulk Pricing</h6>
-            <div>
-              {{ partial('shop-product-bulk-pricing')}}
-            </div>
-        </div>
-    {% endif %} -->
 
     {% if 0 != product.extras|length %}
         {{ partial('shop-product-extras')}}

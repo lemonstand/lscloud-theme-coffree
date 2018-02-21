@@ -6,14 +6,6 @@ published: true
 name: 'Payment Method'
 url: /account/payment-method
 ---
----
-action: 'shop:customerProfile'
-template: master
-protocol: all
-published: true
-name: Profile
-url: '/account/payment-method
----
 
 {{ partial('page-header', {
     'background': theme.imageOrdersHeader,
@@ -35,7 +27,7 @@ url: '/account/payment-method
 
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Update Subscription Card</h4>
+                            <h4 class="card-title">Update Credit Card</h4>
                             
                             <div id="subscription-card-editor" class="col-md-6 row mt-md-2">
                                 {% if card %}

@@ -33,66 +33,67 @@
 
     <div class="tab-pane" id="product-details" role="tabpanel" aria-labelledby="product-details-tab">
 
+					<div class="row">
+	        	<div class="col-lg-4 col-md-12">
+	            <ul class="product-attributes list-unstyled mb-4">
 
-        	<div class="col-lg-6">
-            <ul class="product-attributes list-unstyled mb-4">
-
-                <h6>Product Attributes</h6>
-                {% for attribute in product.productAttributes %}
+	                <h6>Product Attributes</h6>
+	                {% for attribute in product.productAttributes %}
 
 
-                    <li><strong>{{ attribute.name }}:</strong> {{ attribute.value }}</li>
+	                    <li><strong>{{ attribute.name }}:</strong> {{ attribute.value }}</li>
 
-                {% endfor %}
+	                {% endfor %}
 
-                {% if product.sku %}
-                    
-                    <li><strong>SKU:</strong> {{ product.sku }}</li>
+	                {% if product.sku %}
+	                    
+	                    <li><strong>SKU:</strong> {{ product.sku }}</li>
 
-                {% endif %}
-        			
+	                {% endif %}
+	        			
 
-                {% if theme.enableManufacturers and product.manufacturer %}
+	                {% if theme.enableManufacturers and product.manufacturer %}
 
-                    <li>
-                        <strong>Manufacturer:</strong>
-                        <a href="{{ site_url('/manufacturer/' ~ product.manufacturer.url_name) }}">{{ product.manufacturer.name }}</a>
-                    </li>
-                
-                {% endif %}
+	                    <li>
+	                        <strong>Manufacturer:</strong>
+	                        <a href="{{ site_url('/manufacturer/' ~ product.manufacturer.url_name) }}">{{ product.manufacturer.name }}</a>
+	                    </li>
+	                
+	                {% endif %}
 
-            </ul>
-        	</div>
-        	<div class="col-lg-6">
-		        {% if theme.enableDimensions %}
+	            </ul>
+	        	</div>
+	        	<div class="col-lg-4 col-md-12">
+			        {% if theme.enableDimensions %}
 
-		        		<h6>Product Dimensions</h6>
-								<table class="mb-4">
-									<tr>
-										<th class="pr-3">Height:</th>
-										<th class="pr-3">Width:</th>
-										<th class="pr-3">Depth:</th>
-										<th class="pr-3">Weight:</th>
-									</tr>
-									<tr>
-										<td>{{ product.height }}</td>
-										<td>{{ product.width }}</td>
-										<td>{{ product.depth }}</td>
-										<td>{{ product.weight }}</td>
-									</tr>
-								</table>
-		        {% endif %}
-        	</div>
-        	<div class="col-lg-6">
-        		{% if product.priceTiers.count %}
-        		    <div class="">
-        		      <h6>Bulk Pricing</h6>
-        		        <div>
-        		          {{ partial('shop-product-bulk-pricing')}}
-        		        </div>
-        		    </div>
-        		{% endif %}
-        	</div>
+			        		<h6>Product Dimensions</h6>
+									<table class="mb-4">
+										<tr>
+											<th class="pr-3">Height:</th>
+											<th class="pr-3">Width:</th>
+											<th class="pr-3">Depth:</th>
+											<th class="pr-3">Weight:</th>
+										</tr>
+										<tr>
+											<td>{{ product.height }}</td>
+											<td>{{ product.width }}</td>
+											<td>{{ product.depth }}</td>
+											<td>{{ product.weight }}</td>
+										</tr>
+									</table>
+			        {% endif %}
+	        	</div>
+	        	<div class="col-lg-4 col-md-12">
+	        		{% if product.priceTiers.count %}
+	        		    <div class="">
+	        		      <h6>Bulk Pricing</h6>
+	        		        <div>
+	        		          {{ partial('shop-product-bulk-pricing')}}
+	        		        </div>
+	        		    </div>
+	        		{% endif %}
+	        	</div>
+					</div>
 
     </div>
 

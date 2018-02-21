@@ -4247,6 +4247,16 @@ tbody.collapse.show {
   display: block;
 }
 
+.tab-content h6 {
+	color: #494c50;
+	padding-bottom: .5rem;
+}
+
+.tab-content th,
+.tab-content strong {
+
+}
+
 .navbar {
   position: relative;
   display: -webkit-box;
@@ -4916,6 +4926,12 @@ tbody.collapse.show {
   margin-bottom: 15px;
 }
 
+#profile-addresses .sidebar-card {
+	border-right: 2px solid #e5e5e5;
+	margin-right: 40px;
+	padding-right: 40px;
+}
+
 @media (min-width: 576px) {
   .card-deck {
     -webkit-box-orient: horizontal;
@@ -5174,6 +5190,19 @@ tbody.collapse.show {
 .pagination-sm .page-item:last-child .page-link {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.pagination p {
+	position: relative;
+	display: block;
+	padding: 0.5rem 0.75rem;
+	margin-left: -2px;
+	line-height: 1.25;
+	color: #494c50;
+	background-color: #ffffff;
+	border: 2px solid #e0e0e0;
+	margin-bottom: 0;
+	font-size: 16px;
 }
 
 .badge {
@@ -16316,7 +16345,7 @@ a.link-muted:hover {
 .table tbody td {
   padding-bottom: 1.5rem;
   padding-top: 1.5rem;
-  vertical-align: middle;
+  vertical-align: top;
 }
 
 #topbar {
@@ -16353,14 +16382,96 @@ a.link-muted:hover {
 	width: 1.3rem;
 }
 
-.table-responsive .active {
+.table-responsive .active,
+.table-responsive .paused,
+.table-responsive .cancelled {
 	text-transform: uppercase;
 	font-weight: bold;
 	font-size: 12px;
 	color: #28a745;
 }
 
+.table-responsive .paused {
+	color: #494c50;
+}
+
+.table-responsive .cancelled {
+	color: #f81111;
+}
+
 .table-responsive .total {
 	font-size: 14px;
 	color: #494c50;
+}
+
+.subscription_pause p,
+.subscriiption_activate p,
+.subscription_cancel p {
+	display: none;
+}
+
+.subscription_pause,
+.subscription_activate {
+	padding: 0.375rem 0.75rem;
+	text-transform: uppercase;
+	margin: 0 10px 0 0;
+	display: inline;
+}
+
+.subscription_pause {
+	background: #cbcbcb;
+	color: #212121;
+	border: 1px solid #c9c7c7;
+}
+
+.subscription_pause:hover {
+	background: #c9c7c7;
+}
+
+.subscription_activate {
+	color: #fff;
+	background-color: #58c358;
+	border: 1px solid #53b853;
+}
+
+.subscription_activate:hover {
+	color: #fff;
+	background-color: #53b853;
+}
+
+.subscription_cancel {
+	color: #f81111;
+	text-transform: capitalize;
+	display: inline;
+	border: none;
+	font-size: 14px;
+}
+
+.subscription_cancel:hover,
+.subscription_cancel:focus {
+	color: #ce1111;
+	border: none;
+}
+
+.subscription_status_block {
+	margin-bottom: 40px;
+}
+
+.subscription_status_block h6 {
+	margin: 0px 0 30px 0;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.subscription_status_block.active h6 span {
+	color: #28a745;
+}
+
+.subscription_status_block.paused h6 span {
+	color: #494c50;
+}
+
+.subscription_status_block.cancelled h6 span {
+	color: #f81111;
 }
