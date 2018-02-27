@@ -249,10 +249,16 @@
 		{% endif %}
 
 		<style>
+
+		/* Some extra form styles */
+
+		/* Hide the card # border to make it look less editable (as it's not) */
 		.number.card-form-input.disabled {
 			border: 0;
 			padding-left: 0;
+			padding-top: .25em;
 		}
+		/* Hide the card # label as we'll just make the # bigger */
 		.card-form-row:first-of-type .card-form-label {
 			display: none;
 		}
