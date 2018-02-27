@@ -12,7 +12,7 @@
 
 			        {#{% if post.featured_image.thumbnail %}#}
 			            <a class="article-image" href="{{ permalink }}">
-			                <img class="card-img-top" src="{{ featured_image.thumbnail('auto', 'auto')|default('http://placehold.it/200x220') }}" alt="{{ content.title }}">
+			                <img class="card-img-top" src="{{ content.featured_image.thumbnail('auto', 'auto')|default('https://placehold.it/200x220') }}" alt="{{ content.title }}">
 			            </a>
 			        {#{% endif %} #}
 

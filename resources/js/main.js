@@ -24157,20 +24157,20 @@ $(document).on('change', 'select[data-sort-redirect]', function(){
 
 /* fix for 1px height owl carousel image on load */
 
-$(document).ready(function () {
-    $('.owl-stage').imagesLoaded(function () {
-        $('.owl-stage #owl-item active').owlCarousel({
-            items: 1,
-            nav: false,
-            pagination: false,
-            autoHeight: true,
-            loop: true,
-            lazyLoad: true,
-            animateOut: 'slideOutRight',
-            animateIn: 'pulse'
-        });
-    });
-});
+// $(window).on('load', function() {
+//     $('.owl-stage').imagesLoaded(function () {
+//         $('.owl-stage #owl-item active').owlCarousel({
+//             items: 1,
+//             nav: false,
+//             pagination: false,
+//             autoHeight: true,
+//             loop: true,
+//             lazyLoad: true,
+//             animateOut: 'slideOutRight',
+//             animateIn: 'pulse'
+//         });
+//     });
+// });
 
 /* fix pagination when there are a lot of products */
 

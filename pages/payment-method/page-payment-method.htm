@@ -31,39 +31,56 @@ url: /account/payment-method
                             
                             <div id="subscription-card-editor" class="col-md-6 row mt-md-2">
                                 {% if card %}
-                                  <!-- Render card details -->
-                                    {{ subscriptionCardForm('update',
-                                        {
-                                            card: card,
-                                            options: {
-                                                number: {
-                                                    placeholder: 'Card number',
-                                                    style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; line-height: 42px; width: 100%;"
-                                                },
-                                                cvv: {
-                                                    placeholder: 'CVV',
-                                                    style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; line-height: 42px; width: 100%;"
-                                                }
-                                            }
+                                  {{ customerCardForm('add', {
+                                      'options': {
+                                        'number': {
+                                          'label': 'Card Number',
+                                          'class': 'another-card-number-class',
+                                          'style':'font-family: arial;',
+                                          'placeholder': 'Card number',
                                         },
-                                    { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
+                                        'cvv': {
+                                          'label': 'CVV',
+                                          'placeholder': 'XXX',
+                                        },
+                                        'full_name': {
+                                          'label': 'Full Name',
+                                          'placeholder': 'Cardholder name',
+                                        },
+                                        'expiry': {
+                                          'placeholder': 'MM/YYYY',
+                                        }
+                                      },
+                                    },{
+                                      'data-ajax-update': '#content=partial-customer'
+                                    })
+                                  }}
                                 {% else %}
                                   <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
                                     <p>Add Payment Method</p>
-                                    {{ subscriptionCardForm('add',
-                                        {
-                                            options: {
-                                                number: {
-                                                    placeholder: 'Card number',
-                                                    style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; line-height: 42px; width: 100%;"
-                                                },
-                                                cvv: {
-                                                    placeholder: 'CVV',
-                                                    style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; line-height: 42px; width: 100%;"
-                                                }
-                                            }
+                                    {{ customerCardForm('update', {
+                                        'card': card ,
+                                        'options': {
+                                          'number': {
+                                            'label': 'Card Number',
+                                            'placeholder': 'Card number',
+                                          },
+                                          'cvv': {
+                                            'label': 'CVV',
+                                            'placeholder': 'XXX',
+                                          },
+                                          'full_name': {
+                                            'label': 'Full Name',
+                                            'placeholder': 'Cardholder name',
+                                          },
+                                          'expiry': {
+                                            'placeholder': 'MM/YYYY',
+                                          }
                                         },
-                                    { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
+                                      },{
+                                        'data-ajax-update': '#content=partial-customer'
+                                      })
+                                    }}
                                 {% endif %}
                             </div>
                         </div>

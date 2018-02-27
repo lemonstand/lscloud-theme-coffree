@@ -35,9 +35,17 @@
             		{% endif %}
 
             		<div><strong>Next Renewal Date:</strong>
-            			{% for subscription in subscriptions %}
-            				{{ subscription.nextRenewalDate() }}
-            			{% endfor %}
+            			{% if item.x_billing_plan_id %}
+    			            {% for plan in billingPlans %}
+    			              {% if item.x_billing_plan_id == plan.id %}
+    			                <p><em>{{ plan.schedule_type | capitalize }} subscription: <strong>{{ plan.name }} </strong></em></p>
+    			              {% endif %}
+    			            {% endfor %}
+    			          {% endif %}
+    			          
+    			          item: <pre>{{ item }}</pre>
+
+    			          {{ order }}order
             		</div>
             		
 
@@ -62,3 +70,6 @@
         <a class="btn btn-primary" href="{{ site_url('/checkout') }}">Checkout</a>                
     </div>    
 </div>
+
+
+

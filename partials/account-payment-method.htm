@@ -1,12 +1,3 @@
----
-action: 'shop:customerProfile'
-template: master
-protocol: all
-published: true
-name: Profile
-url: '/account/payment-method
----
-
 {{ partial('page-header', {
     'background': theme.imageOrdersHeader,
     'title': page.title
@@ -46,7 +37,8 @@ url: '/account/payment-method
                                                 }
                                             }
                                         },
-                                    { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
+                                        { 'data-ajax-redirect': root_url('/account/payment-method') })
+                                    }}
                                 {% else %}
                                   <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
                                     <p>Add Payment Method</p>
@@ -63,7 +55,8 @@ url: '/account/payment-method
                                                 }
                                             }
                                         },
-                                    { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
+                                        { 'data-ajax-redirect': root_url('/account/payment-method') })
+                                    }}
                                 {% endif %}
                             </div>
                         </div>

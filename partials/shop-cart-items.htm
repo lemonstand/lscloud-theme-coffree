@@ -59,17 +59,19 @@
                                     {% endif %}
                                 
                                 {% if item.is_trial_product %}
-                                    <p class="small">* This item is a trial product and is only included in the first order.</p>
+                                    <span class="small">* This item is a trial product and is only included in the first order.</span><br>
                                 {% endif %}
                                 
                                 {% if billingPlan.trial_period_enabled %}
-                                    <p class="small">* Trial Period lasts {{ billingPlans.find(cart_billing_plan).trial_period }} days.</p>                    
+                                    <span class="small">* Trial Period lasts {{ billingPlans.find(cart_billing_plan).trial_period }} days.</span>                    
                                 {% endif %}
 
                                 {% if item.x_billing_plan_id == billingPlan.id and billingPlan.first_order_discount_enabled %}
                                     {% set discount = billingPlan.first_order_discount %}
                                     <p class="small">* The first order will be discounted by {{ discount matches '/%$/' ? discount : discount|currency }}.</p>
                                 {% endif %}
+
+                                
 
 																	
 
