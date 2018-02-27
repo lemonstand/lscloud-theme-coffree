@@ -218,8 +218,9 @@
     	            card: card,
     	            options: {
     	                number: {
+							class: 'disabled',
     	                    placeholder: 'Card number',
-    	                    style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 16px; color: #555; line-height: 42px; width: 100%;"
+    	                    style: "font-family: Helvetica Neue, Courier New, Courier Monospace, monospace; letter-spacing: 1.5px; font-weight: bold; font-size: 32px; color: #555; line-height: 42px; width: 100%;"
     	                },
     	                cvv: {
     	                    placeholder: 'CVV',
@@ -245,6 +246,16 @@
     	            }
     	        },
     	    { 'data-ajax-redirect': root_url('/account/subscription/' ~ subscription.id) }) }}
-    	{% endif %}
+		{% endif %}
+
+		<style>
+		.number.card-form-input.disabled {
+			border: 0;
+			padding-left: 0;
+		}
+		.card-form-row:first-of-type .card-form-label {
+			display: none;
+		}
+		</style>
     </div>
 </div>
