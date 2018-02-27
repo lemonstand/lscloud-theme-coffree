@@ -27,16 +27,16 @@
     	        </tbody>
     	    </table>
     	</div>
-                    
+
         {% set has_options = false %}
-        
+
         {% for item in subscription.products %}
             <h4 class="mt-2">{{ item.product.name }}</h4>
 
             {% if theme.allowOptionChanges and 0 != item.product.options.count %}
 
                 {% set has_options = true %}
-                
+
                 {{ open_form({ 'class': 'subscription-product-form' }) }}
 
                     <input name="subscription_id" type="hidden" value="{{ subscription.id }}">
@@ -53,14 +53,14 @@
 
 
                                 <select id="option-{{ loop.index }}" class="form-control custom-select" name="options[{{ option.id }}]">
-                
-                                    {% for key, value in option.values %}                
-                                        <option value="{{ key }}" {{ option_state(item.options[option.id]['valueId'], key) }}>{{ value }}</option>                
+
+                                    {% for key, value in option.values %}
+                                        <option value="{{ key }}" {{ option_state(item.options[option.id]['valueId'], key) }}>{{ value }}</option>
                                     {% endfor %}
-                
+
                                 </select>
                             </div>
-                
+
                         {% endfor %}
 
                     </div>
@@ -73,18 +73,18 @@
         {% if has_options %}
             <button class="btn btn-primary btn-update-subscription" type="button">Update Options</button>
         {% endif %}
-      
+
 
     </div>
-</div>            
-                           
+</div>
+
 <div class="card mb-4">
     <div class="card-body">
-        
-        
+
+
         <div class="row">
             <div class="col-lg-7">
-								
+
 				{{ flash() }}
                 {{ open_form({
                     'class': 'custom',
@@ -97,13 +97,13 @@
                 	<label class="control-label" for="billing-plan">Update Subscription</label>
                     <input name="subscription_id" type="hidden" value="{{ subscription.id }}">
 
-                    
+
                 {{ close_form() }}
 
-	                
+
 	                {% if subscription.status.name in 'Active' %}
 	                	<div class="subscription_status_block active">
-	                    {% for status in subscriptionStatuses if (status.code == 'active') %} 
+	                    {% for status in subscriptionStatuses if (status.code == 'active') %}
 	                				<h6>Current Status: <span>{{ status.name }}</span></h6>
 	                        <a class="btn subscription_pause"
 	                        href="#"
@@ -126,7 +126,7 @@
 	                    {% endfor %}
 	                	</div>
 	                {% endif %}
-									
+
 
 	                {% if subscription.status.name in 'Paused' %}
                    	<div class="subscription_status_block paused">
@@ -174,7 +174,7 @@
 
 
             </div>
-                    
+
             <div class="col-lg-5">
 
                 {{ open_form({
@@ -183,7 +183,7 @@
                     'data-ajax-redirect': root_url('/account/subscription/' ~ subscription.id),
                     'data-validation-message' : ''
                 }) }}
-                        
+
                     <input name="subscription_id" type="hidden" value="{{ subscription.id }}">
 
                     <div class="form-group">
@@ -227,7 +227,7 @@
     	                }
     	            }
     	        },
-    	    { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
+    	    { 'data-ajax-redirect': root_url('/account/subscription/' ~ subscription.id) }) }}
     	{% else %}
     	  <!-- Example - Drop-In Twig Helper on Subscription Page - Add card form from subscriptions page. -->
     	    <p>Add Payment Method</p>
@@ -244,7 +244,7 @@
     	                }
     	            }
     	        },
-    	    { 'data-ajax-redirect': root_url('/subscription/' ~ subscription.id) }) }}
+    	    { 'data-ajax-redirect': root_url('/account/subscription/' ~ subscription.id) }) }}
     	{% endif %}
     </div>
 </div>
