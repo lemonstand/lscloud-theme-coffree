@@ -1,3 +1,4 @@
+package-lock.json
 # System files
 .DS_Store
 desktop.ini
@@ -5,5 +6,4 @@ Thumbs.db
 .sass-cache
 *.cfg
 node_modules
-package.json
 lemonsync.json
