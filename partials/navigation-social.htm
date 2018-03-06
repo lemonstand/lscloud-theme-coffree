@@ -8,7 +8,7 @@
 {% for social_link in social_links %}
     {% if not social_link.url is empty %}
         <a class="nav-item nav-link" 
-            href="{{ social_linkurl }}"
+            href="{{ social_link.url }}"
             target="_blank"
             title="{{ social_link.title }}">
             <span class="fa fa-{{ social_link.icon }}"></span>
