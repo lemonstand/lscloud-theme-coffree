@@ -1,8 +1,8 @@
 ---
-name: 'Coffree - Jenn'
-description: 'A theme made for subscription box businesses.'
-author: 'Dan Reed'
-website: 'https://itsdanreed.com'
+name: 'frescobox'
+description: 'A lovely theme made for subscription box businesses based on Coffree.'
+author: 'LemonStand'
+website: 'https://frescobox.lemonstand.com'
 engine: twig
 404: '404'
 customFields:
