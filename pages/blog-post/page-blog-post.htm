@@ -7,7 +7,7 @@ name: 'Blog Post'
 url: '/blog/:slug'
 ---
 {{ partial('page-header', {
-    'background': theme.imagePostHeader,
+    'background': theme.imageBlogHeader,
     'title': 'Blog'
 }) }}
 
@@ -47,5 +47,5 @@ url: '/blog/:slug'
 </div>
 
 {% if theme.enableBlogCallout %}
-    {{ partial('callout') }}
+	{{ partial('callout') }}
 {% endif %}

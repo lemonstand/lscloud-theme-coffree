@@ -8,6 +8,7 @@ url: /search
 ---
 
 {{ partial('page-header', {
+    'background': theme.imageShopHeader,
     'title': 'Search Results',
     'content': products.get().count() ~ ' results found for "' ~ query ~ '"'
 }) }}

@@ -6,13 +6,14 @@ name: 'Home'
 url: /
 ---
 
-<style>
+<!-- <style>
 	.block-banner {
 		background-image: url('{{ theme.imageHomeBanner.thumbnail('auto', 'auto') }}') no-repeat;
 	}
-</style>
+</style> -->
 
 {{ partial('banner', {
+	'background': theme.imageHomeBanner,
     'heading':    theme.textHomeBannerHeading,
     'content':    theme.textHomeBannerContent
 }) }}
@@ -25,8 +26,8 @@ url: /
 	{{ partial('home-featured-testimonial') }}
 {% endif %}
 
-{% if theme.enableFeaturedPlan %}
-	{{ partial('home-featured-plans') }}
+{% if theme.enableFeaturedProducts %}
+	{{ partial('home-featured-products') }}
 {% endif %}
 
 {% if theme.enableCallout %}

@@ -1,14 +1,28 @@
-<ul class="home-flex pricing-box">
-	{% for product in featuredCollection.products %}
-		{{ partial('shop-grid-item-home', {'product':product}) }}
-	{% else %}
-		{% set product_counter = 1 %}
-        {% set product_limit = 4 %}
-        {% for product in products %}
-        {% if counter < product_limit %}
-        {{ partial('shop-grid-item-home', {'product':product}) }}
-        {% set counter = counter + 1 %}
-        {% endif %}
-        {% endfor %}
-	{% endfor %}
-</ul>
+{% set featured = 'featured'|collection %}
+
+<div class="block block-gray">
+
+    <div class="block-content">
+
+        <div class="container">
+            
+            {{ partial('block-header', { 'content': 'home-featured-products-header' }) }}
+            
+            {% if featured %}
+
+                {{ partial('shop-products-loop', { 
+                    'column_class': 'col-lg-6 col-md-6',
+                    'products':     featured.products
+                }) }}
+
+            {% else %}
+            
+                <p>The <b>featured</b> product collection was not found. Please create this group on the Shop/Collections page.</p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+    
+</div>

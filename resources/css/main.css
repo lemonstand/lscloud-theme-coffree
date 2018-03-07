@@ -15486,18 +15486,10 @@ a.link-muted:hover {
   width: auto;
 }
 
-#footer.footer-inverse {
-  background-color: #212121;
-}
-
 #footer-top {
   border-bottom: 2px solid #e0e0e0;
   padding-top: 3rem;
   padding-bottom: 3rem;
-}
-
-#footer.footer-inverse #footer-top {
-  border-bottom-color: #616161;
 }
 
 #footer-bottom {

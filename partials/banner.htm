@@ -9,14 +9,14 @@
     {% set banner_classes = banner_classes|merge([ 'block-header-overlay' ]) %}
 {% endif %}
 
-{% if theme.bannerAlignRight %} 
+{% if theme.homeBannerAlign == right %} 
 <style>
 	.banner-align .container {
 		text-align: right !important;
 	}
 </style> 
 {% endif %}
-{% if theme.bannerAlignLeft %} 
+{% if theme.homeBannerAlign == left %} 
 <style>
 	.banner-align .container {
 		text-align: left !important;
