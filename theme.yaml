@@ -39,7 +39,7 @@ customFields:
     mailchimpSubscribeUrl: { type: text, title: 'MailChimp: Subscribe URL', default: '' }
     enableMinicartCounter: { type: checkbox, title: 'Store: Enable Minicart Counter', default: '1' }
     enableMinicartCounterBadge: { type: checkbox, title: 'Store: Minicart Counter Badge Mode', default: '1' }
-    minicartBadgeColor: { type: color, title: 'Minicart bdge color', default: '#494c50'}
+    minicartBadgeColor: { type: color, title: 'Minicart badge color', default: '#494c50'}
     enableShopSidebar: { type: checkbox, title: 'Store: Enable Sidebar', default: '1' }
     enableCategories: { type: checkbox, title: 'Store: Enable Categories', default: '1' }
     enableDimensions: { type: checkbox, title: 'Store: Enable Dimensions', default: '1' }
