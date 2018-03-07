@@ -1,7 +1,7 @@
 {
   "name": "frescobox",
   "version": "2.0.0",
-  "description": "A lovely theme made for subscription box businesses based on Coffree.",
+  "description": "A lovely theme made for subscription box businesses.",
   "main": "index.js",
   "scripts": {
     "dev": "npm run development",
